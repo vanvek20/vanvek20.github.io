@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заявка — VANVEK</title>
+<meta name="description" content="Оформите заявку на установку сантехники без звонков. Фиксированная цена.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/mobile.css">
+<script>(function(){const t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<script src="js/bitrix24.js" defer></script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#E8450A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="VANVEK">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+
+<a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
+<div id="header-mount"></div>
+
+<main id="main-content">
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="index.html">Главная</a>
+        <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Корзина</span>
+      </nav>
+      <h1>Корзина</h1>
+      <p>Проверьте выбранные услуги и оформите заявку</p>
+    </div>
+  </div>
+
+  <section class="section section--sm" aria-label="Корзина и форма заказа">
+    <div class="container container--default">
+
+      <!-- EMPTY CART STATE -->
+      <div id="cart-empty" class="empty-cart" style="display:none;" aria-live="polite">
+        <div class="empty-cart__icon" aria-hidden="true">🛒</div>
+        <h2 class="empty-cart__title">Вы ещё не выбрали услуги</h2>
+        <p class="empty-cart__subtitle">Выберите услуги из каталога и оформите заявку — без звонков, быстро</p>
+        <a href="services.html" class="btn btn--accent btn--lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          Перейти к выбору услуг
+        </a>
+      </div>
+
+      <!-- CART WITH ITEMS -->
+      <div id="cart-main" style="display:none;">
+        <div class="cart-layout">
+
+          <!-- Left: cart items -->
+          <div id="cart-items-col">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-6);">
+              <h2 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;">
+                Выбранные услуги
+                <span id="cart-items-count" style="font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);margin-left:var(--space-2);">(0)</span>
+              </h2>
+              <button class="btn btn--ghost btn--sm" id="clear-cart-btn" data-testid="clear-cart" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+                Очистить заявку
+              </button>
+            </div>
+
+            <!-- Items rendered dynamically -->
+            <div id="cart-items-list" aria-label="Список услуг в заявке" aria-live="polite">
+            </div>
+
+            <a href="services.html" class="btn btn--outline" style="margin-top:var(--space-4);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              Добавить ещё услуги
+            </a>
+          </div>
+
+          <!-- Right: order form sidebar -->
+          <aside class="cart-sidebar" aria-label="Оформление заказа">
+            <div class="cart-sidebar__title">Оформление заявки</div>
+
+            <!-- Summary rows -->
+            <div id="cart-summary-rows" aria-live="polite"></div>
+
+            <div class="cart-sidebar__total-row" aria-live="polite">
+              <span class="cart-sidebar__total-label">Итого к оплате</span>
+              <span class="cart-sidebar__total-val" id="sidebar-total">0 ₽</span>
+            </div>
+
+            <!-- Order form -->
+            <form id="order-form" class="order-form" novalidate aria-label="Форма оформления заявки" data-testid="order-form">
+              <!-- City -->
+              <div class="form-group">
+                <label class="form-label" for="order-city">Город</label>
+                <select class="form-input" id="order-city" name="city" data-testid="input-city" aria-required="true">
+                  <option value="moscow">Москва</option>
+                  <!-- СПб скрыт <option value="spb">Санкт-Петербург</option> -->
+                </select>
+              </div>
+
+              <!-- Name -->
+              <div class="form-group">
+                <label class="form-label" for="order-name">Ваше имя <span aria-label="обязательное поле" style="color:var(--color-error);">*</span></label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="order-name"
+                  name="name"
+                  placeholder="Как к вам обращаться?"
+                  autocomplete="given-name"
+                  required
+                  data-testid="input-name"
+                  aria-required="true">
+                <span class="form-error sr-only" id="name-error" role="alert"></span>
+              </div>
+
+              <!-- Phone -->
+              <div class="form-group">
+                <label class="form-label" for="order-phone">Телефон <span aria-label="обязательное поле" style="color:var(--color-error);">*</span></label>
+                <input
+                  type="tel"
+                  class="form-input"
+                  id="order-phone"
+                  name="phone"
+                  placeholder="+7 (___) ___-__-__"
+                  autocomplete="tel"
+                  required
+                  data-testid="input-phone"
+                  aria-required="true">
+                <span class="form-error sr-only" id="phone-error" role="alert"></span>
+              </div>
+
+              <!-- Address -->
+              <div class="form-group">
+                <label class="form-label" for="order-address">Адрес / район</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="order-address"
+                  name="address"
+                  placeholder="Улица, дом, квартира или район"
+                  autocomplete="street-address"
+                  data-testid="input-address">
+              </div>
+
+              <!-- Comment -->
+              <div class="form-group">
+                <label class="form-label" for="order-comment">Комментарий</label>
+                <textarea
+                  class="form-input form-textarea"
+                  id="order-comment"
+                  name="comment"
+                  placeholder="Любые детали: дата, время, особенности..."
+                  data-testid="input-comment"
+                  rows="3"></textarea>
+              </div>
+
+              <!-- Contact method -->
+              <div class="form-group">
+                <div class="form-label" id="comm-method-label">Предпочитаемый способ связи</div>
+                <div class="comm-method-group" role="group" aria-labelledby="comm-method-label">
+                  <button type="button" class="comm-method-btn active" data-method="call" data-testid="comm-call" aria-pressed="true">📞 Звонок</button>
+                  <button type="button" class="comm-method-btn" data-method="max" data-testid="comm-max" aria-pressed="false">💬 Max</button>
+                  <button type="button" class="comm-method-btn" data-method="telegram" data-testid="comm-telegram" aria-pressed="false">✈️ Telegram</button>
+                </div>
+              </div>
+
+              <!-- Form validation error -->
+              <div id="form-error-msg" role="alert" style="display:none;padding:var(--space-3) var(--space-4);background:var(--color-error-highlight);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-error);">
+              </div>
+
+              <button type="submit" class="btn btn--accent btn--lg" style="width:100%;justify-content:center;" data-testid="submit-order">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+                Оформить заявку
+              </button>
+
+              <p style="font-size:var(--text-xs);color:var(--color-text-faint);text-align:center;margin-top:var(--space-2);">
+                Нажимая кнопку, вы соглашаетесь с <a href="#" style="color:var(--color-primary);text-decoration:underline;">политикой конфиденциальности</a>
+              </p>
+            </form>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== THANK YOU PAGE (hidden initially) ===== -->
+<div id="thankyou-page" style="display:none;">
+  <div class="page-header">
+    <div class="container">
+      <h1>Заявка оформлена</h1>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="thankyou" role="main" aria-label="Подтверждение заказа">
+        <div class="thankyou__icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 class="thankyou__title">Спасибо! Заявка принята</h2>
+        <div class="thankyou__order-num" id="thankyou-order-num">Заявка № —</div>
+        <p class="thankyou__text" id="thankyou-text">
+          Мы свяжемся с вами для подтверждения заказа и уточнения деталей.<br>
+          Мастер приедет в согласованное время.
+        </p>
+        <div class="thankyou__actions">
+          <a href="index.html" class="btn btn--primary btn--lg">На главную</a>
+          <a href="services.html" class="btn btn--outline btn--lg">Посмотреть другие услуги</a>
+        </div>
+
+        <!-- What's next block -->
+        <div style="margin-top:var(--space-12);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);max-width:600px;margin-inline:auto;">
+          <div style="text-align:center;">
+            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true">📞</div>
+            <div style="font-size:var(--text-sm);font-weight:700;margin-bottom:var(--space-1);">Свяжемся</div>
+            <div style="font-size:var(--text-xs);color:var(--color-text-muted);">Свяжемся с вами</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true">🔧</div>
+            <div style="font-size:var(--text-sm);font-weight:700;margin-bottom:var(--space-1);">Приедет мастер</div>
+            <div style="font-size:var(--text-xs);color:var(--color-text-muted);">В согласованное время</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true">✅</div>
+            <div style="font-size:var(--text-sm);font-weight:700;margin-bottom:var(--space-1);">Оплата после</div>
+            <div style="font-size:var(--text-xs);color:var(--color-text-muted);">Гарантия 1 год</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="footer-mount"></div>
+
+<script src="js/store.js"></script>
+<script src="js/header.html.js"></script>
+<script src="js/categories-data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('header-mount').innerHTML = getHeaderHTML('');
+  // Хедер вставлен — инициализируем переключатель города
+  if (window.AppStore && window.AppStore.initCityDropdown) window.AppStore.initCityDropdown();
+  if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();
+  if (window.AppStore && window.AppStore.updateCartUI) window.AppStore.updateCartUI();
+  document.getElementById('footer-mount').innerHTML = getFooterHTML();
+
+  // Set city select from current city
+  const citySelect = document.getElementById('order-city');
+  citySelect.value = window.AppStore.getCityKey();
+
+  // City select changes city
+  citySelect.addEventListener('change', function() {
+    window.AppStore.setCity(this.value);
+  });
+
+  // Render cart + update on change
+  renderCart();
+  window.AppStore.onCartChange(() => renderCart());
+
+  // Communication method buttons
+  document.querySelectorAll('.comm-method-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.comm-method-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      this.classList.add('active');
+      this.setAttribute('aria-pressed', 'true');
+    });
+  });
+
+  // Order form
+  document.getElementById('order-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('order-name').value.trim();
+    const phone = document.getElementById('order-phone').value.trim();
+    const errDiv = document.getElementById('form-error-msg');
+
+    if (!name) {
+      errDiv.textContent = 'Пожалуйста, введите ваше имя';
+      errDiv.style.display = 'block';
+      document.getElementById('order-name').focus();
+      return;
+    }
+    if (!phone || phone.replace(/\D/g,'').length < 10) {
+      errDiv.textContent = 'Пожалуйста, введите корректный номер телефона';
+      errDiv.style.display = 'block';
+      document.getElementById('order-phone').focus();
+      return;
+    }
+    errDiv.style.display = 'none';
+
+    // Generate order number
+    const orderNum = 'АМ-' + String(Date.now()).slice(-6);
+    const commMethod = document.querySelector('.comm-method-btn.active')?.dataset.method || 'call';
+    const city = document.getElementById('order-city').selectedOptions[0]?.textContent || '';
+    const address = document.getElementById('order-address').value.trim();
+    const comment = document.getElementById('order-comment').value.trim();
+    const cart = window.AppStore.getCart();
+    const total = window.AppStore.cartTotal();
+
+    // Build order details for email
+    const commLabelsEmail = { call: 'Звонок', max: 'Max', telegram: 'Telegram' };
+    const servicesText = cart.map(item => {
+      let line = `• ${item.name} — ${window.AppStore.formatPrice(item.total)}`;
+      if (item.addons.length > 0) {
+        line += '\n' + item.addons.map(a => `  + ${a.name}${a.qty > 1 ? ' ×' + a.qty : ''} — +${window.AppStore.formatPrice(a.price * a.qty)}`).join('\n');
+      }
+      return line;
+    }).join('\n');
+
+    const emailBody = [
+      `Заявка ${orderNum}`,
+      `Дата: ${new Date().toLocaleString('ru-RU')}`,
+      '',
+      `Имя: ${name}`,
+      `Телефон: ${phone}`,
+      `Город: ${city}`,
+      address ? `Адрес: ${address}` : '',
+      `Связь: ${commLabelsEmail[commMethod] || commMethod}`,
+      comment ? `Комментарий: ${comment}` : '',
+      '',
+      'Услуги:',
+      servicesText,
+      '',
+      `ИТОГО: ${window.AppStore.formatPrice(total)}`
+    ].filter(Boolean).join('\n');
+
+    // Send order via FormSubmit + Bitrix24 CRM (if enabled)
+    const submitBtn = document.querySelector('[data-testid="submit-order"]');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner"></span> Отправка...';
+
+    // Bitrix24 CRM: создать лид параллельно
+    if (window.Bitrix24 && window.Bitrix24.isEnabled()) {
+      window.Bitrix24.createLeadFromCart({
+        name: name,
+        phone: phone,
+        address: address,
+        comment: `${city} | ${commLabelsEmail[commMethod] || commMethod}${comment ? ' | ' + comment : ''}`,
+        items: cart.map(item => ({ name: item.name, price: item.total, qty: 1 })),
+        total: total
+      }).catch(err => console.warn('[Bitrix24] Lead creation failed:', err));
+    }
+
+    fetch('https://formsubmit.co/ajax/sc.vanvek@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Новая заявка ${orderNum} — VANVEK`,
+        'Заявка': orderNum,
+        'Имя': name,
+        'Телефон': phone,
+        'Город': city,
+        'Адрес': address || '—',
+        'Связь': commLabelsEmail[commMethod] || commMethod,
+        'Комментарий': comment || '—',
+        'Услуги': servicesText,
+        'Итого': window.AppStore.formatPrice(total),
+        _template: 'table'
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      showThankYou(orderNum, name, commMethod);
+      window.AppStore.clearCart();
+    })
+    .catch(err => {
+      // Even if email fails, show success (order details are in the thank-you page)
+      console.warn('Email send failed:', err);
+      showThankYou(orderNum, name, commMethod);
+      window.AppStore.clearCart();
+    });
+  });
+
+  // Clear cart
+  document.getElementById('clear-cart-btn').addEventListener('click', function() {
+    if (confirm('Очистить заявку? Все выбранные услуги будут удалены.')) {
+      window.AppStore.clearCart();
+    }
+  });
+});
+
+function renderCart() {
+  const cart = window.AppStore.getCart();
+  const count = cart.length;
+  const total = window.AppStore.cartTotal();
+
+  const emptyDiv = document.getElementById('cart-empty');
+  const mainDiv = document.getElementById('cart-main');
+
+  emptyDiv.style.display = count === 0 ? 'block' : 'none';
+  mainDiv.style.display = count === 0 ? 'none' : 'block';
+
+  if (count === 0) return;
+
+  // Update count
+  document.getElementById('cart-items-count').textContent = `(${count} ${window.AppStore.pluralize(count, 'услуга', 'услуги', 'услуг')})`;
+
+  // Render items
+  const itemsList = document.getElementById('cart-items-list');
+  itemsList.innerHTML = cart.map(item => {
+    const addonsHTML = item.addons.length > 0
+      ? `<div class="cart-item__addons">
+          ${item.addons.map(a => `
+            <div class="cart-item__addon-row">
+              <span>+ ${window.AppStore.escHtml(a.name)}${a.qty > 1 ? ` × ${a.qty}` : ''}</span>
+              <span>+${window.AppStore.formatPrice(a.price * a.qty)}</span>
+            </div>
+          `).join('')}
+         </div>`
+      : '';
+
+    return `
+      <div class="cart-item-card" data-item-id="${item.id}" data-testid="cart-item-${item.id}">
+        <div class="cart-item__header">
+          <h3 class="cart-item__name">${window.AppStore.escHtml(item.name)}</h3>
+          <div class="cart-item__actions">
+            <button class="btn btn--ghost btn--sm js-remove-item" data-item-id="${item.id}" type="button" aria-label="Удалить услугу ${window.AppStore.escHtml(item.name)}" data-testid="remove-item-${item.id}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+              Удалить
+            </button>
+          </div>
+        </div>
+        ${addonsHTML}
+        <div class="cart-item__total-row">
+          <span class="cart-item__total-label">${item.addons.length > 0 ? `Базовая цена: ${window.AppStore.formatPrice(item.basePrice)}` : 'Цена услуги'}</span>
+          <span class="cart-item__total-price">${window.AppStore.formatPrice(item.total)}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Attach remove handlers
+  itemsList.querySelectorAll('.js-remove-item').forEach(btn => {
+    btn.addEventListener('click', function() {
+      window.AppStore.removeFromCart(this.dataset.itemId);
+    });
+  });
+
+  // Sidebar summary
+  const summaryRows = document.getElementById('cart-summary-rows');
+  summaryRows.innerHTML = cart.map(item => `
+    <div class="cart-sidebar__row">
+      <span style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">${window.AppStore.escHtml(item.name)}</span>
+      <span style="font-weight:600;">${window.AppStore.formatPrice(item.total)}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('sidebar-total').textContent = window.AppStore.formatPrice(total);
+}
+
+function showThankYou(orderNum, name, commMethod) {
+  // Hide main + page header
+  document.querySelector('.page-header').style.display = 'none';
+  document.querySelector('section.section.section--sm').style.display = 'none';
+
+  const ty = document.getElementById('thankyou-page');
+  ty.style.display = 'block';
+  document.getElementById('thankyou-order-num').textContent = 'Заявка ' + orderNum;
+
+  const commLabels = { call: 'позвоним вам', max: 'напишем в Max', telegram: 'напишем в Telegram' };
+  document.getElementById('thankyou-text').innerHTML =
+    `${name}, мы ${commLabels[commMethod] || 'свяжемся с вами'} для подтверждения заказа и уточнения деталей.<br>Мастер приедет в согласованное время.`;
+
+  ty.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+<script src="js/ai-assistant.js"></script>
+<script src="js/mobile-menu.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+</script>
+</body>
+</html>

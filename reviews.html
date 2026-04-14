@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta name="generator" content="Perplexity Computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отзывы — VANVEK | Установка сантехники</title>
+<meta name="description" content="Отзывы клиентов VANVEK о профессиональной установке сантехники в Москве. Реальные отзывы с Яндекс.Карт, 2GIS и Google.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/mobile.css">
+<script>(function(){const t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#E8450A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="VANVEK">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
+<div id="header-mount"></div>
+<main id="main-content">
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="breadcrumbs__sep">/</span>
+      <span id="bc-label" aria-current="page">Страница</span>
+    </nav>
+    <h1 id="page-h1">Страница</h1>
+    <p id="page-desc-text">Описание страницы</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container container--default" id="page-content" aria-live="polite">
+    <!-- Content loaded by JS -->
+  </div>
+</section>
+
+<!-- MODAL: Описать задачу -->
+<div id="task-modal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:480px;width:100%;position:relative;box-shadow:var(--shadow-lg);">
+    <button onclick="document.getElementById('task-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--color-text-muted);font-size:24px;line-height:1;" aria-label="Закрыть">&times;</button>
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Опишите задачу</h3>
+    <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);">Мы оценим стоимость и перезвоним</p>
+    <form id="task-form" style="display:flex;flex-direction:column;gap:var(--space-4);">
+      <input type="text" name="name" required placeholder="Ваше имя" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
+      <input type="tel" name="phone" required placeholder="Телефон" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
+      <textarea name="task" required placeholder="Опишите что нужно сделать…" rows="4" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'"></textarea>
+      <button type="submit" id="task-submit-btn" style="padding:16px;background:#E8450A;color:#fff;border:none;border-radius:var(--radius-lg);font-size:var(--text-base);font-weight:700;font-family:var(--font-display);cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#d03d08'" onmouseout="this.style.background='#E8450A'">
+        Отправить
+      </button>
+    </form>
+    <div id="task-success" style="display:none;text-align:center;padding:var(--space-8) 0;">
+      <div style="width:64px;height:64px;background:#8fc400;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Заявка отправлена</div>
+      <p style="font-size:var(--text-sm);color:var(--color-text-muted);">Перезвоним</p>
+    </div>
+  </div>
+</div>
+
+</main>
+<div id="footer-mount"></div>
+<script src="js/store.js"></script>
+<script src="js/header.html.js"></script>
+<script src="js/categories-data.js"></script>
+<script>
+const PAGE_KEY = 'reviews';
+document.addEventListener('DOMContentLoaded', function() {
+  const meta = window.STATIC_PAGES && window.STATIC_PAGES[PAGE_KEY];
+  document.getElementById('header-mount').innerHTML = getHeaderHTML(meta ? meta.navKey : '');
+  // Хедер вставлен — инициализируем переключатель города
+  if (window.AppStore && window.AppStore.initCityDropdown) window.AppStore.initCityDropdown();
+  if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();
+  if (window.AppStore && window.AppStore.updateCartUI) window.AppStore.updateCartUI();
+  document.getElementById('footer-mount').innerHTML = getFooterHTML();
+  if (meta) {
+    document.title = meta.title + ' — VANVEK';
+    document.getElementById('page-h1').textContent = meta.title;
+    document.getElementById('page-desc-text').textContent = meta.desc;
+    document.getElementById('bc-label').textContent = meta.title;
+  }
+  renderPageContent(PAGE_KEY);
+});
+
+function renderPageContent(key) {
+  const el = document.getElementById('page-content');
+  const contents = {
+    works: `
+      <h2 class="section-title">Примеры наших работ</h2>
+      <p class="section-subtitle">Реальные фотографии выполненных работ в Москве</p>
+      <div class="grid-3" style="margin-top:var(--space-8);">
+        ${[
+          {title:'Раковина IKEA + тумба', city:'Москва',cat:'Раковины'},
+          {title:'Подвесной унитаз Duravit + инсталляция Geberit', city:'Москва',cat:'Унитазы'},
+          {title:'Душевой поддон + ограждение Cezares', city:'Москва',cat:'Душевые'},
+          {title:'Водонагреватель Ariston 80л', city:'Москва',cat:'Водонагреватели'},
+          {title:'Стиральная машина + сушильная', city:'Москва',cat:'Техника'},
+          {title:'Ванна Ravak акриловая 170×75', city:'Москва',cat:'Ванны'},
+        ].map(w=>`
+          <div class="card" style="overflow:hidden;">
+            <div style="background:linear-gradient(135deg,var(--color-primary-highlight),var(--color-accent-highlight));height:160px;display:flex;align-items:center;justify-content:center;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <div style="padding:var(--space-4);">
+              <div class="tag" style="margin-bottom:var(--space-2);">${w.cat}</div>
+              <div style="font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-1);">${w.title}</div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${w.city}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `,
+    reviews: `
+      <h2 class="section-title">Отзывы клиентов</h2>
+      <p class="section-subtitle">Реальные отзывы с Яндекс.Карт, 2GIS и Google</p>
+      <div class="grid-2" style="margin-top:var(--space-8);">
+        ${[
+          {name:'Елена Соколова',city:'Москва',text:'Всё чётко: приехали вовремя, установили раковину с тумбой, убрали за собой. Цена совпала с той, что указана на сайте. Рекомендую!',stars:5,date:'12 марта 2024'},
+          {name:'Андрей Петров',city:'Москва',text:'Ставил инсталляцию Geberit с подвесным унитазом. Мастер работал аккуратно, объяснил что и как. Дали гарантию. Через 3 месяца — всё работает.',stars:5,date:'8 февраля 2024'},
+          {name:'Наталья К.',city:'Москва',text:'Быстро, качественно. Заказала через сайт без звонков — очень удобно. Цена фиксированная, никаких неприятных сюрпризов.',stars:5,date:'22 января 2024'},
+          {name:'Игорь Малов',city:'Москва',text:'Подключили стиральную и посудомоечную машину. Всё сделали за час. Единственное — немного задержались, но предупредили заранее.',stars:4,date:'15 декабря 2023'},
+        ].map(r=>`
+          <div class="card" style="padding:var(--space-6);">
+            <div style="display:flex;gap:var(--space-3);margin-bottom:var(--space-4);">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--color-primary-highlight);color:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--text-base);flex-shrink:0;">${r.name[0]}</div>
+              <div>
+                <div style="font-weight:700;font-size:var(--text-sm);">${r.name}</div>
+                <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${r.city} · ${r.date}</div>
+              </div>
+              <div style="margin-left:auto;color:#f59e0b;font-size:var(--text-sm);">${'★'.repeat(r.stars)}</div>
+            </div>
+            <p style="font-size:var(--text-sm);line-height:1.6;">${r.text}</p>
+          </div>
+        `).join('')}
+      </div>
+    `,
+    about: `
+      <div style="display:grid;grid-template-columns:1fr 420px;gap:var(--space-12);align-items:flex-start;">
+        <div>
+          <h2 class="section-title">О компании VANVEK</h2>
+          <p style="font-size:var(--text-base);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-6);">
+            VANVEK — сервис профессиональной установки сантехники в Москве. Работаем с 2022 года, выполнили более 9 500 заказов.
+          </p>
+          <p style="font-size:var(--text-base);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-6);">
+            Мы принципиально работаем с фиксированными ценами: вы видите стоимость до звонка мастера. Никаких «посмотрим на месте» и скрытых доплат.
+          </p>
+          <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-4);">Наши принципы</h3>
+          <ul style="display:flex;flex-direction:column;gap:var(--space-3);">
+            ${['Фиксированная цена — вы знаете стоимость до выезда','Работаем официально — договор, чек, гарантия','Вежливые мастера — уважаем ваш дом и время','Без предоплаты — оплата после выполнения работ'].map(p=>`
+              <li style="display:flex;gap:var(--space-3);align-items:flex-start;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.5" style="flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:var(--text-sm);color:var(--color-text);">${p}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+        <div class="card" style="padding:var(--space-6);">
+          <h3 style="font-family:var(--font-display);font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-5);">В цифрах</h3>
+          ${[['4+ года','на рынке (с 2022)'],['9 500+','выполненных заказов'],['35','мастеров в штате'],['2 города','Москва'],['1 год','гарантия на работы']].map(([n,l])=>`
+            <div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:1px solid var(--color-divider);">
+              <span style="font-size:var(--text-sm);color:var(--color-text-muted);">${l}</span>
+              <span style="font-family:var(--font-display);font-weight:800;">${n}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `,
+    faq: `
+      <h2 class="section-title">Часто задаваемые вопросы</h2>
+      <p class="section-subtitle">Ответы на популярные вопросы об установке сантехники</p>
+      <div style="max-width:720px;margin-top:var(--space-8);">
+        ${[
+          {q:'Как формируется цена?',a:'Цены фиксированные и указаны на сайте до выезда мастера. Стоимость складывается из базовой услуги плюс дополнительные работы, которые вы выбрали при оформлении заявки. После приезда мастера цена не меняется.'},
+          {q:'Можно ли заказать без звонка?',a:'Да, именно для этого и создан сайт. Выберите услуги, оформите заявку на сайте — мы сами свяжемся с вами для подтверждения.'},
+          {q:'Какова гарантия на работы?',a:'1 год на все виды работ. Если в течение гарантийного срока возникнет неисправность по вине мастера — устраним бесплатно.'},
+          {q:'Как быстро приедет мастер?',a:'При заказе до 14:00 — в день обращения. В остальных случаях — на следующий день или в удобное для вас время.'},
+          {q:'Нужна ли предоплата?',a:'Нет. Оплата производится после выполнения всех работ. Мы принимаем наличные и банковские карты.'},
+          {q:'Работаете ли вы в выходные?',a:'Да, ежедневно с 9:00 до 20:00, включая праздничные дни.'},
+          {q:'Вывозите ли старое оборудование?',a:'Да, за дополнительную плату. При заказе «Демонтаж старого оборудования» мастер вывезет и утилизирует старую сантехнику.'},
+          {q:'Есть ли доплата за поздний выезд?',a:'Выезд мастера после 19:00 — доплата +10% к стоимости работ.'},
+          {q:'Работаете ли по всей Москве?',a:'Выезжаем по всей Москве и Московской области. Стоимость выезда включена в цену услуги.'},
+        ].map((faq,i)=>`
+          <details style="border:1.5px solid var(--color-border);border-radius:var(--radius-md);margin-bottom:var(--space-3);overflow:hidden;">
+            <summary style="padding:var(--space-4) var(--space-5);font-weight:600;font-size:var(--text-sm);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+              ${faq.q}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;transition:transform .2s;" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div style="padding:0 var(--space-5) var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.65;">${faq.a}</div>
+          </details>
+        `).join('')}
+      </div>
+      <div style="margin-top:var(--space-10);background:var(--color-primary);border-radius:var(--radius-lg);padding:var(--space-8) var(--space-8);display:flex;justify-content:space-between;align-items:center;gap:var(--space-6);flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:#fff;margin-bottom:var(--space-2);">Не нашли ответ?</div>
+          <div style="font-size:var(--text-sm);color:rgba(255,255,255,0.7);">Опишите задачу — ответим</div>
+        </div>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <button onclick="document.getElementById('task-modal').style.display='flex'" class="btn btn--accent btn--lg" style="border:none;cursor:pointer;">Описать задачу</button>
+          <a href="tel:88003333333" class="btn btn--lg" style="background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.25);">8 800 333-33-33</a>
+        </div>
+      </div>
+    `,
+    contacts: `
+      <div style="display:grid;grid-template-columns:1fr 380px;gap:var(--space-10);align-items:flex-start;" id="form">
+        <div>
+          <h2 class="section-title">Контакты</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin-bottom:var(--space-8);">
+            ${[{city:'Москва',phone:'8 800 333-33-33',hours:'Ежедневно 9:00–20:00',zone:'Москва и МО'}].map(c=>`
+              <div class="card" style="padding:var(--space-5);">
+                <div style="font-family:var(--font-display);font-weight:800;margin-bottom:var(--space-3);">${c.city}</div>
+                <div style="font-size:var(--text-lg);font-weight:700;color:var(--color-primary);margin-bottom:var(--space-2);white-space:nowrap;"><a href="tel:${c.phone.replace(/\D/g,'').replace(/^7/,'+7')}">${c.phone}</a></div>
+                <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${c.hours}</div>
+                <div style="font-size:var(--text-xs);color:var(--color-text-muted);">Зона работы: ${c.zone}</div>
+              </div>
+            `).join('')}
+          </div>
+          <div style="font-size:var(--text-sm);color:var(--color-text-muted);">Email: <a href="mailto:info@vanvek.ru" style="color:var(--color-primary);">info@vanvek.ru</a></div>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-display);font-size:var(--text-base);font-weight:800;margin-bottom:var(--space-5);">Описать задачу</h3>
+          <form style="display:flex;flex-direction:column;gap:var(--space-4);" onsubmit="event.preventDefault();this.innerHTML='<div style=\\'padding:var(--space-6);text-align:center;color:var(--color-success);font-weight:700;\\'>✓ Сообщение отправлено!</div>'">
+            <div class="form-group"><label class="form-label" for="c-name">Имя</label><input class="form-input" id="c-name" type="text" placeholder="Ваше имя"></div>
+            <div class="form-group"><label class="form-label" for="c-phone">Телефон</label><input class="form-input" id="c-phone" type="tel" placeholder="+7 (___) ___-__-__"></div>
+            <div class="form-group"><label class="form-label" for="c-msg">Опишите задачу</label><textarea class="form-input form-textarea" id="c-msg" rows="4" placeholder="Что нужно установить, адрес, пожелания..."></textarea></div>
+            <button type="submit" class="btn btn--accent btn--lg" style="width:100%;">Отправить</button>
+          </form>
+        </div>
+      </div>
+    `,
+  };
+  el.innerHTML = contents[key] || '<p>Страница в разработке</p>';
+}
+</script>
+<script src="js/ai-assistant.js"></script>
+<script src="js/mobile-menu.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('task-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('task-submit-btn');
+    var name = form.querySelector('[name="name"]').value.trim();
+    var phone = form.querySelector('[name="phone"]').value.trim();
+    var task = form.querySelector('[name="task"]').value.trim();
+    if (!name || !phone || !task) return;
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+    var reqNum = 'TASK-' + Date.now().toString(36).toUpperCase();
+    fetch('https://formsubmit.co/ajax/sc.vanvek@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Новая задача ' + reqNum + ' — VANVEK',
+        'Заявка': reqNum,
+        'Имя': name,
+        'Телефон': phone,
+        'Описание задачи': task,
+        _template: 'table'
+      })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function() {
+      form.style.display = 'none';
+      document.getElementById('task-success').style.display = 'block';
+    })
+    .catch(function() {
+      alert('Ошибка отправки. Позвоните нам: +7 (495) 128-30-20');
+      btn.disabled = false;
+      btn.textContent = 'Отправить';
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Категория — VANVEK</title>
+<meta name="description" id="page-desc" content="Услуги по установке сантехники в Москве.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/mobile.css">
+<script>(function(){const t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#E8450A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="VANVEK">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+
+<a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
+<div id="header-mount"></div>
+
+<main id="main-content">
+
+  <!-- Page header -->
+  <div class="page-header" id="cat-page-header">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="index.html">Главная</a>
+        <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+        <a href="services.html">Услуги</a>
+        <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+        <span id="cat-breadcrumb" aria-current="page">Категория</span>
+      </nav>
+      <h1 id="cat-title">Категория</h1>
+      <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-top:var(--space-3);">
+        <p id="cat-subtitle" style="margin:0;">Выберите услуги и оформите заявку</p>
+        <a href="cart.html" class="btn btn--accent" style="white-space:nowrap;" data-testid="cat-cta-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          Оформить заявку
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section--sm" aria-labelledby="services-list-heading">
+    <div class="container container--default">
+      <h2 id="services-list-heading" class="sr-only">Услуги категории</h2>
+
+      <div class="service-list" id="services-list" aria-label="Список услуг">
+        <!-- Services rendered by JS -->
+      </div>
+
+      <!-- Not found block -->
+      <div class="not-found-service">
+        <div class="not-found-service__text">
+          <div class="not-found-service__title">Не нашли нужную услугу?</div>
+          <div class="not-found-service__desc">Опишите задачу в свободной форме — оценим стоимость и свяжемся с вами</div>
+        </div>
+        <button onclick="document.getElementById('task-modal').style.display='flex'" class="btn btn--primary" style="border:none;cursor:pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Описать задачу
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related categories -->
+  <section class="section section--sm" style="background:var(--color-surface-offset);" aria-labelledby="related-heading">
+    <div class="container">
+      <h2 id="related-heading" class="section-title" style="font-size:var(--text-lg);">Другие категории</h2>
+      <div class="category-grid" id="related-cats" role="list" aria-label="Другие категории услуг"></div>
+    </div>
+  </section>
+
+
+<!-- MODAL: Описать задачу -->
+<div id="task-modal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:480px;width:100%;position:relative;box-shadow:var(--shadow-lg);">
+    <button onclick="document.getElementById('task-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--color-text-muted);font-size:24px;line-height:1;" aria-label="Закрыть">&times;</button>
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Опишите задачу</h3>
+    <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);">Мы оценим стоимость и перезвоним</p>
+    <form id="task-form" style="display:flex;flex-direction:column;gap:var(--space-4);">
+      <input type="text" name="name" required placeholder="Ваше имя" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
+      <input type="tel" name="phone" required placeholder="Телефон" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
+      <textarea name="task" required placeholder="Опишите что нужно сделать…" rows="4" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'"></textarea>
+      <button type="submit" id="task-submit-btn" style="padding:16px;background:#E8450A;color:#fff;border:none;border-radius:var(--radius-lg);font-size:var(--text-base);font-weight:700;font-family:var(--font-display);cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#d03d08'" onmouseout="this.style.background='#E8450A'">
+        Отправить
+      </button>
+    </form>
+    <div id="task-success" style="display:none;text-align:center;padding:var(--space-8) 0;">
+      <div style="width:64px;height:64px;background:#8fc400;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Заявка отправлена</div>
+      <p style="font-size:var(--text-sm);color:var(--color-text-muted);">Перезвоним</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div id="footer-mount"></div>
+
+<script src="js/store.js"></script>
+<script src="js/header.html.js"></script>
+<script src="js/services-data.js"></script>
+<script src="js/categories-data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('header-mount').innerHTML = getHeaderHTML('services');
+  // Хедер вставлен — инициализируем переключатель города
+  if (window.AppStore && window.AppStore.initCityDropdown) window.AppStore.initCityDropdown();
+  if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();
+  if (window.AppStore && window.AppStore.updateCartUI) window.AppStore.updateCartUI();
+  document.getElementById('footer-mount').innerHTML = getFooterHTML();
+
+  // Get category from URL
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('cat') || 'sinks';
+  const data = window.SERVICES_DATA[slug];
+  const catMeta = window.CATEGORIES.find(c => c.slug === slug);
+
+  if (!data || !catMeta) {
+    document.getElementById('cat-title').textContent = 'Категория не найдена';
+    return;
+  }
+
+  // Update page meta
+  document.getElementById('page-title').textContent = `${data.categoryName} — VANVEK`;
+  document.getElementById('page-desc').content = `Установка ${data.categoryName.toLowerCase()} в Москве по фиксированной цене.`;
+  document.getElementById('cat-breadcrumb').textContent = data.categoryName;
+  document.getElementById('cat-title').textContent = data.categoryName + ' в ' + window.AppStore.getCity().name.replace('Санкт-Петербург', 'Санкт-Петербурге').replace('Москва', 'Москве');
+  document.getElementById('cat-subtitle').textContent = `Фиксированные цены, гарантия 1 год. Выберите услуги и оформите заявку.`;
+
+  // Track city changes to update heading
+  // Listen for city changes
+  const observer = new MutationObserver(() => {
+    const cityName = window.AppStore.getCity().name;
+    const cityPrep = cityName === 'Москва' ? 'Москве' : 'Санкт-Петербурге';
+    document.getElementById('cat-title').textContent = data.categoryName + ' в ' + cityPrep;
+  });
+  document.querySelectorAll('[data-city-in-title]').forEach(el => observer.observe(el, {childList: true}));
+
+  // Render services
+  renderServices(data.services);
+
+  // Render related categories (exclude current)
+  const relatedGrid = document.getElementById('related-cats');
+  const related = window.CATEGORIES.filter(c => c.slug !== slug).slice(0, 4);
+  relatedGrid.innerHTML = related.map(cat => `
+    <div role="listitem">
+      <a href="category.html?cat=${cat.slug}" class="category-card" aria-label="${cat.name}">
+        <div class="category-card__illus" aria-hidden="true">${cat.icon}</div>
+        <div class="category-card__body">
+          <span class="category-card__name">${cat.name}</span>
+          <span class="category-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+    </div>
+  `).join('');
+});
+
+function renderServices(services) {
+  const list = document.getElementById('services-list');
+  if (!list || !services) return;
+
+  list.innerHTML = services.map(svc => {
+    const addonsHTML = svc.addons.map(addon => {
+      const isPct = !!addon.pct;
+      const priceLabel = isPct
+        ? `+${addon.pct}% к стоимости`
+        : `+ ${window.AppStore.formatPrice(addon.price)}${addon.hasQty ? ' за отверстие' : ''}`;
+      return `
+      <div class="addon-item" data-addon-id="${addon.id}" data-addon-price="${addon.price}" data-addon-pct="${addon.pct||0}">
+        <input type="checkbox"
+          class="addon-item__check"
+          id="addon-${svc.id}-${addon.id}"
+          data-service-id="${svc.id}"
+          aria-label="${addon.name}"
+          data-testid="addon-check-${addon.id}">
+        <div class="addon-item__body">
+          <label class="addon-item__name" for="addon-${svc.id}-${addon.id}">${addon.name}</label>
+          <div class="addon-item__price">${priceLabel}</div>
+          ${addon.hasQty ? `
+            <div class="addon-item__qty" id="qty-row-${svc.id}-${addon.id}" style="display:none;">
+              <button class="addon-qty-btn" data-action="minus" data-service="${svc.id}" data-addon="${addon.id}" type="button" aria-label="Уменьшить количество">−</button>
+              <span class="addon-qty-val" id="qty-val-${svc.id}-${addon.id}">1</span>
+              <button class="addon-qty-btn" data-action="plus" data-service="${svc.id}" data-addon="${addon.id}" type="button" aria-label="Увеличить количество">+</button>
+              <span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-left:var(--space-1);">${addon.qtyLabel || 'шт.'}</span>
+            </div>
+          ` : ''}
+        </div>
+      </div>
+    `}).join('');
+
+    return `
+      <article class="service-card" data-service-id="${svc.id}" aria-label="${svc.name}" data-testid="service-card-${svc.id}">
+        <div class="service-card__main">
+          <div class="service-card__info">
+            <h3 class="service-card__name">${svc.name}</h3>
+            <p class="service-card__desc">${svc.desc}</p>
+          </div>
+          <div class="service-card__right">
+            <div class="service-price" aria-live="polite" aria-label="Итоговая стоимость">
+              <div class="service-price__amount" id="price-display-${svc.id}">${window.AppStore.formatPrice(svc.price)}</div>
+              <div class="service-price__label" id="price-label-${svc.id}">фиксированная цена</div>
+            </div>
+            <div class="service-card__actions">
+              <button class="btn btn--accent js-add-to-cart"
+                data-service-id="${svc.id}"
+                data-testid="add-to-cart-${svc.id}"
+                type="button"
+                aria-label="Добавить ${svc.name} в заявку">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                Добавить в заявку
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Addons accordion -->
+        <div class="service-addons">
+          <button
+            class="service-addons__toggle"
+            aria-expanded="false"
+            aria-controls="addons-panel-${svc.id}"
+            type="button"
+            data-testid="addons-toggle-${svc.id}">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:6px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              Дополнительные услуги
+            </span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+
+          <div class="service-addons__panel" id="addons-panel-${svc.id}" role="group" aria-label="Дополнительные услуги для ${svc.name}">
+            ${addonsHTML}
+
+            <!-- Subtotal -->
+            <div class="addons-subtotal" id="subtotal-${svc.id}" aria-live="polite">
+              <span class="addons-subtotal__label">Итого с допами:</span>
+              <span class="addons-subtotal__total" id="subtotal-val-${svc.id}"><em>${window.AppStore.formatPrice(svc.price)}</em></span>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  // ===== INTERACTIVITY =====
+
+  // Accordion toggles
+  list.querySelectorAll('.service-addons__toggle').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      const panel = document.getElementById(this.getAttribute('aria-controls'));
+      this.setAttribute('aria-expanded', String(!expanded));
+      panel.classList.toggle('open', !expanded);
+    });
+  });
+
+  // Addon checkbox + qty logic
+  list.querySelectorAll('.addon-item__check').forEach(chk => {
+    chk.addEventListener('change', function() {
+      const svcId = this.dataset.serviceId;
+      const addonId = this.closest('.addon-item').dataset.addonId;
+      const qtyRow = document.getElementById(`qty-row-${svcId}-${addonId}`);
+      if (qtyRow) qtyRow.style.display = this.checked ? 'flex' : 'none';
+      recalcService(svcId);
+    });
+  });
+
+  // Qty buttons
+  list.querySelectorAll('.addon-qty-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const svcId = this.dataset.service;
+      const addonId = this.dataset.addon;
+      const valEl = document.getElementById(`qty-val-${svcId}-${addonId}`);
+      let val = parseInt(valEl.textContent) || 1;
+      val = this.dataset.action === 'plus' ? val + 1 : Math.max(1, val - 1);
+      valEl.textContent = val;
+      recalcService(svcId);
+    });
+  });
+
+  // === Button state helpers ===
+  const ICON_ADD = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`;
+  const ICON_CHECK = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+  function setButtonAdded(btn, svcName) {
+    btn.classList.add('btn--in-cart');
+    btn.classList.remove('btn--accent');
+    btn.innerHTML = `${ICON_CHECK} В заявке`;
+    btn.setAttribute('aria-label', `${svcName} в заявке — нажмите, чтобы убрать`);
+  }
+  function setButtonDefault(btn, svcName) {
+    btn.classList.remove('btn--in-cart');
+    btn.classList.add('btn--accent');
+    btn.innerHTML = `${ICON_ADD} Добавить в заявку`;
+    btn.setAttribute('aria-label', `Добавить ${svcName} в заявку`);
+  }
+
+  // Sync all add-to-cart buttons with actual cart state
+  function syncAllButtons() {
+    list.querySelectorAll('.js-add-to-cart').forEach(b => {
+      const sid = b.dataset.serviceId;
+      const s = services.find(x => x.id === sid);
+      if (!s) return;
+      if (window.AppStore.isServiceInCart(sid)) {
+        setButtonAdded(b, s.name);
+      } else {
+        setButtonDefault(b, s.name);
+      }
+    });
+  }
+
+  // Sync on cart changes (e.g. removing from mini-cart or other tab)
+  window.AppStore.onCartChange(syncAllButtons);
+  // Initial sync (in case page loaded with items already in cart)
+  syncAllButtons();
+
+  // Add to cart buttons — toggle behaviour
+  list.querySelectorAll('.js-add-to-cart').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const svcId = this.dataset.serviceId;
+      const svc = services.find(s => s.id === svcId);
+      if (!svc) return;
+
+      // If already in cart — remove
+      if (window.AppStore.isServiceInCart(svcId)) {
+        window.AppStore.removeLastByServiceId(svcId);
+        setButtonDefault(this, svc.name);
+        window.AppStore.showToast(`«${svc.name}» убрана из заявки`);
+        return;
+      }
+
+      // Collect checked addons
+      const addons = [];
+      const card = this.closest('.service-card');
+      card.querySelectorAll('.addon-item__check:checked').forEach(chk => {
+        const addonEl = chk.closest('.addon-item');
+        const addonId = addonEl.dataset.addonId;
+        const addonDef = svc.addons.find(a => a.id === addonId);
+        if (!addonDef) return;
+        const qtyEl = document.getElementById(`qty-val-${svcId}-${addonId}`);
+        const qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+        const addonPrice = addonDef.pct ? Math.round(svc.price * addonDef.pct / 100) : addonDef.price;
+        addons.push({ id: addonId, name: addonDef.name, price: addonPrice, qty });
+      });
+
+      window.AppStore.addToCart({
+        serviceId: svcId,
+        name: svc.name,
+        basePrice: svc.price,
+        addons
+      });
+
+      setButtonAdded(this, svc.name);
+      window.AppStore.showToast(`«${svc.name}» добавлена в заявку`);
+    });
+  });
+
+  function recalcService(svcId) {
+    const svc = services.find(s => s.id === svcId);
+    if (!svc) return;
+    const card = document.querySelector(`[data-service-id="${svcId}"].service-card`);
+    let total = svc.price;
+
+    card.querySelectorAll('.addon-item__check:checked').forEach(chk => {
+      const addonEl = chk.closest('.addon-item');
+      const addonId = addonEl.dataset.addonId;
+      const pct = parseInt(addonEl.dataset.addonPct) || 0;
+      const price = parseInt(addonEl.dataset.addonPrice) || 0;
+      if (pct > 0) {
+        total += Math.round(svc.price * pct / 100);
+      } else {
+        const qtyEl = document.getElementById(`qty-val-${svcId}-${addonId}`);
+        const qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+        total += price * qty;
+      }
+    });
+
+    // Update price display
+    const priceDisplay = document.getElementById(`price-display-${svcId}`);
+    const priceLabel = document.getElementById(`price-label-${svcId}`);
+    const subtotalVal = document.getElementById(`subtotal-val-${svcId}`);
+
+    if (priceDisplay) priceDisplay.textContent = window.AppStore.formatPrice(total);
+    if (priceLabel) priceLabel.textContent = total === svc.price ? 'фиксированная цена' : 'с доп. услугами';
+    if (subtotalVal) subtotalVal.innerHTML = `<em>${window.AppStore.formatPrice(total)}</em>`;
+  }
+}
+</script>
+<script src="js/ai-assistant.js"></script>
+<script src="js/mobile-menu.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('task-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('task-submit-btn');
+    var name = form.querySelector('[name="name"]').value.trim();
+    var phone = form.querySelector('[name="phone"]').value.trim();
+    var task = form.querySelector('[name="task"]').value.trim();
+    if (!name || !phone || !task) return;
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+    var reqNum = 'TASK-' + Date.now().toString(36).toUpperCase();
+    fetch('https://formsubmit.co/ajax/sc.vanvek@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Новая задача ' + reqNum + ' — VANVEK',
+        'Заявка': reqNum,
+        'Имя': name,
+        'Телефон': phone,
+        'Описание задачи': task,
+        _template: 'table'
+      })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function() {
+      form.style.display = 'none';
+      document.getElementById('task-success').style.display = 'block';
+    })
+    .catch(function() {
+      alert('Ошибка отправки. Позвоните нам: +7 (495) 128-30-20');
+      btn.disabled = false;
+      btn.textContent = 'Отправить';
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+/*
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+*/
+
+/*
+  VANVEK Mobile CSS
+  Breakpoints:
+    768px — планшет (tablet)
+    480px — мобильный (mobile)
+    375px — маленький мобильный (small)
+*/
+
+/* ===== HEADER MOBILE ===== */
+@media (max-width: 1024px) {
+  :root { --header-h: 64px; }
+
+  .logo__img { height: 44px; }
+
+  /* Скрываем городской переключатель и телефон на мобильном хедере */
+  .city-switcher { display: none; }
+  .header-phone  { display: none; }
+
+  /* Корзина — только иконка + бейдж */
+  .cart-btn { padding: var(--space-2); border: none; background: none; }
+  .cart-btn svg { width: 22px; height: 22px; color: rgba(255,255,255,0.85); }
+  .cart-btn__label { display: none; } /* скрыть текст "Корзина" */
+
+  .mobile-menu-btn { display: flex; }
+}
+
+/* Мобильная панель — полноэкранная */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: var(--header-h);
+  left: 0; right: 0; bottom: 0;
+  background: var(--color-surface);
+  z-index: 99;
+  padding: var(--space-4) var(--space-5) var(--space-8);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-nav.open { transform: translateX(0); }
+
+/* Overlay при открытом меню */
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: var(--header-h);
+  background: rgba(0,0,0,0.45);
+  z-index: 98;
+  backdrop-filter: blur(2px);
+}
+.mobile-nav-overlay.open { display: block; }
+
+/* Ссылки меню */
+.mobile-nav__link {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-2);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-divider);
+  transition: color var(--transition);
+}
+.mobile-nav__link:last-of-type { border-bottom: none; }
+.mobile-nav__link:hover,
+.mobile-nav__link[aria-current="page"] { color: var(--color-accent); }
+
+/* Блок города в меню */
+.mobile-nav__city {
+  padding: var(--space-4);
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-4);
+}
+.mobile-nav__city-title {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+.mobile-nav__city-btns { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+/* Телефон в меню */
+.mobile-nav__phones { margin-top: var(--space-4); }
+.mobile-nav__phone-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+.mobile-nav__phone-number {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--color-text);
+  display: block;
+}
+.mobile-nav__phone-number:hover { color: var(--color-accent); }
+
+/* Кнопка-заказ в меню */
+.mobile-nav__cta {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Бургер → крестик анимация */
+.mobile-menu-btn svg { transition: transform 0.25s ease; }
+.mobile-menu-btn.open svg { transform: rotate(90deg); }
+
+
+/* ===== HERO ===== */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-10);
+  }
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .hero-cart-card { display: none; }
+  .hero__title { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+  .hero__subtitle { font-size: var(--text-sm); margin-bottom: var(--space-6); }
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero__actions .btn { width: 100%; justify-content: center; }
+  .hero-stats {
+    gap: var(--space-5);
+    padding-top: var(--space-6);
+  }
+  .hero-stat__num { font-size: var(--text-lg); }
+}
+
+@media (max-width: 480px) {
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+}
+
+
+/* ===== TRUST BAR ===== */
+@media (max-width: 768px) {
+  .trust-items {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+}
+@media (max-width: 480px) {
+  .trust-items { grid-template-columns: 1fr; }
+  .trust-item { flex-direction: row; align-items: flex-start; gap: var(--space-3); padding: var(--space-4); }
+  .trust-item__icon { width: 28px; height: 28px; flex-shrink: 0; }
+}
+
+
+/* ===== CATEGORY GRID (главная + category.html) ===== */
+@media (max-width: 768px) {
+  .category-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  /* Скрыть hover-info на тач устройствах — нет наведения */
+  .category-card__hover-info { display: none !important; }
+  /* Названия не обрезать — переносить */
+  .category-card__name {
+    font-size: 12px;
+    word-break: break-word;
+    hyphens: auto;
+    line-height: 1.3;
+  }
+  .category-card__body {
+    padding: 10px 12px;
+    min-height: 44px;
+  }
+  .category-card__arrow {
+    width: 26px;
+    height: 26px;
+  }
+  .category-card__arrow svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .category-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .category-card__illus { height: 90px; }
+  .category-card__name { font-size: 11px; }
+  .category-card__body {
+    padding: 8px 10px;
+    min-height: 40px;
+  }
+}
+
+
+/* ===== PRICES / SERVICES SECTION ===== */
+@media (max-width: 768px) {
+  /* Блок цен на главной — три колонки → одна */
+  .price-table-grid,
+  [style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Блок "Не нашли услугу" — вертикально */
+  [style*="grid-template-columns: 1fr 380px"],
+  [style*="grid-template-columns: 1fr 360px"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ===== КАК ЭТО РАБОТАЕТ (5 шагов) ===== */
+@media (max-width: 900px) {
+  /* 5 шагов → 3+2 */
+  [style*="grid-template-columns: repeat(5,1fr)"],
+  [style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 600px) {
+  /* 5 шагов → 1 колонка */
+  [style*="grid-template-columns: repeat(5,1fr)"],
+  [style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ===== ПОЧЕМУ НАМ ДОВЕРЯЮТ (3 цифры + 6 карточек) ===== */
+@media (max-width: 768px) {
+  /* 3 цифры → 3 в ряд (компакт) */
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns: repeat(3,1fr)"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  /* 6 карточек принципов → 2 */
+  .section [style*="grid-template-columns:repeat(3,1fr)"] ~ div,
+  .section > .container > div[style*="repeat(3,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 480px) {
+  /* Цифры → в 1 ряд, компактнее */
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns: repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ===== PAGE HEADER (services, category и др.) ===== */
+@media (max-width: 768px) {
+  .page-header { padding-block: var(--space-5) var(--space-4); }
+  .page-header h1 { font-size: clamp(1.4rem, 5vw, 2rem); }
+  /* AI pill — переносим под заголовок */
+  .page-header > .container > div[style*="flex"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  #services-ai-banner { width: 100%; justify-content: space-between; }
+}
+
+
+/* ===== СЕКЦИЯ С AI БАННЕРОМ (главная, "Не нашли услугу") ===== */
+@media (max-width: 640px) {
+  /* Блок "Не нашли услугу" — вертикально */
+  [style*="align-items:center"][style*="flex-wrap:wrap"] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+}
+
+
+/* ===== ОТЗЫВЫ ===== */
+@media (max-width: 768px) {
+  .review-grid,
+  [class*="review"] [style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ===== ФУТЕР ===== */
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: var(--space-8); }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: var(--space-3); }
+  /* CTA в футере */
+  .site-footer [style*="display:flex"][style*="gap:var(--space-3)"] {
+    flex-direction: column !important;
+  }
+  .site-footer [style*="display:flex"][style*="gap:var(--space-3)"] a {
+    text-align: center;
+  }
+}
+
+
+/* ===== КОРЗИНА (cart.html) ===== */
+@media (max-width: 768px) {
+  .cart-layout { grid-template-columns: 1fr !important; }
+}
+
+
+/* ===== FAQ (details/summary) ===== */
+@media (max-width: 768px) {
+  /* FAQ двухколоночный → одноколоночный */
+  #faq-section [style*="grid-template-columns:1fr 1fr"],
+  #faq-section [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ===== CONTACTS / ABOUT / WORKS ===== */
+@media (max-width: 768px) {
+  /* Двухколоночные гриды внутри секций */
+  .section .grid-2,
+  .section [style*="grid-template-columns: 1fr 1fr"],
+  .section [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ===== ПЛАВАЮЩАЯ КНОПКА ИИ ===== */
+@media (max-width: 768px) {
+  /* На мобильном кнопка всегда внизу-слева, чуть крупнее */
+  #ai-bar {
+    bottom: 16px !important;
+    left: 16px !important;
+    top: auto !important;
+    right: auto !important;
+    width: auto !important;
+    min-width: 200px;
+    max-width: calc(100vw - 32px);
+  }
+}
+
+
+/* ===== CATEGORY PAGE (список услуг) ===== */
+@media (max-width: 768px) {
+  .service-card__main { grid-template-columns: 1fr !important; }
+  .service-card__right {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center !important;
+  }
+}
+
+
+/* ===== ОБЩИЕ МОБИЛЬНЫЕ УТИЛИТЫ ===== */
+@media (max-width: 768px) {
+  /* Уменьшаем секционные отступы */
+  .section { padding-block: clamp(var(--space-8), 6vw, var(--space-16)) !important; }
+  .section--sm { padding-block: clamp(var(--space-6), 4vw, var(--space-10)) !important; }
+
+  /* Контейнер — уже padding */
+  .container { padding-inline: var(--space-4); }
+
+  /* Кнопки на мобильном — полная ширина в нужных контекстах */
+  .hero__actions .btn--lg { font-size: var(--text-sm); padding: var(--space-3) var(--space-5); }
+}
+
+@media (max-width: 480px) {
+  .container { padding-inline: var(--space-3); }
+
+  /* Статистика "Почему нам доверяют" — компактнее */
+  [id="care-heading"] ~ div [style*="font-size:var(--text-3xl)"],
+  [id="care-heading"] ~ div [style*="font-size: var(--text-3xl)"] {
+    font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
+  }
+}
+
+/* Скрытие desktop-only элементов */
+@media (max-width: 768px) {
+  .desktop-only { display: none !important; }
+}
+.mobile-only { display: none; }
+@media (max-width: 768px) {
+  .mobile-only { display: block; }
+}
