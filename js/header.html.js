@@ -224,11 +224,12 @@ function getFooterHTML() {
       </div>
     </div>
     <div class="footer-bottom">
-      <div>© 2024 VANVEK. Все права защищены.</div>
+      <div>© 2026 VANVEK. Все права защищены.</div>
       <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;">
+<!-- Пока нет документов:
         <a href="#">Политика конфиденциальности</a>
         <a href="#">Договор оферты</a>
-        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+        -->
       </div>
     </div>
   </div>

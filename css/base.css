@@ -220,6 +220,13 @@ a, button, [role="button"], input, textarea, select {
   .container { padding-inline: var(--space-4); }
 }
 
+/* Responsive visibility */
+.show-mobile { display: none; }
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: inline !important; }
+}
+
 /* Chip/tag */
 .tag {
   display: inline-block;
