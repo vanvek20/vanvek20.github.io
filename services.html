@@ -130,6 +130,9 @@
 
 </main>
 
+<!-- Floating messenger buttons -->
+<div id="messenger-fab-root"></div>
+
 <div id="footer-mount"></div>
 
 <script src="js/store.js"></script>
@@ -143,6 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();
   if (window.AppStore && window.AppStore.updateCartUI) window.AppStore.updateCartUI();
   document.getElementById('footer-mount').innerHTML = getFooterHTML();
+  // Inject messenger FAB
+  var fabRoot = document.getElementById('messenger-fab-root');
+  if (fabRoot && typeof getMessengerFAB === 'function') fabRoot.innerHTML = getMessengerFAB();
 
   const grid = document.getElementById('services-cat-grid');
   if (grid && window.CATEGORIES) {
