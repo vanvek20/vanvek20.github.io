@@ -728,6 +728,27 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.corp-clients__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+  background: var(--color-surface);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-2xl);
+}
+.corp-clients__placeholder-icon {
+  font-size: 40px;
+  margin-bottom: var(--space-4);
+}
+.corp-clients__placeholder-text {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 400px;
+  line-height: 1.6;
+  margin-bottom: var(--space-5);
+}
 @media (max-width: 768px) {
   .corp-clients__grid {
     grid-template-columns: repeat(3, 1fr);
@@ -932,27 +953,21 @@
     </div>
   </section>
 
-      <!-- ЗАГЛУШКА: раскомментировать когда появятся корпоративные клиенты
-<!-- ── НАШИ КОРПОРАТИВНЫЕ КЛИЕНТЫ ────────────────────────── -->
+      <!-- ── НАШИ КОРПОРАТИВНЫЕ КЛИЕНТЫ ────────────────────────── -->
   <section class="section section--sm" style="background: var(--color-surface-offset);" aria-labelledby="clients-title">
     <div class="container container--default">
       <div class="section-label">Нам доверяют</div>
       <h2 class="section-title" id="clients-title">Наши корпоративные клиенты</h2>
 
       <div class="corp-clients">
-        <div class="corp-clients__grid">
-          <div class="corp-clients__logo"></div>
-          <div class="corp-clients__logo"></div>
-          <div class="corp-clients__logo"></div>
-          <div class="corp-clients__logo"></div>
-          <div class="corp-clients__logo"></div>
-          <div class="corp-clients__logo"></div>
+        <div class="corp-clients__placeholder">
+          <div class="corp-clients__placeholder-icon">🤝</div>
+          <p class="corp-clients__placeholder-text">Здесь появятся логотипы компаний, которые уже работают с нами</p>
+          <a href="#corp-form" class="btn btn--accent">Станьте первым клиентом</a>
         </div>
-        <p class="corp-clients__note">Скоро здесь появятся логотипы наших клиентов. Станьте <a href="#corp-form">первым</a>.</p>
       </div>
     </div>
   </section>
-  -->
 
   <!-- ── ЧЕМ ОТЛИЧАЕТСЯ ОТ ЧАСТНОГО ─────────────────────────── -->
   <section class="section section--sm" style="background: var(--color-surface-offset);" aria-labelledby="diff-title">
