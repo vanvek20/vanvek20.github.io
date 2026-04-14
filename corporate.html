@@ -366,6 +366,131 @@
   margin-bottom: var(--space-8);
 }
 
+/* Табы типов объектов */
+.corp-tabs { margin: var(--space-6) 0 var(--space-8); }
+.corp-tabs__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+.corp-tabs__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--color-surface-offset);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+.corp-tabs__btn:hover {
+  border-color: rgba(232,69,10,0.35);
+  background: rgba(232,69,10,0.05);
+}
+.corp-tabs__btn--active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+.corp-tabs__btn--active:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.corp-tabs__any {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.corp-tabs__panel {
+  display: none;
+}
+.corp-tabs__panel--active {
+  display: block;
+  animation: tabFadeIn 0.25s ease;
+}
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.corp-tabs__panel-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+}
+.corp-tabs__tasks-title,
+.corp-tabs__benefits-title {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+.corp-tabs__tasks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.corp-tabs__tasks li {
+  position: relative;
+  padding-left: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+.corp-tabs__tasks li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.corp-tabs__benefits p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .corp-tabs__nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding-bottom: var(--space-2);
+  }
+  .corp-tabs__nav::-webkit-scrollbar { display: none; }
+  .corp-tabs__btn { font-size: 13px; padding: 6px 14px; flex-shrink: 0; }
+  .corp-tabs__any { font-size: 13px; padding: 6px 12px; flex-shrink: 0; }
+  .corp-tabs__panel-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+}
+
 /* Теги типов объектов */
 .corp-tags {
   display: flex;
@@ -614,13 +739,113 @@
       <h2 class="section-title" id="objects-title">Работаем с любой коммерцией</h2>
       <p class="section-sub">Если у вас есть сантехника — мы её обслужим. Выделенный менеджер для каждого объекта.</p>
 
-      <div class="corp-tags" role="list" aria-label="Типы объектов">
-        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏨</span> Гостиницы</span>
-        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏢</span> Офисы</span>
-        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🍽️</span> Рестораны</span>
-        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏥</span> Медицина</span>
-        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏘️</span> Управляющие компании</span>
-        <span class="corp-tag" role="listitem" style="border-style:dashed;color:var(--color-text-muted);">+ любые другие объекты</span>
+      <!-- Табы типов объектов -->
+      <div class="corp-tabs">
+        <div class="corp-tabs__nav" role="tablist" aria-label="Типы объектов">
+          <button class="corp-tabs__btn corp-tabs__btn--active" role="tab" aria-selected="true" aria-controls="tab-hotels" id="btn-hotels">🏨 Гостиницы</button>
+          <button class="corp-tabs__btn" role="tab" aria-selected="false" aria-controls="tab-offices" id="btn-offices">🏢 Офисы</button>
+          <button class="corp-tabs__btn" role="tab" aria-selected="false" aria-controls="tab-restaurants" id="btn-restaurants">🍽️ Рестораны</button>
+          <button class="corp-tabs__btn" role="tab" aria-selected="false" aria-controls="tab-medical" id="btn-medical">🏥 Медицина</button>
+          <button class="corp-tabs__btn" role="tab" aria-selected="false" aria-controls="tab-uk" id="btn-uk">🏘️ УК</button>
+          <span class="corp-tabs__any">+ любые объекты</span>
+        </div>
+
+        <div class="corp-tabs__panels">
+          <!-- Гостиницы -->
+          <div class="corp-tabs__panel corp-tabs__panel--active" role="tabpanel" id="tab-hotels" aria-labelledby="btn-hotels">
+            <div class="corp-tabs__panel-inner">
+              <div class="corp-tabs__tasks">
+                <div class="corp-tabs__tasks-title">Типичные задачи</div>
+                <ul>
+                  <li>Замена смесителей, душевых стоек и унитазов в номерном фонде</li>
+                  <li>Устранение протечек между этажами — без выселения гостей</li>
+                  <li>Обслуживание SPA-зон, бассейнов, прачечных</li>
+                  <li>Плановая ревизия сантехники перед сезоном</li>
+                </ul>
+              </div>
+              <div class="corp-tabs__benefits">
+                <div class="corp-tabs__benefits-title">Выгода для вас</div>
+                <p>Номер не простаивает — гость не ждёт. Аварийный выезд за 2 часа, плановые работы в удобное время. Один договор на весь объект вместо разовых вызовов.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Офисы -->
+          <div class="corp-tabs__panel" role="tabpanel" id="tab-offices" aria-labelledby="btn-offices" hidden>
+            <div class="corp-tabs__panel-inner">
+              <div class="corp-tabs__tasks">
+                <div class="corp-tabs__tasks-title">Типичные задачи</div>
+                <ul>
+                  <li>Ремонт и замена сантехники в санузлах на этажах</li>
+                  <li>Обслуживание кухонных зон и кофе-поинтов</li>
+                  <li>Прочистка канализации на технических этажах</li>
+                  <li>Экстренные вызовы при протечках и засорах</li>
+                </ul>
+              </div>
+              <div class="corp-tabs__benefits">
+                <div class="corp-tabs__benefits-title">Выгода для вас</div>
+                <p>Арендаторы не жалуются — всё работает. Ремонт в нерабочее время, фиксированный бюджет на обслуживание, закрывающие документы для бухгалтерии каждый месяц.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Рестораны -->
+          <div class="corp-tabs__panel" role="tabpanel" id="tab-restaurants" aria-labelledby="btn-restaurants" hidden>
+            <div class="corp-tabs__panel-inner">
+              <div class="corp-tabs__tasks">
+                <div class="corp-tabs__tasks-title">Типичные задачи</div>
+                <ul>
+                  <li>Подключение посудомоечных машин и производственного оборудования</li>
+                  <li>Монтаж жироуловителей и прочистка стоков</li>
+                  <li>Замена смесителей, сифонов, подводок на кухне и в зале</li>
+                  <li>Экстренный ремонт во время рабочей смены</li>
+                </ul>
+              </div>
+              <div class="corp-tabs__benefits">
+                <div class="corp-tabs__benefits-title">Выгода для вас</div>
+                <p>Кухня не останавливается. Мастер приедет даже в час пик, знает специфику общепита и работает быстро. Никаких простоев и потерь выручки.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Медицина -->
+          <div class="corp-tabs__panel" role="tabpanel" id="tab-medical" aria-labelledby="btn-medical" hidden>
+            <div class="corp-tabs__panel-inner">
+              <div class="corp-tabs__tasks">
+                <div class="corp-tabs__tasks-title">Типичные задачи</div>
+                <ul>
+                  <li>Обслуживание палат, процедурных, лабораторий и пищеблоков</li>
+                  <li>Монтаж и замена специализированного оборудования</li>
+                  <li>Профилактика водоснабжения и канализации по графику</li>
+                  <li>Экстренное устранение аварий без остановки приёма</li>
+                </ul>
+              </div>
+              <div class="corp-tabs__benefits">
+                <div class="corp-tabs__benefits-title">Выгода для вас</div>
+                <p>Соответствие санитарным нормам без головной боли. Работаем по графику клиники, не мешаем пациентам. Вся документация для проверок в порядке.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- УК -->
+          <div class="corp-tabs__panel" role="tabpanel" id="tab-uk" aria-labelledby="btn-uk" hidden>
+            <div class="corp-tabs__panel-inner">
+              <div class="corp-tabs__tasks">
+                <div class="corp-tabs__tasks-title">Типичные задачи</div>
+                <ul>
+                  <li>Обслуживание общедомовых систем водоснабжения и канализации</li>
+                  <li>Замена стояков, вентилей, узлов учёта</li>
+                  <li>Заявки от жильцов — протечки, засоры, поломки</li>
+                  <li>Плановая подготовка к отопительному сезону</li>
+                </ul>
+              </div>
+              <div class="corp-tabs__benefits">
+                <div class="corp-tabs__benefits-title">Выгода для вас</div>
+                <p>Жильцы довольны — меньше жалоб. Вы получаете команду сантехников без штатных расходов. Отчёты по каждой заявке, акты, единый счёт.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Индивидуальная скидка за объём -->
@@ -903,6 +1128,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const city = window.AppStore.getCity();
     if (city) citySelect.value = city.key;
   }
+
+  // Табы типов объектов
+  const tabBtns = document.querySelectorAll('.corp-tabs__btn');
+  const tabPanels = document.querySelectorAll('.corp-tabs__panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => { b.classList.remove('corp-tabs__btn--active'); b.setAttribute('aria-selected', 'false'); });
+      tabPanels.forEach(p => { p.classList.remove('corp-tabs__panel--active'); p.hidden = true; });
+      btn.classList.add('corp-tabs__btn--active');
+      btn.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (panel) { panel.classList.add('corp-tabs__panel--active'); panel.hidden = false; }
+    });
+  });
 
   // Форма — отправка через FormSubmit.co
   const form = document.getElementById('corporateForm');
