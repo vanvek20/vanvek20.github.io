@@ -683,6 +683,64 @@
   .corp-compare { grid-template-columns: 1fr; }
   .corp-volume__tiers { grid-template-columns: 1fr; }
 }
+
+/* Корпоративные клиенты (заглушка) */
+.corp-clients { margin-top: var(--space-6); }
+.corp-clients__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.corp-clients__logo {
+  height: 64px;
+  background: var(--color-surface);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  position: relative;
+}
+.corp-clients__logo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(0,0,0,0.02) 8px,
+    rgba(0,0,0,0.02) 16px
+  );
+  border-radius: inherit;
+}
+.corp-clients__note {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  font-style: italic;
+}
+.corp-clients__note a {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-style: normal;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+@media (max-width: 768px) {
+  .corp-clients__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  .corp-clients__logo { height: 56px; }
+}
+@media (max-width: 480px) {
+  .corp-clients__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .corp-clients__logo { height: 48px; }
+}
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#E8450A">
@@ -873,6 +931,28 @@
       </div>
     </div>
   </section>
+
+      <!-- ЗАГЛУШКА: раскомментировать когда появятся корпоративные клиенты
+<!-- ── НАШИ КОРПОРАТИВНЫЕ КЛИЕНТЫ ────────────────────────── -->
+  <section class="section section--sm" style="background: var(--color-surface-offset);" aria-labelledby="clients-title">
+    <div class="container container--default">
+      <div class="section-label">Нам доверяют</div>
+      <h2 class="section-title" id="clients-title">Наши корпоративные клиенты</h2>
+
+      <div class="corp-clients">
+        <div class="corp-clients__grid">
+          <div class="corp-clients__logo"></div>
+          <div class="corp-clients__logo"></div>
+          <div class="corp-clients__logo"></div>
+          <div class="corp-clients__logo"></div>
+          <div class="corp-clients__logo"></div>
+          <div class="corp-clients__logo"></div>
+        </div>
+        <p class="corp-clients__note">Скоро здесь появятся логотипы наших клиентов. Станьте <a href="#corp-form">первым</a>.</p>
+      </div>
+    </div>
+  </section>
+  -->
 
   <!-- ── ЧЕМ ОТЛИЧАЕТСЯ ОТ ЧАСТНОГО ─────────────────────────── -->
   <section class="section section--sm" style="background: var(--color-surface-offset);" aria-labelledby="diff-title">
