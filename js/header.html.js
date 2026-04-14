@@ -26,7 +26,7 @@ function getHeaderHTML(activeLink) {
 
     <!-- VANVEK Logo -->
     <a href="index.html" class="logo" aria-label="VANVEK — на главную">
-      <img src="vanvek-logo-tight.jpg" alt="VANVEK" class="logo__img">
+      <img src="vanvek-logo-tight.jpg" alt="VanVek" class="logo__img">
     </a>
 
     <!-- Desktop nav -->
@@ -127,7 +127,7 @@ function getFooterHTML() {
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-brand__logo">
-          <img src="vanvek-logo-tight.jpg" alt="VANVEK" class="footer-brand__img">
+          <img src="vanvek-logo-tight.jpg" alt="VanVek" class="footer-brand__img">
         </div>
         <p class="footer-brand__desc">Профессиональная установка сантехники в Москве. Фиксированные цены без скрытых доплат. Гарантия на все работы.</p>
       </div>

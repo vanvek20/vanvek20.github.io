@@ -69,14 +69,14 @@
 
   /* ── Wave gradient colors ── */
   --wave-orange:  #E8450A;
-  --wave-lime:    #8fc400;
+  --wave-lime:    #1EC8E8;  /* was #8fc400 lime, now cyan to match new logo */
   --wave-green:   #4db800;
   --wave-cyan:    #1EC8E8;
   --wave-blue:    #0aa8d8;
 
   /* ── Gradient (left-to-right: orange→lime→cyan) ── */
-  --gradient-wave: linear-gradient(90deg, #E8450A 0%, #c8b800 35%, #1EC8E8 100%);
-  --gradient-wave-diagonal: linear-gradient(135deg, #E8450A 0%, #8fc400 45%, #1EC8E8 100%);
+  --gradient-wave: linear-gradient(90deg, #0e8a9e 0%, #1EC8E8 50%, #5ee0f5 100%);
+  --gradient-wave-diagonal: linear-gradient(135deg, #0e8a9e 0%, #1EC8E8 50%, #5ee0f5 100%);
 
   /* ── Success ── */
   --color-success:         #2a9e3f;
