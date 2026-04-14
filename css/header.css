@@ -294,8 +294,8 @@
 /* ── Mobile menu button ── */
 .mobile-menu-btn {
   display: none;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
@@ -444,8 +444,8 @@ body:has(.sticky-cart.visible) .messenger-float {
     gap: 6px;
   }
   .messenger-float__btn {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
   }
   .messenger-float__btn svg {
     width: 16px;

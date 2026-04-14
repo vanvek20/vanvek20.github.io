@@ -172,7 +172,7 @@ function getFooterHTML() {
           <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.45);" data-city-name>Москва</div>
         </div>
         <ul class="footer-col__list">
-          <li><a href="mailto:info@vanvek.ru">info@vanvek.ru</a></li>
+          <li><a href="mailto:sc.vanvek@gmail.com">sc.vanvek@gmail.com</a></li>
           <li style="color:rgba(255,255,255,0.5);font-size:var(--text-xs);">Ежедневно 9:00–20:00</li>
         </ul>
       </div>

@@ -22,6 +22,19 @@
 <meta name="apple-mobile-web-app-title" content="VANVEK">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<style>
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: var(--space-12);
+  align-items: flex-start;
+}
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 <body>
 <a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
@@ -150,7 +163,7 @@ function renderPageContent(key) {
       </div>
     `,
     about: `
-      <div style="display:grid;grid-template-columns:1fr 420px;gap:var(--space-12);align-items:flex-start;">
+      <div class="about-grid">
         <div>
           <h2 class="section-title">О компании VANVEK</h2>
           <p style="font-size:var(--text-base);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-6);">
