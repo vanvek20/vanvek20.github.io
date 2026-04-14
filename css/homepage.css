@@ -1199,4 +1199,94 @@
   color: #5ec8d8;
 }
 
+/* ===== CORPORATE PROMO BLOCK ===== */
+.corporate-promo {
+  background: var(--color-primary);
+  padding-block: clamp(var(--space-10), 5vw, var(--space-16));
+}
+.corp-promo__inner {
+  max-width: 800px;
+}
+.corp-promo__text .badge--accent {
+  background: var(--color-accent);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: var(--space-4);
+}
+.corporate-promo .section-title {
+  margin-bottom: var(--space-3);
+}
+.corp-promo__desc {
+  color: rgba(255,255,255,0.75);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+  max-width: 600px;
+}
+.corp-promo__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+.corp-promo__tag {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.9);
+  font-size: var(--text-sm);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+.corp-promo__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.corp-promo__feat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: rgba(255,255,255,0.85);
+  font-size: var(--text-sm);
+}
+.corp-promo__feat svg {
+  color: var(--wave-lime);
+  flex-shrink: 0;
+}
+.corp-promo__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 32px;
+  font-size: var(--text-base);
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.corp-promo__btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .corp-promo__features {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .corp-promo__btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 
