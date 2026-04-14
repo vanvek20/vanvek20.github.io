@@ -253,7 +253,6 @@ window.COMPANY_INFO = {
   founded:     2022,
   years:       4,
   orders:      9500,
-  rating:      4.87,
   guarantee:   '1 год',
   cities:      ['Москва'],
   priceFrom:   450,

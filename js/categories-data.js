@@ -14,7 +14,7 @@ window.STATIC_PAGES = {
   },
   reviews: {
     title: 'Отзывы клиентов',
-    desc: 'Реальные отзывы с Яндекс.Карт, 2GIS и Google',
+    desc: 'Оставьте отзыв о нашей работе на Яндекс.Картах, 2GIS или Google',
     navKey: 'reviews'
   },
   about: {

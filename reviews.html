@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Отзывы — VANVEK | Установка сантехники</title>
-<meta name="description" content="Отзывы клиентов VANVEK о профессиональной установке сантехники в Москве. Реальные отзывы с Яндекс.Карт, 2GIS и Google.">
+<meta name="description" content="Отзывы клиентов VANVEK. Оставьте отзыв о нашей работе на Яндекс.Картах, 2GIS или Google.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -128,27 +128,26 @@ function renderPageContent(key) {
       </div>
     `,
     reviews: `
-      <h2 class="section-title">Отзывы клиентов</h2>
-      <p class="section-subtitle">Реальные отзывы с Яндекс.Карт, 2GIS и Google</p>
-      <div class="grid-2" style="margin-top:var(--space-8);">
-        ${[
-          {name:'Елена Соколова',city:'Москва',text:'Всё чётко: приехали вовремя, установили раковину с тумбой, убрали за собой. Цена совпала с той, что указана на сайте. Рекомендую!',stars:5,date:'12 марта 2024'},
-          {name:'Андрей Петров',city:'Москва',text:'Ставил инсталляцию Geberit с подвесным унитазом. Мастер работал аккуратно, объяснил что и как. Дали гарантию. Через 3 месяца — всё работает.',stars:5,date:'8 февраля 2024'},
-          {name:'Наталья К.',city:'Москва',text:'Быстро, качественно. Заказала через сайт без звонков — очень удобно. Цена фиксированная, никаких неприятных сюрпризов.',stars:5,date:'22 января 2024'},
-          {name:'Игорь Малов',city:'Москва',text:'Подключили стиральную и посудомоечную машину. Всё сделали за час. Единственное — немного задержались, но предупредили заранее.',stars:4,date:'15 декабря 2023'},
-        ].map(r=>`
-          <div class="card" style="padding:var(--space-6);">
-            <div style="display:flex;gap:var(--space-3);margin-bottom:var(--space-4);">
-              <div style="width:44px;height:44px;border-radius:50%;background:var(--color-primary-highlight);color:var(--color-primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--text-base);flex-shrink:0;">${r.name[0]}</div>
-              <div>
-                <div style="font-weight:700;font-size:var(--text-sm);">${r.name}</div>
-                <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${r.city} · ${r.date}</div>
-              </div>
-              <div style="margin-left:auto;color:#f59e0b;font-size:var(--text-sm);">${'★'.repeat(r.stars)}</div>
-            </div>
-            <p style="font-size:var(--text-sm);line-height:1.6;">${r.text}</p>
-          </div>
-        `).join('')}
+      <div style="text-align:center;max-width:560px;margin:0 auto;padding:var(--space-10) 0;">
+        <div style="width:72px;height:72px;border-radius:50%;background:var(--color-primary-highlight);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h2 class="section-title" style="margin-bottom:var(--space-3);">Отзывов пока нет</h2>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;margin-bottom:var(--space-8);">Мы только начинаем собирать обратную связь. Если вы были нашим клиентом — будем благодарны за отзыв на любой из площадок.</p>
+        <div style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;">
+          <a href="https://yandex.ru/maps" target="_blank" rel="noopener noreferrer" class="btn" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--color-surface-offset);border:1.5px solid var(--color-border);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;color:var(--color-text);text-decoration:none;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='var(--color-primary-highlight)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.background='var(--color-surface-offset)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Яндекс.Карты
+          </a>
+          <a href="https://2gis.ru" target="_blank" rel="noopener noreferrer" class="btn" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--color-surface-offset);border:1.5px solid var(--color-border);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;color:var(--color-text);text-decoration:none;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='var(--color-primary-highlight)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.background='var(--color-surface-offset)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            2GIS
+          </a>
+          <a href="https://google.com/maps" target="_blank" rel="noopener noreferrer" class="btn" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--color-surface-offset);border:1.5px solid var(--color-border);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;color:var(--color-text);text-decoration:none;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='var(--color-primary-highlight)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.background='var(--color-surface-offset)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Google
+          </a>
+        </div>
       </div>
     `,
     about: `
@@ -173,7 +172,7 @@ function renderPageContent(key) {
         </div>
         <div class="card" style="padding:var(--space-6);">
           <h3 style="font-family:var(--font-display);font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-5);">В цифрах</h3>
-          ${[['4+ года','на рынке (с 2022)'],['9 500+','выполненных заказов'],['35','мастеров в штате'],['2 города','Москва'],['1 год','гарантия на работы']].map(([n,l])=>`
+          ${[['4+ года','на рынке (с 2022)'],['9 500+','выполненных заказов'],['35','мастеров в штате'],['Москва','Зона работы'],['1 год','гарантия на работы']].map(([n,l])=>`
             <div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:1px solid var(--color-divider);">
               <span style="font-size:var(--text-sm);color:var(--color-text-muted);">${l}</span>
               <span style="font-family:var(--font-display);font-weight:800;">${n}</span>
