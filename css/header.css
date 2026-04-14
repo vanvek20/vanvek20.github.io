@@ -396,15 +396,16 @@
   color: #fff;
 }
 
-/* Floating messenger panel (bottom-right, above AI fab) */
+/* Floating messenger panel (bottom-right) */
 .messenger-float {
   position: fixed;
   bottom: 80px;
-  left: 20px;
+  right: 20px;
   z-index: 88;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  transition: bottom 0.3s ease;
 }
 .messenger-float__btn {
   display: flex;
@@ -426,13 +427,20 @@
 .messenger-float__btn--tg { background: #2a3a4a; }
 .messenger-float__btn--vk { background: #2a3443; }
 
+/* Поднять FAB выше sticky-корзины когда она видна */
+.sticky-cart.visible ~ .messenger-float,
+.sticky-cart.visible ~ * .messenger-float,
+body:has(.sticky-cart.visible) .messenger-float {
+  bottom: 84px;
+}
+
 @media (max-width: 900px) {
   .header-messengers { display: none; }
 }
 @media (max-width: 480px) {
   .messenger-float {
     bottom: 16px;
-    left: 12px;
+    right: 12px;
     gap: 6px;
   }
   .messenger-float__btn {
@@ -442,5 +450,9 @@
   .messenger-float__btn svg {
     width: 16px;
     height: 16px;
+  }
+  /* Мобильный: FAB выше sticky-корзины (48px корзина + 16px gap + 16px bottom) */
+  body:has(.sticky-cart.visible) .messenger-float {
+    bottom: 80px;
   }
 }
