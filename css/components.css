@@ -940,9 +940,9 @@
   align-items: center;
   gap: 8px;
   padding: 12px 18px 12px 14px;
-  /* Aurora gradient: teal → cyan → light cyan */
+  /* Aurora gradient: violet → cyan → lime → cyan → violet */
   background: linear-gradient(135deg,
-    #0e8a9e, #1EC8E8, #5ee0f5, #1EC8E8, #0e8a9e, #1EC8E8, #5ee0f5
+    #6a3de8, #1EC8E8, #8fc400, #1EC8E8, #6a3de8, #1EC8E8, #8fc400
   );
   background-size: 400% 400%;
   animation: aurora-shift 8s ease infinite, aurora-glow-pulse 6s ease-in-out infinite;
