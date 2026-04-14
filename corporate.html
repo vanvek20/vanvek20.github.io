@@ -365,6 +365,199 @@
   line-height: 1.6;
   margin-bottom: var(--space-8);
 }
+
+/* Теги типов объектов */
+.corp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 var(--space-8);
+}
+.corp-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  transition: border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.corp-tag:hover {
+  border-color: rgba(232,69,10,0.35);
+  background: rgba(232,69,10,0.05);
+}
+.corp-tag__emoji { font-size: 16px; line-height: 1; }
+
+/* Индивидуальная скидка за объём */
+.corp-volume {
+  background: linear-gradient(135deg, rgba(232,69,10,0.06) 0%, rgba(143,196,0,0.04) 100%);
+  border: 1px solid rgba(232,69,10,0.15);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8) var(--space-7);
+  margin-top: var(--space-8);
+}
+.corp-volume__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.corp-volume__icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-accent);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.corp-volume__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--color-text);
+}
+.corp-volume__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 620px;
+  margin-bottom: var(--space-5);
+}
+.corp-volume__tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.corp-volume__tier {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+.corp-volume__tier-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+.corp-volume__tier-value {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--color-accent);
+}
+.corp-volume__note {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Сравнительная таблица (выгоднее штатного) */
+.corp-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin: var(--space-8) 0;
+}
+.corp-compare__col {
+  padding: var(--space-6);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+}
+.corp-compare__col--staff {
+  background: var(--color-surface-offset);
+}
+.corp-compare__col--vanvek {
+  background: rgba(232,69,10,0.04);
+  border-color: rgba(232,69,10,0.25);
+}
+.corp-compare__label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+.corp-compare__col--vanvek .corp-compare__label { color: var(--color-accent); }
+.corp-compare__items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.corp-compare__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+.corp-compare__item::before {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-weight: 700;
+}
+.corp-compare__col--staff .corp-compare__item::before {
+  content: '✕';
+  color: var(--color-text-muted);
+}
+.corp-compare__col--vanvek .corp-compare__item::before {
+  content: '✓';
+  color: var(--color-accent);
+}
+.corp-compare__price {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+.corp-compare__price-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+.corp-compare__price-value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+}
+.corp-compare__col--staff .corp-compare__price-value {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+.corp-compare__col--vanvek .corp-compare__price-value {
+  color: var(--color-accent);
+}
+.corp-compare__savings {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: 4px 12px;
+  background: rgba(143,196,0,0.15);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: #5a8300;
+}
+
+@media (max-width: 640px) {
+  .corp-compare { grid-template-columns: 1fr; }
+  .corp-volume__tiers { grid-template-columns: 1fr; }
+}
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#E8450A">
@@ -420,32 +613,46 @@
       <h2 class="section-title" id="objects-title">Работаем с любыми объектами</h2>
       <p class="section-sub">От небольшого апарт-отеля до крупного санаторного комплекса — у каждого объекта есть выделенный менеджер.</p>
 
-      <div class="corp-objects">
-        <div class="corp-object">
-          <div class="corp-object__icon">🏨</div>
-          <div class="corp-object__name">Гостиницы</div>
-          <div class="corp-object__desc">Обслуживание номерного фонда, SPA, технических помещений</div>
+      <div class="corp-tags" role="list" aria-label="Типы объектов">
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏨</span> Гостиницы</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏢</span> Апарт-отели</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏗️</span> Бизнес-центры</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏥</span> Санатории</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏠</span> Сервисные апартаменты</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏪</span> Торговые центры</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🍽️</span> Рестораны и кафе</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏋️</span> Фитнес-клубы</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏫</span> Образовательные учреждения</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏭</span> Производственные помещения</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏘️</span> Управляющие компании</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">💈</span> Салоны красоты</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏦</span> Банки и офисы</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🧖</span> SPA и бассейны</span>
+        <span class="corp-tag" role="listitem"><span class="corp-tag__emoji">🏥</span> Медицинские центры</span>
+      </div>
+
+      <!-- Индивидуальная скидка за объём -->
+      <div class="corp-volume">
+        <div class="corp-volume__header">
+          <div class="corp-volume__icon">📉</div>
+          <div class="corp-volume__title">Индивидуальная скидка за объём</div>
         </div>
-        <div class="corp-object">
-          <div class="corp-object__icon">🏢</div>
-          <div class="corp-object__name">Апарт-отели</div>
-          <div class="corp-object__desc">Быстрое реагирование, минимальный простой апартаментов</div>
+        <p class="corp-volume__desc">Чем больше заявок — тем ниже стоимость каждой. Скидка рассчитывается индивидуально и фиксируется в договоре на весь срок сотрудничества.</p>
+        <div class="corp-volume__tiers">
+          <div class="corp-volume__tier">
+            <div class="corp-volume__tier-label">от 5 заявок/мес</div>
+            <div class="corp-volume__tier-value">Скидка</div>
+          </div>
+          <div class="corp-volume__tier">
+            <div class="corp-volume__tier-label">от 15 заявок/мес</div>
+            <div class="corp-volume__tier-value">Больше скидка</div>
+          </div>
+          <div class="corp-volume__tier">
+            <div class="corp-volume__tier-label">от 30 заявок/мес</div>
+            <div class="corp-volume__tier-value">Макс. скидка</div>
+          </div>
         </div>
-        <div class="corp-object">
-          <div class="corp-object__icon">🏗️</div>
-          <div class="corp-object__name">Бизнес-центры</div>
-          <div class="corp-object__desc">Санузлы, кухонные зоны, технические этажи</div>
-        </div>
-        <div class="corp-object">
-          <div class="corp-object__icon">🏥</div>
-          <div class="corp-object__name">Санатории</div>
-          <div class="corp-object__desc">Комплексное обслуживание медицинских и жилых корпусов</div>
-        </div>
-        <div class="corp-object">
-          <div class="corp-object__icon">🏠</div>
-          <div class="corp-object__name">Сервисные апартаменты</div>
-          <div class="corp-object__desc">Плановое и аварийное обслуживание по договору</div>
-        </div>
+        <p class="corp-volume__note">Точный размер скидки зависит от типа объекта и объёма работ — обсудим на встрече.</p>
       </div>
     </div>
   </section>
@@ -523,6 +730,11 @@
           <div class="corp-feature__title">Приоритетный выезд</div>
           <div class="corp-feature__desc">Заявки корпоративных клиентов обрабатываются в первую очередь.</div>
         </div>
+        <div class="corp-feature">
+          <div class="corp-feature__icon">💳</div>
+          <div class="corp-feature__title">Безналичный расчёт</div>
+          <div class="corp-feature__desc">Оплата по счёту, договор, акты выполненных работ — всё для вашей бухгалтерии.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -559,6 +771,47 @@
     </div>
   </section>
 
+    <!-- ── ВЫГОДНЕЕ ШТАТНОГО САНТЕХНИКА ─────────────────────── -->
+  <section class="section section--sm" aria-labelledby="compare-title">
+    <div class="container container--default">
+      <div class="section-label">Сравнение</div>
+      <h2 class="section-title" id="compare-title">Выгоднее, чем штатный сантехник</h2>
+      <p class="section-sub">Сравним расходы на штатного сотрудника и аутсорс сантехники для гостиницы на 50 номеров.</p>
+
+      <div class="corp-compare">
+        <div class="corp-compare__col corp-compare__col--staff">
+          <div class="corp-compare__label">Штатный сантехник</div>
+          <ul class="corp-compare__items">
+            <li class="corp-compare__item">Зарплата + налоги + больничные + отпуск</li>
+            <li class="corp-compare__item">Закупка инструмента и расходников</li>
+            <li class="corp-compare__item">Один человек — нет замены на время болезни</li>
+            <li class="corp-compare__item">Ограниченная специализация</li>
+            <li class="corp-compare__item">Нет контроля качества</li>
+          </ul>
+          <div class="corp-compare__price">
+            <div class="corp-compare__price-label">Расходы в месяц</div>
+            <div class="corp-compare__price-value">~57 600 ₽</div>
+          </div>
+        </div>
+        <div class="corp-compare__col corp-compare__col--vanvek">
+          <div class="corp-compare__label">VANVEK аутсорс</div>
+          <ul class="corp-compare__items">
+            <li class="corp-compare__item">Платите только за выполненные работы</li>
+            <li class="corp-compare__item">Мастера со своим инструментом</li>
+            <li class="corp-compare__item">Всегда есть свободный мастер</li>
+            <li class="corp-compare__item">Любые виды сантехнических работ</li>
+            <li class="corp-compare__item">Контроль качества + гарантия 1 год</li>
+          </ul>
+          <div class="corp-compare__price">
+            <div class="corp-compare__price-label">Расходы в месяц</div>
+            <div class="corp-compare__price-value">~20 100 ₽</div>
+            <span class="corp-compare__savings">Экономия ~37 500 ₽/мес</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── ФОРМА ЗАЯВКИ ──────────────────────────────────────── -->
   <section class="section" id="corp-form" aria-labelledby="form-title">
     <div class="container container--default">
@@ -567,7 +820,13 @@
           <h2 class="corp-form-title" id="form-title">Заявка для бизнеса</h2>
           <p class="corp-form-sub">Заполните форму — менеджер свяжется в течение 2 часов и подготовит коммерческое предложение под ваш объект.</p>
 
-          <form class="corp-form" id="corporateForm" novalidate>
+          <form class="corp-form" id="corporateForm" action="https://formsubmit.co/sc.vanvek@gmail.com" method="POST">
+            <!-- FormSubmit.co hidden config -->
+            <input type="hidden" name="_subject" value="Новая корпоративная заявка — VANVEK">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_next" value="">
             <div class="corp-form__row">
               <div class="corp-form__group">
                 <label class="corp-form__label" for="corp-company">Название объекта *</label>
@@ -653,27 +912,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (city) citySelect.value = city.key;
   }
 
-  // Форма — простая заглушка (разработчик подключит Bitrix24)
+  // Форма — отправка через FormSubmit.co
   const form = document.getElementById('corporateForm');
   if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const required = form.querySelectorAll('[required]');
-      let valid = true;
-      required.forEach(el => {
-        if (!el.value.trim()) {
-          el.style.borderColor = 'var(--color-accent)';
-          valid = false;
-        } else {
-          el.style.borderColor = '';
-        }
-      });
-      if (!valid) return;
+    // Set _next to current page URL for redirect after submit
+    const nextInput = form.querySelector('input[name="_next"]');
+    if (nextInput) nextInput.value = window.location.href.split('#')[0] + '?sent=1';
 
-      // Показываем успех (разработчик заменит на реальную отправку в Bitrix24)
+    // Show success if redirected back after form submit
+    if (window.location.search.includes('sent=1')) {
       document.getElementById('corp-form-content').style.display = 'none';
       document.getElementById('corp-form-success').style.display = 'block';
-    });
+    }
   }
 });
 </script>

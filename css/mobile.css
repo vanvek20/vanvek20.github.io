@@ -392,6 +392,94 @@
   }
 }
 
+/* ===== КОРПОРАТИВНАЯ СТРАНИЦА (corporate.html) ===== */
+@media (max-width: 768px) {
+  /* Теги типов объектов */
+  .corp-tags {
+    gap: 6px;
+  }
+  .corp-tag {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  .corp-tag__emoji { font-size: 14px; }
+
+  /* Скидка за объём */
+  .corp-volume {
+    padding: var(--space-5) var(--space-4);
+  }
+  .corp-volume__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .corp-volume__title {
+    font-size: var(--text-lg);
+  }
+  .corp-volume__tiers {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+  .corp-volume__tier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+  }
+  .corp-volume__tier-label {
+    margin-bottom: 0;
+  }
+
+  /* Сравнительная таблица */
+  .corp-compare {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  .corp-compare__col {
+    padding: var(--space-5);
+  }
+  .corp-compare__price-value {
+    font-size: var(--text-xl);
+  }
+
+  /* Геро теги */
+  .corp-hero__clients {
+    gap: var(--space-2);
+  }
+  .corp-hero__client-tag {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .corp-hero__title {
+    font-size: clamp(1.6rem, 6vw, 2.5rem);
+  }
+  .corp-hero__sub {
+    font-size: var(--text-base);
+  }
+  .corp-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .corp-hero__actions .btn { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .corp-tag {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  .corp-feature {
+    padding: var(--space-4);
+  }
+  .corp-feature__icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+
 /* Скрытие desktop-only элементов */
 @media (max-width: 768px) {
   .desktop-only { display: none !important; }
