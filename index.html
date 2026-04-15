@@ -129,6 +129,7 @@
 <script src="js/prices.js" defer></script>
 <script src="js/services-data.js" defer></script>
 <script src="js/store.js" defer></script>
+<script src="js/analytics.js" defer></script>
 <script src="js/header.html.js" defer></script>
 <script src="js/bitrix24.js" defer></script>
 <script src="js/ai-assistant.js" defer></script>
@@ -140,6 +141,7 @@
 <meta name="apple-mobile-web-app-title" content="VanVek">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta property="og:image" content="https://vanvek.ru/og-image.jpg">
 </head>
 <body>
 
@@ -158,7 +160,7 @@
       С 2022 года на рынке
     </div>
     <h1 class="hero-new__title">Закажите установку сантехники онлайн —<br><em>мастер приедет сегодня</em></h1>
-    <p class="hero-new__subtitle">Цена на сайте = цена по факту. Ни рублём больше. Выбираете услугу → оформляете за 2 минуты → мастер уже в пути. Оплата только после выполнения работ.</p>
+    <p class="hero-new__subtitle">Цена на сайте = цена по факту. Никаких «посмотрим на месте».</p>
     <div class="hero-new__actions">
       <a href="services.html" class="btn btn--accent btn--lg hero-new__cta">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
@@ -166,7 +168,7 @@
       </a>
     </div>
     <div class="hero-new__urgency"></div>
-    <p class="hero-new__badge-line">Цена не изменится после приезда мастера • Гарантия 1 год по договору • Оплата после приёмки работ</p>
+
     <div class="hero-new__medals">
       <div class="hero-medal">
         <span class="hero-medal__number">4+</span>
@@ -187,6 +189,78 @@
     </div>
   </div>
 </section>
+
+<!-- D18: Return visitor CTA — shown only when cart has items -->
+<div id="return-visitor-cta" aria-live="polite" style="display:none;">
+  <div class="container">
+    <div class="return-visitor-cta__inner">
+      <div class="return-visitor-cta__text">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span>В вашей заявке <strong id="return-visitor-count">0</strong> <span id="return-visitor-label">услуга</span></span>
+      </div>
+      <a href="cart.html" class="return-visitor-cta__btn" aria-label="Продолжить оформление заявки">
+        Продолжить оформление
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+<style>
+#return-visitor-cta {
+  background: var(--color-primary);
+  color: #fff;
+  animation: slideDownIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes slideDownIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.return-visitor-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  flex-wrap: wrap;
+}
+.return-visitor-cta__text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+.return-visitor-cta__text strong {
+  font-weight: 800;
+}
+.return-visitor-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-family: var(--font-display);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.return-visitor-cta__btn:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.7);
+}
+@media (prefers-reduced-motion: reduce) {
+  #return-visitor-cta { animation: none; }
+}
+@media (max-width: 480px) {
+  .return-visitor-cta__inner { gap: var(--space-3); }
+  .return-visitor-cta__btn { font-size: var(--text-xs); padding: var(--space-2) var(--space-3); }
+}
+</style>
 
 <!-- ===== TRUST BAR — quick benefits ===== -->
 <section class="trust-bar">
@@ -375,7 +449,7 @@
           <span class="process-step__num">1</span>
         </div>
         <h3 class="process-step__title">Мастер приезжает</h3>
-        <p class="process-step__desc">В чистой униформе с логотипом VanVek, с полным набором инструментов. Выезд в день заказа.</p>
+        <p class="process-step__desc">Мастер на месте через 2–4 часа после заявки. Звоним за 30 минут до приезда.</p>
       </div>
 
       <div class="process-step">
@@ -384,7 +458,7 @@
           <span class="process-step__num">2</span>
         </div>
         <h3 class="process-step__title">Осмотр и оценка</h3>
-        <p class="process-step__desc">Проверяет фронт работ, согласовывает объём. Цена фиксирована — никаких сюрпризов.</p>
+        <p class="process-step__desc">Осмотр за 10 минут. Если нужны дополнительные материалы — скажет сразу, цена не вырастет.</p>
       </div>
 
       <div class="process-step">
@@ -393,7 +467,7 @@
           <span class="process-step__num">3</span>
         </div>
         <h3 class="process-step__title">Выполнение работ</h3>
-        <p class="process-step__desc">Профессиональный монтаж с соблюдением технологий. Аккуратно, точно, по стандартам.</p>
+        <p class="process-step__desc">Работа от 30 минут до 4 часов в зависимости от задачи. Аккуратно, без повреждений отделки.</p>
       </div>
 
       <div class="process-step">
@@ -402,7 +476,7 @@
           <span class="process-step__num">4</span>
         </div>
         <h3 class="process-step__title">Уборка за собой</h3>
-        <p class="process-step__desc">Мастер убирает весь мусор, протирает рабочую зону. Оставляет чистоту как было.</p>
+        <p class="process-step__desc">Уборка входит в стоимость. Мастер уносит упаковку и старое оборудование.</p>
       </div>
 
       <div class="process-step">
@@ -411,7 +485,7 @@
           <span class="process-step__num">5</span>
         </div>
         <h3 class="process-step__title">Документы и гарантия</h3>
-        <p class="process-step__desc">Акт выполненных работ, договор, гарантия 1 год. Всё официально и прозрачно.</p>
+        <p class="process-step__desc">Подписываете акт, получаете гарантийный талон на 1 год. Оплата — только после приёмки.</p>
       </div>
     </div>
   </div>
@@ -928,6 +1002,26 @@ document.addEventListener('DOMContentLoaded', function() {
   if (typeof initMobileNav === 'function') initMobileNav();
   if (typeof initCartMiniDropdown === 'function') initCartMiniDropdown();
 
+  // A7: Track phone link clicks (delegated — covers header, sticky CTA, footer)
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href^="tel:"]');
+    if (link && window.VanVekAnalytics) {
+      window.VanVekAnalytics.trackCallClick();
+    }
+  });
+
+  // A7: Track messenger button clicks (delegated — covers FAB and inline buttons)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.messenger-float__btn, .messenger-fab__btn');
+    if (btn && window.VanVekAnalytics) {
+      var messenger = 'unknown';
+      if (btn.classList.contains('messenger-float__btn--max') || btn.classList.contains('messenger-fab__btn--max')) messenger = 'max';
+      else if (btn.classList.contains('messenger-float__btn--tg') || btn.classList.contains('messenger-fab__btn--tg')) messenger = 'telegram';
+      else if (btn.classList.contains('messenger-float__btn--vk') || btn.classList.contains('messenger-fab__btn--vk')) messenger = 'vk';
+      window.VanVekAnalytics.trackMessengerClick(messenger);
+    }
+  });
+
   // === CATEGORY GRID with hover info ===
   const grid = document.getElementById('js-category-grid');
   if (grid && window.CATEGORIES && window.PRICES) {
@@ -1026,6 +1120,39 @@ document.addEventListener('DOMContentLoaded', function() {
     window.AppStore.onCartChange(updateStickyCart);
     updateStickyCart();
   }
+
+  // D18: Return visitor CTA — show when cart has items
+  (function() {
+    var rvcEl = document.getElementById('return-visitor-cta');
+    var countEl = document.getElementById('return-visitor-count');
+    var labelEl = document.getElementById('return-visitor-label');
+    if (!rvcEl || !window.AppStore) return;
+
+    function updateReturnVisitorCta() {
+      var count = window.AppStore.cartCount();
+      if (count > 0) {
+        if (countEl) countEl.textContent = count;
+        if (labelEl) {
+          // Russian pluralization: 1 услуга, 2–4 услуги, 5+ услуг
+          var forms = ['\u0443\u0441\u043b\u0443\u0433\u0430', '\u0443\u0441\u043b\u0443\u0433\u0438', '\u0443\u0441\u043b\u0443\u0433'];
+          var n = count % 100;
+          var n1 = count % 10;
+          var label = (n >= 11 && n <= 19) ? forms[2]
+            : n1 === 1 ? forms[0]
+            : (n1 >= 2 && n1 <= 4) ? forms[1]
+            : forms[2];
+          labelEl.textContent = label;
+        }
+        rvcEl.style.display = 'block';
+      } else {
+        rvcEl.style.display = 'none';
+      }
+    }
+
+    window.AppStore.onCartChange(updateReturnVisitorCta);
+    // Slight delay to ensure store is ready
+    setTimeout(updateReturnVisitorCta, 150);
+  })();
 
   // === Animate puzomerka numbers on scroll ===
   function animateCounters() {
@@ -1205,43 +1332,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
-// Task 4: Urgency countdown timer
+// D14: Urgency — nearest visit (no fake scarcity, based on real work hours 9:00–20:00)
 (function() {
   var container = document.querySelector('.hero-new__urgency');
   if (!container) return;
 
-  function updateUrgency() {
-    var now = new Date();
-    var h = now.getHours();
-    var m = now.getMinutes();
-    var s = now.getSeconds();
+  var h = new Date().getHours();
+  var clockIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
 
-    if (h < 14 && h >= 9) {
-      var remaining = (14 - h - 1) * 3600 + (59 - m) * 60 + (59 - s);
-      var rh = Math.floor(remaining / 3600);
-      var rm = Math.floor((remaining % 3600) / 60);
-      var rs = remaining % 60;
-      function pad(n) { return String(n).padStart(2, '0'); }
-      container.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
-        + '<span>Мастер приедет сегодня — до выезда: </span>'
-        + '<span class="urgency-timer">'
-        + '<span class="urgency-timer__digit">' + pad(rh) + '</span>'
-        + '<span class="urgency-timer__sep">:</span>'
-        + '<span class="urgency-timer__digit">' + pad(rm) + '</span>'
-        + '<span class="urgency-timer__sep">:</span>'
-        + '<span class="urgency-timer__digit">' + pad(rs) + '</span>'
-        + '</span>';
-    } else if (h < 9) {
-      container.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
-        + '<span>Оформите сейчас — мастер приедет сегодня с 9:00</span>';
-    } else {
-      container.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
-        + '<span>Оформите сейчас — мастер приедет завтра с 9:00</span>';
-    }
+  if (h < 18) {
+    // Before 18:00 — can still arrange same-day visit
+    container.innerHTML = clockIcon + '<span>Ближайший выезд — сегодня</span>';
+  } else {
+    // After 18:00 — next available slot is tomorrow morning
+    container.innerHTML = clockIcon + '<span>Ближайший выезд — завтра с 9:00</span>';
   }
-
-  updateUrgency();
-  setInterval(updateUrgency, 1000);
 })();
 
 

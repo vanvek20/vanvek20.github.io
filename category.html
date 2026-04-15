@@ -30,6 +30,12 @@
 <meta name="apple-mobile-web-app-title" content="VanVek">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vanvek.ru/category.html">
+<meta property="og:title" content="Услуги по категориям — VanVek | Установка сантехники">
+<meta property="og:description" content="Услуги по установке сантехники в Москве по фиксированной цене. Выберите категорию.">
+<meta property="og:image" content="https://vanvek.ru/og-image.jpg">
+<meta property="og:site_name" content="VanVek">
 </head>
 <body>
 
@@ -67,7 +73,7 @@
           <div class="not-found-service__title">Не нашли нужную услугу?</div>
           <div class="not-found-service__desc">Опишите задачу в свободной форме — оценим стоимость и свяжемся с вами</div>
         </div>
-        <button onclick="document.getElementById('task-modal').style.display='flex'" class="btn btn--primary" style="border:none;cursor:pointer;">
+        <button onclick="document.getElementById('task-modal').style.display='flex'; if(window.VanVekAnalytics) window.VanVekAnalytics.trackTaskModalOpen();" class="btn btn--primary" style="border:none;cursor:pointer;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           Описать задачу
         </button>
@@ -165,6 +171,7 @@
 <div id="footer-mount"></div>
 
 <script src="js/store.js"></script>
+<script src="js/analytics.js"></script>
 <script src="js/header.html.js"></script>
 <script src="js/services-data.js"></script>
 <script src="js/categories-data.js"></script>
@@ -180,9 +187,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var fabRoot = document.getElementById('messenger-fab-root');
   if (fabRoot && typeof getMessengerFAB === 'function') { fabRoot.innerHTML = getMessengerFAB(); initMessengerFAB(); }
 
-  // Get category from URL
+  // Get category: prefer window.__INITIAL_CAT (set by static category pages) over URL param
   const params = new URLSearchParams(location.search);
-  const slug = params.get('cat') || 'sinks';
+  const slug = (window.__INITIAL_CAT) || params.get('cat') || 'sinks';
   const data = window.SERVICES_DATA[slug];
   const catMeta = window.CATEGORIES.find(c => c.slug === slug);
 
@@ -216,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const related = window.CATEGORIES.filter(c => c.slug !== slug).slice(0, 4);
   relatedGrid.innerHTML = related.map(cat => `
     <div role="listitem">
-      <a href="category.html?cat=${cat.slug}" class="category-card" aria-label="${window.AppStore.escHtml(cat.name)}">
+      <a href="category-${cat.slug}.html" class="category-card" aria-label="${window.AppStore.escHtml(cat.name)}">
         <div class="category-card__illus" aria-hidden="true">${cat.icon}</div>
         <div class="category-card__body">
           <span class="category-card__name">${window.AppStore.escHtml(cat.name)}</span>
@@ -426,6 +433,9 @@ function renderServices(services, categorySlug) {
         addons
       });
 
+      // A7: Track add-to-cart
+      if (window.VanVekAnalytics) window.VanVekAnalytics.trackAddToCart(svc.name);
+
       setButtonAdded(this, svc.name);
       window.AppStore.showToast(`«${svc.name}» добавлена в заявку`);
 
@@ -516,6 +526,8 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(function(res) { return res.json(); })
     .then(function() {
+      // A7: Track task submit
+      if (window.VanVekAnalytics) window.VanVekAnalytics.trackTaskSubmit();
       form.style.display = 'none';
       document.getElementById('task-success').style.display = 'block';
     })
@@ -588,6 +600,9 @@ function openQuickCheckout() {
   qc.classList.add('open');
   qc.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+
+  // A7: Track QC open
+  if (window.VanVekAnalytics) window.VanVekAnalytics.trackOpenQuickCheckout();
 
   // Focus phone field
   setTimeout(function() { document.getElementById('qc-phone').focus(); }, 350);
@@ -684,12 +699,14 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(function(r) { return r.json(); })
     .then(function() {
-      form.style.display = 'none';
-      var successDiv = document.getElementById('qc-success');
-      successDiv.style.display = 'block';
-      var msg = name ? (name + ', перезвоним в течение 15 минут') : 'Перезвоним в течение 15 минут';
-      document.getElementById('qc-success-msg').textContent = msg;
+      // A7: Track QC submit
+      if (window.VanVekAnalytics) window.VanVekAnalytics.trackQuickCheckoutSubmit();
       window.AppStore.clearCart();
+      // D17: Redirect to thank-you page
+      var params = new URLSearchParams();
+      params.set('order', orderNum);
+      if (name) params.set('name', name);
+      window.location.href = 'thankyou-quick.html?' + params.toString();
     })
     .catch(function() {
       errDiv.textContent = 'Ошибка отправки. Позвоните нам: 8 800 333-33-33';

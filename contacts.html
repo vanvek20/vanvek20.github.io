@@ -22,6 +22,12 @@
 <meta name="apple-mobile-web-app-title" content="VanVek">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vanvek.ru/contacts.html">
+<meta property="og:title" content="Контакты — VanVek | Установка сантехники в Москве">
+<meta property="og:description" content="Телефон, адрес и форма обратной связи VanVek. Ежедневно 9:00–20:00. 8 800 333-33-33.">
+<meta property="og:image" content="https://vanvek.ru/og-image.jpg">
+<meta property="og:site_name" content="VanVek">
 </head>
 <body>
 <a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
@@ -74,6 +80,7 @@
 
 <div id="footer-mount"></div>
 <script src="js/store.js"></script>
+<script src="js/analytics.js"></script>
 <script src="js/header.html.js"></script>
 <script src="js/categories-data.js"></script>
 <script>
@@ -287,8 +294,7 @@ function renderPageContent(key) {
           -->
         </div>
 
-        <!-- Email -->
-        <div style="font-size:var(--text-sm);color:var(--color-text-muted);">Email: <a href="mailto:sc.vanvek@gmail.com" style="color:var(--color-accent);display:inline-block;padding:8px 0;min-height:44px;line-height:44px;">sc.vanvek@gmail.com</a></div>
+        <!-- Email hidden from public contacts (stays in form action only) -->
       </div>
     `,
   };

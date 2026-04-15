@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заявка отправлена — VanVek</title>
+<meta name="description" content="Ваша заявка на установку сантехники принята. Перезвоним в течение 15 минут.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/mobile.css">
+<script>(function(){const t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#E8450A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="VanVek">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<style>
+.thankyou-quick {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--space-12) var(--space-6);
+}
+.thankyou-quick__check {
+  width: 72px;
+  height: 72px;
+  background: #8fc400;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+}
+.thankyou-quick__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+.thankyou-quick__order {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-md);
+  padding: var(--space-1) var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.thankyou-quick__message {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+}
+.thankyou-quick__callback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-8);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.thankyou-quick__actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media (max-width: 480px) {
+  .thankyou-quick {
+    padding: var(--space-10) var(--space-4);
+  }
+  .thankyou-quick__title {
+    font-size: var(--text-xl);
+  }
+  .thankyou-quick__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .thankyou-quick__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
+<div id="header-mount"></div>
+
+<main id="main-content">
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="index.html">Главная</a>
+        <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Заявка отправлена</span>
+      </nav>
+      <h1>Заявка отправлена</h1>
+    </div>
+  </div>
+
+  <section class="section section--sm" aria-label="Подтверждение заявки">
+    <div class="container">
+      <div class="thankyou-quick" role="main">
+
+        <!-- Success checkmark -->
+        <div class="thankyou-quick__check" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+
+        <!-- Heading -->
+        <h2 class="thankyou-quick__title">Заявка принята!</h2>
+
+        <!-- Order number (set by JS from URL) -->
+        <div class="thankyou-quick__order" id="ty-order-num" aria-live="polite">Заявка получена</div>
+
+        <!-- Callback promise -->
+        <div class="thankyou-quick__callback" role="note" aria-label="Обещание перезвонить">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Перезвоним в течение 15 минут
+        </div>
+
+        <!-- Message -->
+        <p class="thankyou-quick__message" id="ty-message">
+          Мастер подтвердит удобное время и приедет в согласованный час.<br>
+          Цена на сайте — окончательная, доплат на месте нет.
+        </p>
+
+        <!-- Actions -->
+        <div class="thankyou-quick__actions">
+          <a href="services.html" class="btn btn--accent btn--lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Вернуться в каталог
+          </a>
+          <a href="index.html" class="btn btn--outline btn--lg">
+            На главную
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Floating messenger buttons -->
+<div id="messenger-fab-root"></div>
+
+<div id="footer-mount"></div>
+
+<script src="js/store.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/header.html.js"></script>
+<script src="js/categories-data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('header-mount').innerHTML = getHeaderHTML('');
+  if (window.AppStore && window.AppStore.initCityDropdown) window.AppStore.initCityDropdown();
+  if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();
+  if (window.AppStore && window.AppStore.updateCartUI) window.AppStore.updateCartUI();
+  document.getElementById('footer-mount').innerHTML = getFooterHTML();
+  var fabRoot = document.getElementById('messenger-fab-root');
+  if (fabRoot && typeof getMessengerFAB === 'function') { fabRoot.innerHTML = getMessengerFAB(); initMessengerFAB(); }
+
+  // Read order number from URL query param
+  var params = new URLSearchParams(location.search);
+  var orderNum = params.get('order');
+  var name = params.get('name');
+
+  var orderEl = document.getElementById('ty-order-num');
+  var msgEl = document.getElementById('ty-message');
+
+  if (orderNum) {
+    orderEl.textContent = 'Заявка ' + orderNum;
+  }
+  if (name) {
+    msgEl.innerHTML = name + ', мастер подтвердит удобное время и приедет в согласованный час.<br>Цена на сайте — окончательная, доплат на месте нет.';
+  }
+});
+</script>
+<script src="js/ai-assistant.js"></script>
+<script src="js/mobile-menu.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+</script>
+<!-- Mobile bottom bar -->
+<nav class="mobile-bottom-bar" id="mobile-bottom-bar" aria-label="Быстрые действия">
+  <a href="services.html" class="mobile-bottom-bar__btn mobile-bottom-bar__btn--catalog">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    Каталог
+  </a>
+  <a href="tel:88003333333" class="mobile-bottom-bar__btn mobile-bottom-bar__btn--call">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Звонок
+  </a>
+  <a href="cart.html" class="mobile-bottom-bar__btn mobile-bottom-bar__btn--cart">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    Корзина
+    <span class="mobile-bottom-bar__badge js-cart-count" style="display:none;">0</span>
+  </a>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function updateMobileBar() {
+    if (!window.AppStore) return;
+    var count = window.AppStore.cartCount();
+    document.querySelectorAll('.mobile-bottom-bar .js-cart-count').forEach(function(el) {
+      el.textContent = count;
+      el.style.display = count > 0 ? '' : 'none';
+    });
+  }
+  if (window.AppStore) {
+    window.AppStore.onCartChange(updateMobileBar);
+    setTimeout(updateMobileBar, 100);
+  }
+});
+</script>
+</body>
+</html>
