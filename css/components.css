@@ -281,7 +281,7 @@
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
-  border: 1.5px solid #e2e8f0;
+  border: 1.5px solid var(--color-border);
   box-shadow: 0 2px 12px rgba(13, 26, 46, 0.07);
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
@@ -335,7 +335,7 @@
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 700;
-  color: #1a2535;
+  color: var(--color-text);
   line-height: 1.35;
   transition: color 0.2s ease;
   flex: 1;
@@ -516,7 +516,7 @@
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 800;
-  color: var(--color-text);
+  color: var(--color-accent);
   line-height: 1;
 }
 .service-price__label {
@@ -980,6 +980,15 @@
   box-shadow: var(--shadow-lg);
   transform: translateY(100%);
   transition: transform 0.3s cubic-bezier(.32,.72,0,1);
+}
+.quick-checkout__sheet::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 4px;
+  background: var(--color-border, #e2e8f0);
+  border-radius: 2px;
+  margin: 0 auto var(--space-4, 16px);
 }
 .quick-checkout.open .quick-checkout__sheet {
   transform: translateY(0);
@@ -1570,10 +1579,10 @@
   gap: 0;
 }
 .faq-item {
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-border);
 }
 .faq-item:first-child {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--color-border);
 }
 .faq-item__q {
   display: flex;
@@ -1582,7 +1591,7 @@
   padding: 18px 0;
   font-size: 16px;
   font-weight: 600;
-  color: #0d1a2e;
+  color: var(--color-text);
   cursor: pointer;
   list-style: none;
   gap: 12px;
@@ -1605,6 +1614,6 @@ details[open] .faq-item__q::after {
 .faq-item__a {
   padding: 0 0 18px 0;
   font-size: 15px;
-  color: #4a5568;
+  color: var(--color-text-muted);
   line-height: 1.65;
 }

@@ -57,7 +57,7 @@
 
       <!-- EMPTY CART STATE -->
       <div id="cart-empty" class="empty-cart" style="display:none;" aria-live="polite">
-        <div class="empty-cart__icon" aria-hidden="true">🛒</div>
+        <div class="empty-cart__icon" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
         <h2 class="empty-cart__title">Вы ещё не выбрали услуги</h2>
         <p class="empty-cart__subtitle">Выберите услуги из каталога и оформите заказ — без звонков, быстро</p>
         <a href="services.html" class="btn btn--accent btn--lg">
@@ -138,6 +138,16 @@
 
 
 
+              <!-- Contact method -->
+              <div class="form-group">
+                <div class="form-label" id="comm-method-label">Предпочитаемый способ связи</div>
+                <div class="comm-method-group" role="group" aria-labelledby="comm-method-label">
+                  <button type="button" class="comm-method-btn active" data-method="call" data-testid="comm-call" aria-pressed="true">Звонок</button>
+                  <button type="button" class="comm-method-btn" data-method="max" data-testid="comm-max" aria-pressed="false">Max</button>
+                  <button type="button" class="comm-method-btn" data-method="telegram" data-testid="comm-telegram" aria-pressed="false">Telegram</button>
+                </div>
+              </div>
+
 <details class="form-details">
   <summary class="form-details__toggle">+ Добавить комментарий или адрес</summary>
               <!-- Address -->
@@ -150,15 +160,6 @@
                 <label class="form-label" for="order-comment">Комментарий</label>
                 <textarea class="form-input form-textarea" id="order-comment" name="comment" placeholder="Любые детали: дата, время, особенности..." data-testid="input-comment" rows="3"></textarea>
               </div>
-              <!-- Contact method -->
-              <div class="form-group">
-                <div class="form-label" id="comm-method-label">Предпочитаемый способ связи</div>
-                <div class="comm-method-group" role="group" aria-labelledby="comm-method-label">
-                  <button type="button" class="comm-method-btn active" data-method="call" data-testid="comm-call" aria-pressed="true">📞 Звонок</button>
-                  <button type="button" class="comm-method-btn" data-method="max" data-testid="comm-max" aria-pressed="false">💬 Max</button>
-                  <button type="button" class="comm-method-btn" data-method="telegram" data-testid="comm-telegram" aria-pressed="false">✈️ Telegram</button>
-                </div>
-              </div>
 </details>
 
               <!-- Form validation error -->
@@ -170,14 +171,6 @@
                 <div class="trust-bar__item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                   <span>Перезвоним за 15 мин</span>
-                </div>
-                <div class="trust-bar__item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                  <span>Гарантия 1 год</span>
-                </div>
-                <div class="trust-bar__item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                  <span>Фиксированная цена</span>
                 </div>
               </div>
 
@@ -226,17 +219,17 @@
         <!-- What's next block -->
         <div style="margin-top:var(--space-12);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);max-width:600px;margin-inline:auto;">
           <div style="text-align:center;">
-            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true">📞</div>
+            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
             <div style="font-size:var(--text-sm);font-weight:700;margin-bottom:var(--space-1);">Свяжемся</div>
             <div style="font-size:var(--text-xs);color:var(--color-text-muted);">Свяжемся с вами</div>
           </div>
           <div style="text-align:center;">
-            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true">🔧</div>
+            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
             <div style="font-size:var(--text-sm);font-weight:700;margin-bottom:var(--space-1);">Приедет мастер</div>
             <div style="font-size:var(--text-xs);color:var(--color-text-muted);">В согласованное время</div>
           </div>
           <div style="text-align:center;">
-            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true">✅</div>
+            <div style="font-size:32px;margin-bottom:var(--space-3);" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
             <div style="font-size:var(--text-sm);font-weight:700;margin-bottom:var(--space-1);">Оплата после</div>
             <div style="font-size:var(--text-xs);color:var(--color-text-muted);">Гарантия 1 год</div>
           </div>

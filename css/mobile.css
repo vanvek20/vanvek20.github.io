@@ -543,8 +543,8 @@
     color: #fff;
   }
   .mobile-bottom-bar__btn--call {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
+    background: rgba(232, 69, 10, 0.12);
+    color: var(--color-accent);
   }
   .mobile-bottom-bar__btn--cart {
     background: #E8450A;
@@ -645,5 +645,33 @@
   .catalog-header .btn--outline:hover, .catalog-header .btn--outline:active {
     background: #d03d08;
     border-color: #d03d08;
+  }
+}
+
+/* === Sprint 6B: Touch targets (min 44px) === */
+@media (max-width: 768px) {
+  .addon-item__check {
+    width: 24px;
+    height: 24px;
+  }
+  .addon-item {
+    padding-block: 10px;
+    min-height: 44px;
+  }
+  .addon-qty-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .quick-checkout__close {
+    padding: 12px;
+    margin: -12px;
+  }
+}
+
+/* === Sprint 6B: Cart sidebar first on mobile === */
+@media (max-width: 768px) {
+  .cart-sidebar {
+    order: -1;
   }
 }

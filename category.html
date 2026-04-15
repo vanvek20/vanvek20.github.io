@@ -85,15 +85,15 @@
 
 
 <!-- MODAL: Описать задачу -->
-<div id="task-modal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
+<div id="task-modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:480px;width:100%;position:relative;box-shadow:var(--shadow-lg);">
     <button onclick="document.getElementById('task-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--color-text-muted);font-size:24px;line-height:1;" aria-label="Закрыть">&times;</button>
-    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Опишите задачу</h3>
+    <h3 id="task-modal-title" style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Опишите задачу</h3>
     <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);">Мы оценим стоимость и перезвоним</p>
     <form id="task-form" style="display:flex;flex-direction:column;gap:var(--space-4);">
-      <input type="text" name="name" required placeholder="Ваше имя" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
-      <input type="tel" name="phone" required placeholder="Телефон" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
-      <textarea name="task" required placeholder="Опишите что нужно сделать…" rows="4" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'"></textarea>
+      <input type="tel" name="phone" required placeholder="Телефон" class="form-input">
+      <input type="text" name="name" placeholder="Ваше имя" class="form-input">
+      <textarea name="task" required placeholder="Опишите что нужно сделать…" rows="4" class="form-input form-textarea"></textarea>
       <button type="submit" id="task-submit-btn" style="padding:16px;background:#E8450A;color:#fff;border:none;border-radius:var(--radius-lg);font-size:var(--text-base);font-weight:700;font-family:var(--font-display);cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#d03d08'" onmouseout="this.style.background='#E8450A'">
         Отправить
       </button>
@@ -111,11 +111,11 @@
 </main>
 
 <!-- ===== INLINE CHECKOUT SHEET ===== -->
-<div id="quick-checkout" class="quick-checkout" aria-hidden="true">
+<div id="quick-checkout" class="quick-checkout" role="dialog" aria-modal="true" aria-labelledby="qc-title" aria-hidden="true">
   <div class="quick-checkout__backdrop" onclick="closeQuickCheckout()"></div>
   <div class="quick-checkout__sheet">
     <div class="quick-checkout__header">
-      <h3 class="quick-checkout__title">Оформить заявку</h3>
+      <h3 id="qc-title" class="quick-checkout__title">Оформить заявку</h3>
       <button class="quick-checkout__close" onclick="closeQuickCheckout()" aria-label="Закрыть">&times;</button>
     </div>
     <div class="quick-checkout__summary" id="qc-summary"></div>
@@ -216,10 +216,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const related = window.CATEGORIES.filter(c => c.slug !== slug).slice(0, 4);
   relatedGrid.innerHTML = related.map(cat => `
     <div role="listitem">
-      <a href="category.html?cat=${cat.slug}" class="category-card" aria-label="${cat.name}">
+      <a href="category.html?cat=${cat.slug}" class="category-card" aria-label="${window.AppStore.escHtml(cat.name)}">
         <div class="category-card__illus" aria-hidden="true">${cat.icon}</div>
         <div class="category-card__body">
-          <span class="category-card__name">${cat.name}</span>
+          <span class="category-card__name">${window.AppStore.escHtml(cat.name)}</span>
           <span class="category-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
@@ -248,12 +248,11 @@ function renderServices(services, categorySlug) {
   if (!list || !services) return;
   const catIcon = ''; // icons removed from service list (Sprint 3.5)
 
-  let mainServiceCount = 0;
   list.innerHTML = services.map(svc => {
     const addonsHTML = svc.addons.map(addon => {
       const isPct = !!addon.pct;
       const priceLabel = isPct
-        ? `+${addon.pct}% к стоимости`
+        ? `+${window.AppStore.formatPrice(Math.round(svc.price * addon.pct / 100))}`
         : `+ ${window.AppStore.formatPrice(addon.price)}${addon.hasQty ? ' за отверстие' : ''}`;
       return `
       <div class="addon-item" data-addon-id="${addon.id}" data-addon-price="${addon.price}" data-addon-pct="${addon.pct||0}">
@@ -278,20 +277,17 @@ function renderServices(services, categorySlug) {
       </div>
     `}).join('');
 
-    // Determine if this is the first main service (for popular badge)
-    const isFirst = mainServiceCount === 0;
-    mainServiceCount++;
-    const popularBadge = isFirst ? '<span class="popular-badge">Популярно</span>' : '';
+    const popularBadge = '';
 
     const iconHTML = '';
     const hasIconClass = '';
     return `
-      <article class="service-card service-card--main${hasIconClass}" data-service-id="${svc.id}" aria-label="${svc.name}" data-testid="service-card-${svc.id}">
+      <article class="service-card service-card--main${hasIconClass}" data-service-id="${svc.id}" data-testid="service-card-${svc.id}">
         <div class="service-card__main">
           ${iconHTML}
           <div class="service-card__info">
-            <h3 class="service-card__name">${svc.name}${popularBadge}</h3>
-            <p class="service-card__desc">${svc.desc}</p>
+            <h3 class="service-card__name">${window.AppStore.escHtml(svc.name)}${popularBadge}</h3>
+            <p class="service-card__desc">${window.AppStore.escHtml(svc.desc)}</p>
           </div>
           <div class="service-card__right">
             <div class="service-price" aria-live="polite" aria-label="Итоговая стоимость">
@@ -303,7 +299,7 @@ function renderServices(services, categorySlug) {
                 data-service-id="${svc.id}"
                 data-testid="add-to-cart-${svc.id}"
                 type="button"
-                aria-label="Добавить ${svc.name} в заявку">
+                aria-label="Добавить ${window.AppStore.escHtml(svc.name)} в заявку">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
                 Добавить в заявку
               </button>
@@ -318,7 +314,7 @@ function renderServices(services, categorySlug) {
             Вместе дешевле
           </div>
 
-          <div class="service-addons__panel service-addons__panel--visible" id="addons-panel-${svc.id}" role="group" aria-label="Дополнительные услуги для ${svc.name}">
+          <div class="service-addons__panel service-addons__panel--visible" id="addons-panel-${svc.id}" role="group" aria-label="Дополнительные услуги для ${window.AppStore.escHtml(svc.name)}">
             ${addonsHTML}
 
             <!-- Subtotal -->
@@ -434,7 +430,7 @@ function renderServices(services, categorySlug) {
       window.AppStore.showToast(`«${svc.name}» добавлена в заявку`);
 
       // Open quick checkout sheet after adding
-      setTimeout(function() { if (typeof openQuickCheckout === 'function') openQuickCheckout(); }, 600);
+      setTimeout(function() { if (typeof openQuickCheckout === 'function') openQuickCheckout(); }, 150);
     });
   });
 
@@ -502,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var name = form.querySelector('[name="name"]').value.trim();
     var phone = form.querySelector('[name="phone"]').value.trim();
     var task = form.querySelector('[name="task"]').value.trim();
-    if (!name || !phone || !task) return;
+    if (!phone || !task) return;
     btn.disabled = true;
     btn.textContent = 'Отправка...';
     var reqNum = 'TASK-' + Date.now().toString(36).toUpperCase();
@@ -524,7 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('task-success').style.display = 'block';
     })
     .catch(function() {
-      alert('Ошибка отправки. Позвоните нам: +7 (495) 128-30-20');
+      alert('Ошибка отправки. Позвоните нам: 8 800 333-33-33');
       btn.disabled = false;
       btn.textContent = 'Отправить';
     });
@@ -604,6 +600,27 @@ function closeQuickCheckout() {
   qc.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
+
+// Swipe-to-close for Quick Checkout Sheet
+(function() {
+  var sheet = document.querySelector('.quick-checkout__sheet');
+  if (!sheet) return;
+  var startY = 0;
+  sheet.addEventListener('touchstart', function(e) {
+    startY = e.touches[0].clientY;
+  }, {passive: true});
+  sheet.addEventListener('touchmove', function(e) {
+    var dy = e.touches[0].clientY - startY;
+    if (dy > 0) sheet.style.transform = 'translateY(' + dy + 'px)';
+  }, {passive: true});
+  sheet.addEventListener('touchend', function(e) {
+    var dy = e.changedTouches[0].clientY - startY;
+    if (dy > 80) {
+      if (typeof closeQuickCheckout === 'function') closeQuickCheckout();
+    }
+    sheet.style.transform = '';
+  });
+})();
 
 // Quick checkout form submit
 document.addEventListener('DOMContentLoaded', function() {

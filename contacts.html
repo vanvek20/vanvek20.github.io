@@ -154,7 +154,7 @@ function renderPageContent(key) {
         <div>
           <h2 class="section-title">О компании VanVek</h2>
           <p style="font-size:var(--text-base);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-6);">
-            VanVek — сервис профессиональной установки сантехники в Москве. Работаем с 2022 года, выполнили более 9 500 заказов.
+            VanVek — сервис профессиональной установки сантехники в Москве. Работаем с 2022 года, выполнили более 200 заказов.
           </p>
           <p style="font-size:var(--text-base);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-6);">
             Мы принципиально работаем с фиксированными ценами: вы видите стоимость до звонка мастера. Никаких «посмотрим на месте» и скрытых доплат.
@@ -171,7 +171,7 @@ function renderPageContent(key) {
         </div>
         <div class="card" style="padding:var(--space-6);">
           <h3 style="font-family:var(--font-display);font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-5);">В цифрах</h3>
-          ${[['4+ года','на рынке (с 2022)'],['9 500+','выполненных заказов'],['35','мастеров в штате'],['Москва','Зона работы'],['1 год','гарантия на работы']].map(([n,l])=>`
+          ${[['4+ года','на рынке (с 2022)'],['200+','выполненных заказов'],['8','мастеров'],['Москва','Зона работы'],['1 год','гарантия на работы']].map(([n,l])=>`
             <div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:1px solid var(--color-divider);">
               <span style="font-size:var(--text-sm);color:var(--color-text-muted);">${l}</span>
               <span style="font-family:var(--font-display);font-weight:800;">${n}</span>
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('task-success').style.display = 'block';
     })
     .catch(function() {
-      alert('Ошибка отправки. Позвоните нам: +7 (495) 128-30-20');
+      alert('Ошибка отправки. Позвоните нам: 8 800 333-33-33');
       btn.disabled = false;
       btn.textContent = 'Отправить';
     });

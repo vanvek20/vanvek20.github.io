@@ -335,6 +335,31 @@ function initCommon() {
 
 document.addEventListener('DOMContentLoaded', initCommon);
 
+// === Phone mask for all tel inputs ===
+function initPhoneMasks() {
+  document.querySelectorAll('input[type="tel"]').forEach(function(input) {
+    if (input.dataset.masked) return;
+    input.dataset.masked = 'true';
+    input.setAttribute('inputmode', 'tel');
+    input.setAttribute('autocomplete', 'tel');
+    input.addEventListener('input', function(e) {
+      var x = e.target.value.replace(/\D/g, '');
+      if (x.length === 0) { e.target.value = ''; return; }
+      if (x[0] === '7' || x[0] === '8') x = x.substring(1);
+      var formatted = '+7';
+      if (x.length > 0) formatted += ' (' + x.substring(0, 3);
+      if (x.length >= 3) formatted += ') ' + x.substring(3, 6);
+      if (x.length >= 6) formatted += '-' + x.substring(6, 8);
+      if (x.length >= 8) formatted += '-' + x.substring(8, 10);
+      e.target.value = formatted;
+    });
+  });
+}
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', initPhoneMasks);
+  if (window.AppStore) window.AppStore.initPhoneMasks = initPhoneMasks;
+}
+
 // Export to window for cross-page access
 window.AppStore = {
   getCity, getCityKey, setCity,
@@ -345,5 +370,6 @@ window.AppStore = {
   showToast, updateCartUI, updateMiniCart,
   onCartChange, CITIES,
   initCityDropdown,  // экспортируем для вызова после инъекции хедера
-  initThemeToggle    // аналогично — тёмная тема тоже нуждается в DOM-кнопке из хедера
+  initThemeToggle,   // аналогично — тёмная тема тоже нуждается в DOM-кнопке из хедера
+  initPhoneMasks     // маска телефона — вызывается после вставки DOM
 };

@@ -422,7 +422,11 @@
           <div class="iot-form-title" id="iot-form-title">Хочу узнать первым</div>
           <p class="iot-form-sub">Оставьте телефон или email — сообщим о запуске и специальных условиях для первых клиентов. Никакого спама.</p>
 
-          <form class="iot-form" id="iotInterestForm" novalidate>
+          <form class="iot-form" id="iotInterestForm" action="https://formsubmit.co/sc.vanvek@gmail.com" method="POST">
+            <input type="text" name="_honey" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off">
+            <input type="hidden" name="_subject" value="Заявка IoT VanVek">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://vanvek20.github.io/iot.html">
             <div class="iot-form__group">
               <label class="iot-form__label" for="iot-name">Ваше имя</label>
               <input class="iot-form__input" type="text" id="iot-name" name="name" placeholder="Иван">
@@ -468,18 +472,15 @@ document.addEventListener('DOMContentLoaded', function () {
   var fabRoot = document.getElementById('messenger-fab-root');
   if (fabRoot && typeof getMessengerFAB === 'function') { fabRoot.innerHTML = getMessengerFAB(); initMessengerFAB(); }
 
-  // Форма интереса — заглушка (разработчик подключит реальную отправку)
+  // Форма интереса — валидация перед отправкой (formsubmit.co)
   const form = document.getElementById('iotInterestForm');
   if (form) {
     form.addEventListener('submit', function(e) {
-      e.preventDefault();
       const contact = document.getElementById('iot-contact');
-      if (!contact.value.trim()) {
-        contact.style.borderColor = '#1EC8E8';
-        return;
+      if (!contact || !contact.value.trim()) {
+        e.preventDefault();
+        if (contact) contact.style.borderColor = '#E8450A';
       }
-      document.getElementById('iot-form-content').style.display = 'none';
-      document.getElementById('iot-form-success').style.display = 'block';
     });
   }
 });

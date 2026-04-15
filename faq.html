@@ -154,7 +154,7 @@ function renderPageContent(key) {
         <div>
           <h2 class="section-title">О компании VanVek</h2>
           <p style="font-size:var(--text-base);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-6);">
-            VanVek — сервис профессиональной установки сантехники в Москве. Работаем с 2022 года, выполнили более 9 500 заказов.
+            VanVek — сервис профессиональной установки сантехники в Москве. Работаем с 2022 года, выполнили более 200 заказов.
           </p>
           <p style="font-size:var(--text-base);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-6);">
             Мы принципиально работаем с фиксированными ценами: вы видите стоимость до звонка мастера. Никаких «посмотрим на месте» и скрытых доплат.
@@ -171,7 +171,7 @@ function renderPageContent(key) {
         </div>
         <div class="card" style="padding:var(--space-6);">
           <h3 style="font-family:var(--font-display);font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-5);">В цифрах</h3>
-          ${[['4+ года','на рынке (с 2022)'],['9 500+','выполненных заказов'],['35','мастеров в штате'],['Москва','Зона работы'],['1 год','гарантия на работы']].map(([n,l])=>`
+          ${[['4+ года','на рынке (с 2022)'],['200+','выполненных заказов'],['8','мастеров'],['Москва','Зона работы'],['1 год','гарантия на работы']].map(([n,l])=>`
             <div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:1px solid var(--color-divider);">
               <span style="font-size:var(--text-sm);color:var(--color-text-muted);">${l}</span>
               <span style="font-family:var(--font-display);font-weight:800;">${n}</span>
@@ -233,7 +233,11 @@ function renderPageContent(key) {
         </div>
         <div>
           <h3 style="font-family:var(--font-display);font-size:var(--text-base);font-weight:800;margin-bottom:var(--space-5);">Описать задачу</h3>
-          <form style="display:flex;flex-direction:column;gap:var(--space-4);" onsubmit="event.preventDefault();this.innerHTML='<div style=\\'padding:var(--space-6);text-align:center;color:var(--color-success);font-weight:700;\\'>✓ Сообщение отправлено!</div>'">
+          <form style="display:flex;flex-direction:column;gap:var(--space-4);" action="https://formsubmit.co/sc.vanvek@gmail.com" method="POST">
+            <input type="text" name="_honey" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off">
+            <input type="hidden" name="_subject" value="Сообщение с сайта VanVek (FAQ)">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://vanvek20.github.io/faq.html">
             <div class="form-group"><label class="form-label" for="c-name">Имя</label><input class="form-input" id="c-name" type="text" placeholder="Ваше имя"></div>
             <div class="form-group"><label class="form-label" for="c-phone">Телефон</label><input class="form-input" id="c-phone" type="tel" placeholder="+7 (___) ___-__-__"></div>
             <div class="form-group"><label class="form-label" for="c-msg">Опишите задачу</label><textarea class="form-input form-textarea" id="c-msg" rows="4" placeholder="Что нужно установить, адрес, пожелания..."></textarea></div>
@@ -285,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('task-success').style.display = 'block';
     })
     .catch(function() {
-      alert('Ошибка отправки. Позвоните нам: +7 (495) 128-30-20');
+      alert('Ошибка отправки. Позвоните нам: 8 800 333-33-33');
       btn.disabled = false;
       btn.textContent = 'Отправить';
     });
