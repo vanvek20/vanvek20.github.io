@@ -581,9 +581,9 @@ function openQuickCheckout() {
   var summary = document.getElementById('qc-summary');
   summary.innerHTML = cart.map(function(item) {
     var addonsText = item.addons.length > 0
-      ? '<br><span style="font-size:var(--text-xs);color:var(--color-text-muted);">+ ' + item.addons.map(function(a) { return a.name; }).join(', ') + '</span>'
+      ? item.addons.map(function(a) { return '<div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.4;">+ ' + window.AppStore.escHtml(a.name) + '</div>'; }).join('')
       : '';
-    return '<div class="quick-checkout__summary-item"><span>' + window.AppStore.escHtml(item.name) + addonsText + '</span><span>' + window.AppStore.formatPrice(item.total) + '</span></div>';
+    return '<div class="quick-checkout__summary-item"><span style="min-width:0;">' + window.AppStore.escHtml(item.name) + addonsText + '</span><span>' + window.AppStore.formatPrice(item.total) + '</span></div>';
   }).join('');
 
   document.getElementById('qc-total').textContent = window.AppStore.formatPrice(window.AppStore.cartTotal());

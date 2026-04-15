@@ -103,7 +103,7 @@ function addToCart(item) {
 }
 
 function removeFromCart(id) {
-  cart = cart.filter(i => i.id !== id);
+  cart = cart.filter(i => String(i.id) !== String(id));
   saveCartToSession();
   notifyCart();
 }
