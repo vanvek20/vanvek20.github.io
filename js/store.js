@@ -133,6 +133,21 @@ function removeLastByServiceId(serviceId) {
   return false;
 }
 
+function updateCartAddons(serviceId, addons) {
+  // Update addons for the last cart entry matching serviceId
+  for (let i = cart.length - 1; i >= 0; i--) {
+    if (cart[i].serviceId === serviceId) {
+      cart[i].addons = addons || [];
+      const addonTotal = cart[i].addons.reduce((s, a) => s + a.price * a.qty, 0);
+      cart[i].total = cart[i].basePrice + addonTotal;
+      saveCartToSession();
+      notifyCart();
+      return true;
+    }
+  }
+  return false;
+}
+
 function onCartChange(fn) {
   cartListeners.push(fn);
 }
@@ -324,7 +339,7 @@ document.addEventListener('DOMContentLoaded', initCommon);
 window.AppStore = {
   getCity, getCityKey, setCity,
   addToCart, removeFromCart, clearCart, getCart,
-  isServiceInCart, removeLastByServiceId,
+  isServiceInCart, removeLastByServiceId, updateCartAddons,
   cartTotal, cartCount,
   formatPrice, pluralize, escHtml,
   showToast, updateCartUI, updateMiniCart,

@@ -267,6 +267,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Order form — hide error on input
+  ['order-name', 'order-phone'].forEach(function(id) {
+    var field = document.getElementById(id);
+    if (field) {
+      field.addEventListener('input', function() {
+        var errDiv = document.getElementById('form-error-msg');
+        if (errDiv) errDiv.style.display = 'none';
+      });
+    }
+  });
+
   // Order form
   document.getElementById('order-form').addEventListener('submit', function(e) {
     e.preventDefault();

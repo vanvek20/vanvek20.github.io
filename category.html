@@ -432,6 +432,22 @@ function renderServices(services, categorySlug) {
     if (priceDisplay) priceDisplay.textContent = window.AppStore.formatPrice(total);
     if (priceLabel) priceLabel.textContent = total === svc.price ? 'фиксированная цена' : 'с доп. услугами';
     if (subtotalVal) subtotalVal.innerHTML = `<em>${window.AppStore.formatPrice(total)}</em>`;
+
+    // Bug fix: if service is already in cart, sync addons live
+    if (window.AppStore.isServiceInCart(svcId)) {
+      const addons = [];
+      card.querySelectorAll('.addon-item__check:checked').forEach(chk => {
+        const addonEl = chk.closest('.addon-item');
+        const addonId = addonEl.dataset.addonId;
+        const addonDef = svc.addons.find(a => a.id === addonId);
+        if (!addonDef) return;
+        const qtyEl = document.getElementById(`qty-val-${svcId}-${addonId}`);
+        const qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+        const addonPrice = addonDef.pct ? Math.round(svc.price * addonDef.pct / 100) : addonDef.price;
+        addons.push({ id: addonId, name: addonDef.name, price: addonPrice, qty });
+      });
+      window.AppStore.updateCartAddons(svcId, addons);
+    }
   }
 }
 </script>
