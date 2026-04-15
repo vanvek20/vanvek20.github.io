@@ -110,6 +110,55 @@
 
 </main>
 
+<!-- ===== INLINE CHECKOUT SHEET ===== -->
+<div id="quick-checkout" class="quick-checkout" aria-hidden="true">
+  <div class="quick-checkout__backdrop" onclick="closeQuickCheckout()"></div>
+  <div class="quick-checkout__sheet">
+    <div class="quick-checkout__header">
+      <h3 class="quick-checkout__title">Оформить заявку</h3>
+      <button class="quick-checkout__close" onclick="closeQuickCheckout()" aria-label="Закрыть">&times;</button>
+    </div>
+    <div class="quick-checkout__summary" id="qc-summary"></div>
+    <div class="quick-checkout__total">
+      <span>Итого</span>
+      <span id="qc-total" class="quick-checkout__total-val">0 ₽</span>
+    </div>
+    <form id="qc-form" class="quick-checkout__form" novalidate>
+      <input type="tel" id="qc-phone" class="form-input" placeholder="+7 (___) ___-__-__" autocomplete="tel" required aria-label="Телефон">
+      <input type="text" id="qc-name" class="form-input" placeholder="Ваше имя (необязательно)" autocomplete="given-name" aria-label="Имя">
+      <div id="qc-error" role="alert" style="display:none;padding:var(--space-2) var(--space-3);background:var(--color-error-highlight);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-error);"></div>
+      <div class="trust-bar trust-bar--form">
+        <div class="trust-bar__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Перезвоним за 15 мин</span>
+        </div>
+        <div class="trust-bar__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Гарантия 1 год</span>
+        </div>
+        <div class="trust-bar__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Фикс. цена</span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn--accent btn--lg" style="width:100%;justify-content:center;" data-testid="qc-submit">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        Вызвать мастера
+      </button>
+      <p style="font-size:var(--text-xs);color:var(--color-text-faint);text-align:center;margin-top:var(--space-1);">или <a href="cart.html" style="color:var(--color-primary);text-decoration:underline;">перейти в корзину</a> для полного оформления</p>
+    </form>
+    <!-- Success state -->
+    <div id="qc-success" style="display:none;text-align:center;padding:var(--space-6) 0;">
+      <div style="width:56px;height:56px;background:#8fc400;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-3);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-1);">Заявка отправлена!</div>
+      <p id="qc-success-msg" style="font-size:var(--text-sm);color:var(--color-text-muted);">Перезвоним в течение 15 минут</p>
+      <button type="button" class="btn btn--outline" style="margin-top:var(--space-4);" onclick="closeQuickCheckout()">Продолжить выбор</button>
+    </div>
+  </div>
+</div>
+
 <!-- Floating messenger buttons -->
 <div id="messenger-fab-root"></div>
 
@@ -262,22 +311,14 @@ function renderServices(services, categorySlug) {
           </div>
         </div>
 
-        <!-- Addons accordion -->
-        <div class="service-addons">
-          <button
-            class="service-addons__toggle"
-            aria-expanded="false"
-            aria-controls="addons-panel-${svc.id}"
-            type="button"
-            data-testid="addons-toggle-${svc.id}">
-            <span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:6px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-              Дополнительные услуги
-            </span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
+        <!-- Addons — visible inline (no accordion) -->
+        <div class="service-addons service-addons--open">
+          <div class="service-addons__header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Вместе дешевле
+          </div>
 
-          <div class="service-addons__panel" id="addons-panel-${svc.id}" role="group" aria-label="Дополнительные услуги для ${svc.name}">
+          <div class="service-addons__panel service-addons__panel--visible" id="addons-panel-${svc.id}" role="group" aria-label="Дополнительные услуги для ${svc.name}">
             ${addonsHTML}
 
             <!-- Subtotal -->
@@ -292,16 +333,6 @@ function renderServices(services, categorySlug) {
   }).join('');
 
   // ===== INTERACTIVITY =====
-
-  // Accordion toggles
-  list.querySelectorAll('.service-addons__toggle').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const expanded = this.getAttribute('aria-expanded') === 'true';
-      const panel = document.getElementById(this.getAttribute('aria-controls'));
-      this.setAttribute('aria-expanded', String(!expanded));
-      panel.classList.toggle('open', !expanded);
-    });
-  });
 
   // Addon checkbox + qty logic
   list.querySelectorAll('.addon-item__check').forEach(chk => {
@@ -401,6 +432,9 @@ function renderServices(services, categorySlug) {
 
       setButtonAdded(this, svc.name);
       window.AppStore.showToast(`«${svc.name}» добавлена в заявку`);
+
+      // Open quick checkout sheet after adding
+      setTimeout(function() { if (typeof openQuickCheckout === 'function') openQuickCheckout(); }, 600);
     });
   });
 
@@ -527,6 +561,126 @@ document.addEventListener('DOMContentLoaded', function() {
     window.AppStore.onCartChange(updateMobileBar);
     setTimeout(updateMobileBar, 100);
   }
+});
+</script>
+<!-- Quick Checkout JS -->
+<script>
+function openQuickCheckout() {
+  var qc = document.getElementById('quick-checkout');
+  var form = document.getElementById('qc-form');
+  var success = document.getElementById('qc-success');
+  if (!qc) return;
+
+  // Reset state
+  form.style.display = '';
+  success.style.display = 'none';
+  document.getElementById('qc-error').style.display = 'none';
+
+  // Populate summary from cart
+  var cart = window.AppStore.getCart();
+  var summary = document.getElementById('qc-summary');
+  summary.innerHTML = cart.map(function(item) {
+    var addonsText = item.addons.length > 0
+      ? '<br><span style="font-size:var(--text-xs);color:var(--color-text-muted);">+ ' + item.addons.map(function(a) { return a.name; }).join(', ') + '</span>'
+      : '';
+    return '<div class="quick-checkout__summary-item"><span>' + window.AppStore.escHtml(item.name) + addonsText + '</span><span>' + window.AppStore.formatPrice(item.total) + '</span></div>';
+  }).join('');
+
+  document.getElementById('qc-total').textContent = window.AppStore.formatPrice(window.AppStore.cartTotal());
+
+  // Open
+  qc.classList.add('open');
+  qc.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  // Focus phone field
+  setTimeout(function() { document.getElementById('qc-phone').focus(); }, 350);
+}
+
+function closeQuickCheckout() {
+  var qc = document.getElementById('quick-checkout');
+  if (!qc) return;
+  qc.classList.remove('open');
+  qc.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// Quick checkout form submit
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('qc-form');
+  if (!form) return;
+
+  // Hide error on input
+  ['qc-phone', 'qc-name'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', function() {
+      document.getElementById('qc-error').style.display = 'none';
+    });
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var phone = document.getElementById('qc-phone').value.trim();
+    var name = document.getElementById('qc-name').value.trim();
+    var errDiv = document.getElementById('qc-error');
+
+    if (!phone || phone.replace(/\D/g,'').length < 10) {
+      errDiv.textContent = 'Пожалуйста, введите номер телефона';
+      errDiv.style.display = 'block';
+      document.getElementById('qc-phone').focus();
+      return;
+    }
+    errDiv.style.display = 'none';
+
+    var orderNum = 'АМ-' + String(Date.now()).slice(-6);
+    var city = window.AppStore ? (window.AppStore.getCityKey() === 'spb' ? 'Санкт-Петербург' : 'Москва') : 'Москва';
+    var cart = window.AppStore.getCart();
+    var total = window.AppStore.cartTotal();
+
+    var servicesText = cart.map(function(item) {
+      var line = '• ' + item.name + ' \u2014 ' + window.AppStore.formatPrice(item.total);
+      if (item.addons.length > 0) {
+        line += '\n' + item.addons.map(function(a) {
+          return '  + ' + a.name + (a.qty > 1 ? ' \u00d7' + a.qty : '') + ' \u2014 +' + window.AppStore.formatPrice(a.price * a.qty);
+        }).join('\n');
+      }
+      return line;
+    }).join('\n');
+
+    var submitBtn = form.querySelector('[data-testid="qc-submit"]');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Отправка...</span>';
+
+    fetch('https://formsubmit.co/ajax/sc.vanvek@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Быстрая заявка ' + orderNum + ' \u2014 VanVek',
+        'Заявка': orderNum,
+        'Имя': name || 'Не указано',
+        'Телефон': phone,
+        'Город': city,
+        'Услуги': servicesText,
+        'ИТОГО': window.AppStore.formatPrice(total),
+        _template: 'table'
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function() {
+      form.style.display = 'none';
+      var successDiv = document.getElementById('qc-success');
+      successDiv.style.display = 'block';
+      var msg = name ? (name + ', перезвоним в течение 15 минут') : 'Перезвоним в течение 15 минут';
+      document.getElementById('qc-success-msg').textContent = msg;
+      window.AppStore.clearCart();
+    })
+    .catch(function() {
+      errDiv.textContent = 'Ошибка отправки. Позвоните нам: 8 800 333-33-33';
+      errDiv.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg> Вызвать мастера';
+    });
+  });
 });
 </script>
 </body>

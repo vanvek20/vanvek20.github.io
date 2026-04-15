@@ -107,23 +107,7 @@
 
             <!-- Order form -->
             <form id="order-form" class="order-form" novalidate aria-label="Форма оформления заявки" data-testid="order-form">
-              <!-- Name -->
-              <div class="form-group">
-                <label class="form-label" for="order-name">Ваше имя <span aria-label="обязательное поле" style="color:var(--color-error);">*</span></label>
-                <input
-                  type="text"
-                  class="form-input"
-                  id="order-name"
-                  name="name"
-                  placeholder="Как к вам обращаться?"
-                  autocomplete="given-name"
-                  required
-                  data-testid="input-name"
-                  aria-required="true">
-                <span class="form-error sr-only" id="name-error" role="alert"></span>
-              </div>
-
-              <!-- Phone -->
+              <!-- Phone (primary, required) -->
               <div class="form-group">
                 <label class="form-label" for="order-phone">Телефон <span aria-label="обязательное поле" style="color:var(--color-error);">*</span></label>
                 <input
@@ -138,6 +122,21 @@
                   aria-required="true">
                 <span class="form-error sr-only" id="phone-error" role="alert"></span>
               </div>
+
+              <!-- Name (optional) -->
+              <div class="form-group">
+                <label class="form-label" for="order-name">Ваше имя <span style="color:var(--color-text-muted);font-weight:400;">необязательно</span></label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="order-name"
+                  name="name"
+                  placeholder="Как к вам обращаться?"
+                  autocomplete="given-name"
+                  data-testid="input-name">
+              </div>
+
+
 
 <details class="form-details">
   <summary class="form-details__toggle">+ Добавить комментарий или адрес</summary>
@@ -164,6 +163,22 @@
 
               <!-- Form validation error -->
               <div id="form-error-msg" role="alert" style="display:none;padding:var(--space-3) var(--space-4);background:var(--color-error-highlight);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-error);">
+              </div>
+
+              <!-- Trust signals -->
+              <div class="trust-bar trust-bar--form" aria-label="Гарантии">
+                <div class="trust-bar__item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Перезвоним за 15 мин</span>
+                </div>
+                <div class="trust-bar__item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Гарантия 1 год</span>
+                </div>
+                <div class="trust-bar__item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span>Фиксированная цена</span>
+                </div>
               </div>
 
               <button type="submit" class="btn btn--accent btn--lg" style="width:100%;justify-content:center;" data-testid="submit-order">
@@ -285,12 +300,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const phone = document.getElementById('order-phone').value.trim();
     const errDiv = document.getElementById('form-error-msg');
 
-    if (!name) {
-      errDiv.textContent = 'Пожалуйста, введите ваше имя';
-      errDiv.style.display = 'block';
-      document.getElementById('order-name').focus();
-      return;
-    }
     if (!phone || phone.replace(/\D/g,'').length < 10) {
       errDiv.textContent = 'Пожалуйста, введите корректный номер телефона';
       errDiv.style.display = 'block';
@@ -469,8 +478,9 @@ function showThankYou(orderNum, name, commMethod) {
   document.getElementById('thankyou-order-num').textContent = 'Заказ ' + orderNum;
 
   const commLabels = { call: 'позвоним вам', max: 'напишем в Max', telegram: 'напишем в Telegram' };
+  const greeting = name ? `${name}, мы` : 'Мы';
   document.getElementById('thankyou-text').innerHTML =
-    `${name}, мы ${commLabels[commMethod] || 'свяжемся с вами'} для подтверждения заказа и уточнения деталей.<br>Мастер приедет в согласованное время.`;
+    `${greeting} ${commLabels[commMethod] || 'свяжемся с вами'} для подтверждения заказа и уточнения деталей.<br>Мастер приедет в согласованное время.`;
 
   ty.scrollIntoView({ behavior: 'smooth' });
 }
