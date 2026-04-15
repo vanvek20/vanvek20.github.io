@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  // Update page meta
-  document.getElementById('page-title').textContent = `${data.categoryName} — VanVek`;
-  document.getElementById('page-desc').content = `Установка ${data.categoryName.toLowerCase()} в Москве по фиксированной цене.`;
+  // Update page meta (elements may not exist on static category pages)
+  var elPageTitle = document.getElementById('page-title');
+  var elPageDesc = document.getElementById('page-desc');
+  if (elPageTitle) elPageTitle.textContent = `${data.categoryName} — VanVek`;
+  if (elPageDesc) elPageDesc.content = `Установка ${data.categoryName.toLowerCase()} в Москве по фиксированной цене.`;
   document.getElementById('cat-breadcrumb').textContent = data.categoryName;
   document.getElementById('cat-title').textContent = data.categoryName + ' в ' + window.AppStore.getCity().name.replace('Санкт-Петербург', 'Санкт-Петербурге').replace('Москва', 'Москве');
   const svcCount = data.services ? data.services.length : 0;
