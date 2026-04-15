@@ -41,10 +41,10 @@
   flex-direction: column;
   position: fixed;
   top: var(--header-h);
-  left: 0; right: 0; bottom: 0;
+  left: 0; right: 0; bottom: 72px; /* Оставляем место под bottom bar */
   background: var(--color-surface);
   z-index: 99;
-  padding: var(--space-4) var(--space-5) var(--space-8);
+  padding: var(--space-4) var(--space-5) var(--space-6);
   overflow-y: auto;
   transform: translateX(-100%);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -94,6 +94,10 @@
   margin-bottom: var(--space-3);
 }
 .mobile-nav__city-btns { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.mobile-nav__city-btns .btn--sm {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--text-xs);
+}
 
 /* Телефон в меню */
 .mobile-nav__phones { margin-top: var(--space-4); }
@@ -372,8 +376,8 @@
 /* ===== ОБЩИЕ МОБИЛЬНЫЕ УТИЛИТЫ ===== */
 @media (max-width: 768px) {
   /* Уменьшаем секционные отступы */
-  .section { padding-block: clamp(var(--space-8), 6vw, var(--space-16)) !important; }
-  .section--sm { padding-block: clamp(var(--space-6), 4vw, var(--space-10)) !important; }
+  .section { padding-block: clamp(1.25rem, 4vw, 2.5rem) !important; }
+  .section--sm { padding-block: clamp(1rem, 3vw, 1.75rem) !important; }
 
   /* Контейнер — уже padding */
   .container { padding-inline: var(--space-4); }
@@ -487,4 +491,159 @@
 .mobile-only { display: none; }
 @media (max-width: 768px) {
   .mobile-only { display: block; }
+}
+
+/* ===== UX SPRINT 1: Mobile fixes ===== */
+
+/* Hide AI FAB and Messenger FAB on mobile */
+@media (max-width: 768px) {
+  .messenger-float,
+  #ai-bar {
+    display: none !important;
+  }
+}
+
+/* Sticky bottom bar for mobile */
+.mobile-bottom-bar {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-bottom-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #0d1a2e;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding: 8px 12px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    gap: 8px;
+  }
+  .mobile-bottom-bar__btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 48px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--font-display);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .mobile-bottom-bar__btn:active { opacity: 0.8; }
+  .mobile-bottom-bar__btn--catalog {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+  .mobile-bottom-bar__btn--call {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+  .mobile-bottom-bar__btn--cart {
+    background: #E8450A;
+    color: #fff;
+  }
+  .mobile-bottom-bar__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: #fff;
+    color: #E8450A;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 0 5px;
+  }
+  
+  /* Add bottom padding to body to prevent content overlap with bottom bar */
+  body {
+    padding-bottom: 72px;
+  }
+  
+  /* Hide sticky cart on mobile (replaced by bottom bar) */
+  .sticky-cart {
+    display: none !important;
+  }
+}
+
+/* Min touch targets 48px on mobile */
+@media (max-width: 768px) {
+  .btn--sm,
+  .comm-method-btn,
+  .catalog-tab {
+    min-height: 44px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .btn--lg,
+  .btn--accent,
+  [type="submit"].btn {
+    min-height: 48px;
+  }
+
+  /* Minimum 13px text */
+  .category-card__name,
+  .footer-col__list a,
+  .footer-col__list li,
+  .breadcrumbs,
+  .breadcrumbs a,
+  .tip-card__text,
+  .ba-card__meta {
+    font-size: 13px !important;
+  }
+}
+
+/* Form details (collapsible) styling */
+.form-details {
+  margin-top: var(--space-3);
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-3);
+}
+.form-details__toggle {
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  padding: var(--space-2) 0;
+  list-style: none;
+}
+.form-details__toggle::-webkit-details-marker { display: none; }
+.form-details[open] .form-details__toggle { margin-bottom: var(--space-3); }
+
+/* Hide AI FAB and Messenger FAB on mobile */
+@media (max-width: 768px) {
+  #vanvek-ai-chat,
+  .ai-fab,
+  .messenger-fab {
+    display: none !important;
+  }
+}
+
+/* ===== P1-7 — Outline buttons → filled on mobile (primary CTAs only) ===== */
+@media (max-width: 768px) {
+  .hero .btn--outline,
+  .page-header .btn--outline,
+  .top-services-section .btn--outline,
+  .catalog-header .btn--outline {
+    background: var(--color-accent, #E8450A);
+    color: #fff;
+    border-color: var(--color-accent, #E8450A);
+  }
+  .hero .btn--outline:hover, .hero .btn--outline:active,
+  .page-header .btn--outline:hover, .page-header .btn--outline:active,
+  .top-services-section .btn--outline:hover, .top-services-section .btn--outline:active,
+  .catalog-header .btn--outline:hover, .catalog-header .btn--outline:active {
+    background: #d03d08;
+    border-color: #d03d08;
+  }
 }

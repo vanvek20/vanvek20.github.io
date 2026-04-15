@@ -27,21 +27,21 @@ let currentCity = 'moscow';
 let cart = []; // { id, serviceId, name, basePrice, addons: [{id, name, price, qty}], total }
 let cartListeners = [];
 
-// ===== SESSION STORAGE =====
-const CART_SESSION_KEY = 'vanvek_cart';
+// ===== LOCAL STORAGE =====
+const CART_STORAGE_KEY = 'vanvek_cart';
 function saveCartToSession() {
   try {
-    sessionStorage.setItem(CART_SESSION_KEY, JSON.stringify(cart));
-  } catch(e) { /* sessionStorage may be blocked */ }
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  } catch(e) { /* localStorage may be blocked */ }
 }
 function loadCartFromSession() {
   try {
-    const raw = sessionStorage.getItem(CART_SESSION_KEY);
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed)) cart = parsed;
     }
-  } catch(e) { /* sessionStorage may be blocked or data malformed */ }
+  } catch(e) { /* localStorage may be blocked or data malformed */ }
 }
 
 // ===== CITY API =====

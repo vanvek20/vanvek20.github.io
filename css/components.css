@@ -1,3 +1,34 @@
+/* ===== ЗАГЛУШКИ — метка для прототипа ===== */
+.stub-section {
+  position: relative;
+  border: 2px dashed #e74c3c;
+}
+.stub-section::before {
+  content: 'ЗАГЛУШКА — не видно клиентам';
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  z-index: 50;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(231,76,60,0.35);
+}
+
+/* Инлайн-заглушка: красный пунктир вокруг элемента */
+.stub-inline {
+  outline: 1px dashed #e74c3c !important;
+  outline-offset: -1px;
+  pointer-events: none;
+  position: relative;
+}
+
 /* ===== FOOTER ===== */
 .site-footer {
   background: var(--color-primary);
@@ -382,6 +413,34 @@
   color: #0d1a2e;
 }
 
+/* ===== SERVICE ITEM ICONS — Sprint 3 ===== */
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+.service-item__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: #F0F4FA;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px; /* align with first line of text */
+  border: 1px solid #E2E8F0;
+}
+.service-item__icon svg {
+  width: 24px;
+  height: 24px;
+}
+/* Indent extra/dop services (no icon) to align under main service text */
+.service-card--extra .service-card__main,
+.service-item--extra {
+  padding-left: 56px;
+}
+
 /* ===== SERVICE CARDS ===== */
 .service-list {
   display: flex;
@@ -399,17 +458,40 @@
   border-color: var(--color-primary-highlight);
   box-shadow: var(--shadow-md);
 }
+/* Main service card — accent left border */
+.service-card--main {
+  border-left: 3px solid var(--color-accent, #E8450A);
+}
+/* Popular badge */
+.popular-badge {
+  display: inline-block;
+  background: #FFF3E0;
+  color: #F5821F;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 8px;
+  vertical-align: middle;
+}
 .service-card__main {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto; /* Sprint 3: icon is prepended when present */
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-4);
   padding: var(--space-5) var(--space-6);
+}
+/* When a service icon is the first child, shift to 3-col layout */
+.service-card__main > .service-item__icon:first-child ~ .service-card__info {
+  /* icon + info + right = auto 1fr auto, handled by :has or JS class */
+}
+.service-card--has-icon .service-card__main {
+  grid-template-columns: 1fr auto;
 }
 .service-card__info { flex: 1; }
 .service-card__name {
   font-family: var(--font-display);
-  font-size: var(--text-base);
+  font-size: 17px;
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: var(--space-2);
@@ -588,6 +670,12 @@
   .service-card__main {
     grid-template-columns: 1fr;
     gap: var(--space-4);
+  }
+  .service-card--has-icon .service-card__main {
+    grid-template-columns: 1fr; /* same as without icon */
+  }
+  .service-card--has-icon .service-card__right {
+    grid-column: 1 / -1; /* span full width on mobile */
   }
   .service-card__right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
 }
@@ -836,42 +924,44 @@
   color: var(--color-text-muted);
 }
 
-/* ===== PAGE HEADER ===== */
+/* ===== PAGE HEADER — Sprint 3: compact ===== */
 .page-header {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #0d1a2e 0%, #0a1f3a 100%);
   color: #fff;
-  padding-block: clamp(var(--space-5), 3vw, var(--space-8));
+  padding-top: var(--space-4);   /* was: clamp(space-5, 3vw, space-8) */
+  padding-bottom: var(--space-5);
 }
 .page-header::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   height: 3px;
   background: linear-gradient(90deg, #E8450A 0%, #c8c800 35%, #1EC8E8 100%);
   pointer-events: none;
 }
-.page-header h1 {
-  font-family: var(--font-display);
-  font-size: var(--text-2xl);
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: var(--space-3);
-}
-.page-header p {
-  font-size: var(--text-base);
-  color: rgba(255,255,255,0.7);
-  max-width: 560px;
-}
 .page-header .breadcrumbs {
-  color: rgba(255,255,255,0.55);
-  margin-bottom: var(--space-4);
+  color: rgba(255,255,255,0.45);
+  margin-bottom: var(--space-2); /* was: space-4 */
+  font-size: var(--text-xs);
 }
 .page-header .breadcrumbs a:hover { color: var(--color-accent); }
-.page-header .breadcrumbs__sep { color: rgba(255,255,255,0.3); }
+.page-header .breadcrumbs__sep { color: rgba(255,255,255,0.25); }
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1rem + 1.5vw, 1.75rem); /* was: text-2xl — too large */
+  font-weight: 700;  /* was: 800 */
+  color: #fff;
+  margin: 0;
+  line-height: 1.15;
+}
+.page-header__meta {
+  margin-top: var(--space-1);
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
 
 /* Section title */
 .section-title {
@@ -1302,4 +1392,56 @@
   .ai-panel { width: calc(100vw - 24px); max-height: 65vh; }
   .helper-actions { min-width: 190px; }
   .helper-action-btn { font-size: 12.5px; padding: 10px 14px; }
+}
+
+
+/* ===== SPRINT 4 — FAQ Section ===== */
+.faq-section {
+  background: #fff;
+}
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.faq-item {
+  border-bottom: 1px solid #e2e8f0;
+}
+.faq-item:first-child {
+  border-top: 1px solid #e2e8f0;
+}
+.faq-item__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0d1a2e;
+  cursor: pointer;
+  list-style: none;
+  gap: 12px;
+}
+.faq-item__q::-webkit-details-marker {
+  display: none;
+}
+.faq-item__q::after {
+  content: '+';
+  font-size: 22px;
+  font-weight: 400;
+  color: #E8450A;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+details[open] .faq-item__q::after {
+  transform: rotate(45deg);
+}
+.faq-item__a {
+  padding: 0 0 18px 0;
+  font-size: 15px;
+  color: #4a5568;
+  line-height: 1.65;
 }

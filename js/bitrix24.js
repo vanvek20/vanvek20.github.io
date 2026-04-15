@@ -1,5 +1,5 @@
 /**
- * VANVEK — Bitrix24 CRM Integration Layer
+ * VanVek — Bitrix24 CRM Integration Layer
  * =========================================
  * 
  * Задел для подключения сайта к Битрикс24 CRM.
@@ -117,7 +117,7 @@ const Bitrix24 = {
       .join('\n');
 
     const comment = [
-      '🔧 Заказ с сайта VANVEK',
+      '🔧 Заказ с сайта VanVek',
       '━━━━━━━━━━━━━━━━━━━━━',
       '',
       itemsList,

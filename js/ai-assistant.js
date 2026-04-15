@@ -1,5 +1,5 @@
 /**
- * VANVEK AI Assistant
+ * VanVek AI Assistant
  * Прототип: имитирует ответы на основе prices.js + categories-data.js
  * Виджет: статичный, всегда видимый, ненавязчивый
  */
@@ -64,7 +64,7 @@
     {
       keywords: ['партнёр', 'купить', 'магазин', 'скидка', 'товар'],
       answer: () =>
-        'Мы партнёры <strong>Сантехника-онлайн</strong> — клиенты VANVEK получают скидки на покупку оборудования.',
+        'Мы партнёры <strong>Сантехника-онлайн</strong> — клиенты VanVek получают скидки на покупку оборудования.',
     },
   ];
 
@@ -113,7 +113,7 @@
   function getBotResponse(userMessage) {
     const q = userMessage.toLowerCase().trim();
     if (/^(привет|здравствуй|добрый|хай|hello|hi)/.test(q)) {
-      return 'Привет! Я помощник VANVEK. Помогу подобрать услугу или назову цену. Что интересует?';
+      return 'Привет! Я помощник VanVek. Помогу подобрать услугу или назову цену. Что интересует?';
     }
     if (/спасибо|благодарю|отлично|супер|хорошо/.test(q)) {
       return 'Пожалуйста! <a href="services.html" style="color:var(--color-accent);">Перейти к каталогу →</a>';
@@ -143,7 +143,7 @@
     const wrapper = document.createElement('div');
     wrapper.id = 'vanvek-ai-chat';
     wrapper.setAttribute('role', 'complementary');
-    wrapper.setAttribute('aria-label', 'Помощник VANVEK');
+    wrapper.setAttribute('aria-label', 'Помощник VanVek');
 
     wrapper.innerHTML = `
       <div class="ai-panel" id="ai-panel" role="dialog" aria-label="Чат с помощником" aria-hidden="true">
@@ -181,16 +181,10 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           Подобрать услугу
         </button>
-        <button class="helper-action-btn" data-action="contact">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Связаться с нами
-        </button>
+
       </div>
 
-      <button class="ai-fab" id="ai-fab" aria-label="Помощник VANVEK" aria-expanded="false" aria-controls="ai-panel">
-        <svg class="ai-fab__icon ai-fab__icon--chat" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-        </svg>
+      <button class="ai-fab" id="ai-fab" aria-label="Помощник VanVek" aria-expanded="false" aria-controls="ai-panel">
         <svg class="ai-fab__icon ai-fab__icon--close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
@@ -277,8 +271,6 @@
           window.location.href = 'prices.html';
         } else if (action === 'select') {
           window.location.href = 'services.html';
-        } else if (action === 'contact') {
-          window.location.href = 'contacts.html';
         }
       });
     });

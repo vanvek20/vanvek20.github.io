@@ -51,7 +51,7 @@
 
   /* ── Text — dark navy ── */
   --color-text:            #0d1a2e;
-  --color-text-muted:      #4e607a;
+  --color-text-muted:      #3d5270;
   --color-text-faint:      #99aabb;
   --color-text-inverse:    #ffffff;
 
@@ -111,7 +111,7 @@
   --content-wide:    1200px;
 
   /* ── Header ── */
-  --header-h: 120px;
+  --header-h: 80px;
 
   /* ── Fonts ── */
   --font-display: 'Outfit', 'Helvetica Neue', sans-serif;

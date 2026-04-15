@@ -7,6 +7,7 @@
   border-bottom: 1px solid rgba(255,255,255,0.08);
   box-shadow: var(--shadow-md);
   height: var(--header-h);
+  transition: transform 0.3s ease;
 }
 
 .header-inner {
@@ -34,13 +35,19 @@
   display: block;
   mix-blend-mode: screen;
   transition: opacity var(--transition);
+  transform: scaleX(1.15);
+  transform-origin: center center;
 }
 .logo:hover .logo__img {
   opacity: 0.82;
 }
 
 /* ── Nav ── */
-.site-nav { flex: 1; }
+.site-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
 
 .site-nav__list {
   display: flex;
@@ -53,7 +60,7 @@
 .site-nav__link {
   display: block;
   padding: var(--space-2) var(--space-2);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   white-space: nowrap;
   color: rgba(255,255,255,0.65);
@@ -109,6 +116,10 @@
   white-space: nowrap;
   background: none;
   border: none;
+}
+.city-labels__btn.stub-inline {
+  padding: 0;
+  outline-offset: 0;
 }
 .city-labels__btn:hover { color: rgba(255,255,255,0.85); }
 .city-labels__btn.active {
@@ -367,9 +378,12 @@
   .header-phone { display: none; }
   .mobile-menu-btn { display: flex; }
   .mobile-nav { display: flex; }
+  .header-inner { gap: var(--space-3); }
+  .header-right { flex-shrink: 1; min-width: 0; }
 }
 @media (max-width: 640px) {
-  .city-labels__btn span { display: none; }
+  /* Скрываем city-labels в хедере на маленьких экранах — город виден в меню */
+  .city-labels { display: none; }
 }
 
 /* ===== MESSENGER BUTTONS IN HEADER ===== */
@@ -396,17 +410,66 @@
   color: #fff;
 }
 
-/* Floating messenger panel (bottom-right) */
+/* Floating messenger panel (bottom-left, above Помощник) */
 .messenger-float {
   position: fixed;
   bottom: 80px;
-  right: 20px;
-  z-index: 88;
+  left: 24px;
+  z-index: 9989;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 0;
   transition: bottom 0.3s ease;
 }
+
+/* Toggle button — always visible */
+.messenger-float__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #1a7ae8, #0d5bbd);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+.messenger-float__toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.3);
+}
+
+/* Icon swap */
+.messenger-float__icon-close { display: none; }
+.messenger-float.open .messenger-float__icon-chat { display: none; }
+.messenger-float.open .messenger-float__icon-close { display: block; }
+
+/* Items container — hidden by default */
+.messenger-float__items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.8);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  pointer-events: none;
+}
+.messenger-float.open .messenger-float__items {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
 .messenger-float__btn {
   display: flex;
   align-items: center;
@@ -428,10 +491,13 @@
 .messenger-float__btn--vk { background: #2a3443; }
 
 /* Поднять FAB выше sticky-корзины когда она видна */
-.sticky-cart.visible ~ .messenger-float,
-.sticky-cart.visible ~ * .messenger-float,
 body:has(.sticky-cart.visible) .messenger-float {
   bottom: 84px;
+}
+
+/* Поднять помощник когда мессенджеры открыты, чтобы не перекрывались */
+.messenger-float.open ~ #vanvek-ai-chat {
+  /* мессенджеры раскрываются вверх — не мешают */
 }
 
 @media (max-width: 900px) {
@@ -439,20 +505,27 @@ body:has(.sticky-cart.visible) .messenger-float {
 }
 @media (max-width: 480px) {
   .messenger-float {
-    bottom: 16px;
-    right: 12px;
-    gap: 6px;
+    bottom: 68px;
+    left: 12px;
   }
-  .messenger-float__btn {
+  .messenger-float__toggle {
     width: 44px;
     height: 44px;
+  }
+  .messenger-float__btn {
+    width: 42px;
+    height: 42px;
   }
   .messenger-float__btn svg {
     width: 16px;
     height: 16px;
   }
-  /* Мобильный: FAB выше sticky-корзины (48px корзина + 16px gap + 16px bottom) */
   body:has(.sticky-cart.visible) .messenger-float {
+    bottom: 80px;
+  }
+}
+@media (min-width: 481px) {
+  .messenger-float {
     bottom: 80px;
   }
 }

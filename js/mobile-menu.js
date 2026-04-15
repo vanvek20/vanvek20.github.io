@@ -1,5 +1,5 @@
 /**
- * VANVEK — Mobile Menu
+ * VanVek — Mobile Menu
  * Бургер → выдвижная панель + overlay
  */
 (function() {

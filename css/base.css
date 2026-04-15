@@ -153,12 +153,15 @@ a, button, [role="button"], input, textarea, select {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--transition), transform var(--transition);
+  padding: var(--space-4) var(--space-5); /* Sprint 3: was space-6 */
 }
 .card:hover { box-shadow: var(--shadow-md); }
 
-/* Section spacing */
-.section { padding-block: clamp(var(--space-12), 8vw, var(--space-24)); }
-.section--sm { padding-block: clamp(var(--space-8), 5vw, var(--space-16)); }
+/* Section spacing — Sprint 3: tighter */
+.section { padding-block: clamp(1.75rem, 3.5vw, 3rem); }   /* was: clamp(2rem, 5vw, 4rem) */
+.section--sm { padding-block: clamp(1.25rem, 2.5vw, 2.25rem); } /* was: clamp(1.75rem, 3vw, 3rem) */
+/* Reduce top-padding when two sections are adjacent */
+.section + .section { padding-top: clamp(1rem, 2vw, 1.75rem); }
 
 /* Breadcrumbs */
 .breadcrumbs {
@@ -226,6 +229,10 @@ a, button, [role="button"], input, textarea, select {
   .hide-mobile { display: none !important; }
   .show-mobile { display: inline !important; }
 }
+
+/* Sprint 3: spacing overrides */
+.section-subtitle { margin-bottom: var(--space-6); } /* was: space-8 */
+.category-grid { gap: var(--space-4); }              /* was: 20px (≈space-5) */
 
 /* Chip/tag */
 .tag {
