@@ -1976,6 +1976,13 @@
   .owner-block__actions {
     justify-content: center;
   }
+  .owner-block__email {
+    justify-content: center;
+  }
+  .owner-block__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ── CALCULATOR ── */

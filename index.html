@@ -940,19 +940,25 @@
         </blockquote>
         <div class="owner-block__name">Евгений Белов</div>
         <div class="owner-block__role">Основатель VanVek · на рынке с 2022 года</div>
-        <div class="owner-block__email" style="margin-bottom:var(--space-3);font-size:var(--text-sm);color:var(--color-text-muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div class="owner-block__email" style="margin-bottom:var(--space-3);font-size:var(--text-sm);color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
-          <span id="owner-email-text" style="user-select:all;font-weight:600;color:var(--color-text);">info@vanvek.ru</span>
-          <button type="button" onclick="navigator.clipboard.writeText('info@vanvek.ru').then(function(){var b=this;this.textContent='✓ Скопировано';setTimeout(function(){b.textContent='Копировать';},1500);}.bind(this))" style="padding:4px 10px;border:1px solid var(--color-border);border-radius:var(--radius-full);background:var(--color-surface);color:var(--color-text-muted);font-size:var(--text-xs);font-weight:600;cursor:pointer;transition:all 0.2s;">Копировать</button>
+          <span id="owner-email-text" style="user-select:all;font-weight:600;color:#fff;">info@vanvek.ru</span>
+          <button type="button" id="owner-copy-email-btn" aria-label="Скопировать email адрес info@vanvek.ru" style="padding:4px 10px;border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);font-size:var(--text-xs);font-weight:600;cursor:pointer;transition:all 0.2s;">Скопировать email</button>
+        </div>
+        <!-- Fallback block for when mailto doesn't work -->
+        <div id="owner-email-fallback" style="display:none;margin-bottom:var(--space-3);padding:12px 16px;background:rgba(245,130,31,0.15);border:1px solid rgba(245,130,31,0.35);border-radius:var(--radius-md);font-size:var(--text-sm);">
+          <span style="color:rgba(255,255,255,0.85);">Не открылась почта? Скопируйте адрес:</span>
+          <span style="font-weight:700;color:#fff;user-select:all;margin-left:4px;">info@vanvek.ru</span>
+          <button type="button" id="fallback-copy-btn" style="margin-left:8px;padding:4px 10px;border:1px solid var(--color-accent);border-radius:var(--radius-full);background:var(--color-accent);color:#fff;font-size:var(--text-xs);font-weight:600;cursor:pointer;">Скопировать</button>
         </div>
         <div class="owner-block__actions">
-          <a href="mailto:info@vanvek.ru" class="btn btn--accent btn--sm">
+          <a href="mailto:info@vanvek.ru" id="owner-mailto-btn" class="btn btn--outline btn--sm">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
-            Написать на почту
+            Написать Евгению на почту
           </a>
-          <a href="https://max.ru/u/vanvek" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+          <a href="https://max.ru/u/vanvek" target="_blank" rel="noopener noreferrer" class="btn btn--accent btn--sm">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="mg4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00C8FF"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#mg4)"/><path d="M12 5.5C8.13 5.5 5 8.13 5 11.5c0 1.68.78 3.18 2 4.22V18.5l2.5-1.4c.77.22 1.6.34 2.5.34 3.87 0 7-2.63 7-5.94S15.87 5.5 12 5.5z" fill="#fff"/></svg>
-            Написать в Max
+            Написать в VK Max
           </a>
         </div>
       </div>
@@ -2034,6 +2040,62 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
+</script>
+
+<!-- Owner email: copy button + mailto fallback -->
+<script>
+(function() {
+  // Copy email button (with label "Скопировать email")
+  var copyBtn = document.getElementById('owner-copy-email-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      var btn = this;
+      navigator.clipboard.writeText('info@vanvek.ru').then(function() {
+        btn.textContent = '\u2713 \u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e';
+        btn.style.borderColor = 'var(--color-success)';
+        btn.style.color = 'var(--color-success)';
+        setTimeout(function() {
+          btn.textContent = '\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c email';
+          btn.style.borderColor = '';
+          btn.style.color = '';
+        }, 2000);
+      });
+    });
+  }
+
+  // Mailto fallback: if mail client doesn't open, show fallback block
+  var mailtoBtn = document.getElementById('owner-mailto-btn');
+  var fallback = document.getElementById('owner-email-fallback');
+  if (mailtoBtn && fallback) {
+    mailtoBtn.addEventListener('click', function(e) {
+      // Let the default mailto: action happen
+      var fb = fallback;
+      setTimeout(function() {
+        // If page still has focus after 800ms, mail client probably didn't open
+        if (document.hasFocus()) {
+          fb.style.display = 'flex';
+          fb.style.alignItems = 'center';
+          fb.style.flexWrap = 'wrap';
+          fb.style.gap = '4px';
+        }
+      }, 800);
+    });
+  }
+
+  // Fallback copy button
+  var fallbackCopy = document.getElementById('fallback-copy-btn');
+  if (fallbackCopy) {
+    fallbackCopy.addEventListener('click', function() {
+      var btn = this;
+      navigator.clipboard.writeText('info@vanvek.ru').then(function() {
+        btn.textContent = '\u2713 \u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e';
+        setTimeout(function() {
+          btn.textContent = '\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c';
+        }, 2000);
+      });
+    });
+  }
+})();
 </script>
 </body>
 </html>
