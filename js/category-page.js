@@ -144,7 +144,7 @@ function renderServices(services, categorySlug) {
         <div class="service-addons" data-addons-for="${svc.id}">
           <button class="service-addons__toggle" type="button" aria-expanded="false" aria-controls="addons-panel-${svc.id}">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span>Вместе дешевле</span>
+            <span>Допуслуги + скидки</span>
             <svg class="service-addons__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
 

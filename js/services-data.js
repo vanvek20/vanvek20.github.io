@@ -576,7 +576,7 @@ window.SERVICES_DATA = {
       {
         id: 'inst-04', name: 'Кнопка смыва (отдельно)', price: 1300,
         desc: 'Установка кнопки смыва для уже установленной инсталляции',
-        addons: []
+        addons: [ ADDON_DRILLING ]
       },
     ]
   },
@@ -629,7 +629,7 @@ window.SERVICES_DATA = {
       {
         id: 'bath-07', name: 'Экран для ванны до 2 м', price: 2500,
         desc: 'Монтаж экрана, крепёж к полу и ванне',
-        addons: []
+        addons: [ ADDON_DRILLING ]
       },
     ]
   },
@@ -667,12 +667,12 @@ window.SERVICES_DATA = {
       {
         id: 'kitchen-04', name: 'Фильтр под мойку', price: 4500,
         desc: 'Монтаж, подключение к водопроводу, установка крана для фильтра',
-        addons: []
+        addons: [ ADDON_DRILLING ]
       },
       {
         id: 'kitchen-05', name: 'Система обратного осмоса', price: 6400,
         desc: 'Монтаж системы, подключение к водопроводу, установка крана',
-        addons: []
+        addons: [ ADDON_DRILLING ]
       },
       {
         id: 'kitchen-06', name: 'Измельчитель отходов', price: 5000,
@@ -757,32 +757,32 @@ window.SERVICES_DATA = {
       {
         id: 'ws-01', name: 'Шаровый кран', price: 1500,
         desc: 'Монтаж, замена или установка нового шарового крана',
-        addons: []
+        addons: [ addonDismantling('старого крана', 500) ]
       },
       {
         id: 'ws-02', name: 'Счётчик воды', price: 3000,
         desc: 'Монтаж счётчика воды, установка фильтра перед счётчиком',
-        addons: []
+        addons: [ addonDismantling('старого счётчика', 500) ]
       },
       {
         id: 'ws-03', name: 'Редуктор давления', price: 1500,
         desc: 'Монтаж и настройка редуктора давления воды',
-        addons: []
+        addons: [ addonDismantling('старого редуктора', 500) ]
       },
       {
         id: 'ws-04', name: 'Магистральный фильтр грубой очистки', price: 1500,
         desc: 'Монтаж, подключение к водопроводу',
-        addons: []
+        addons: [ addonDismantling('старого фильтра', 500) ]
       },
       {
         id: 'ws-05', name: 'Распределительный коллектор (гребёнка)', price: 7000,
         desc: 'Монтаж и подключение коллектора к системе водоснабжения',
-        addons: []
+        addons: [ addonDismantling('старого коллектора', 1000) ]
       },
       {
         id: 'ws-06', name: 'Монтаж системы водоснабжения', price: 5000,
         desc: 'Разводка труб, монтаж всех элементов системы. Цена индивидуальна — зависит от объёма работ',
-        addons: []
+        addons: [ ADDON_DRILLING ]
       },
     ]
   },
@@ -799,12 +799,12 @@ window.SERVICES_DATA = {
       {
         id: 'acc-02', name: 'Ревизионный люк', price: 6500,
         desc: 'Монтаж ревизионного люка в стену или потолок',
-        addons: []
+        addons: [ ADDON_DRILLING ]
       },
       {
         id: 'acc-03', name: 'Ревизионный сантехнический лючок', price: 3500,
         desc: 'Монтаж небольшого лючка для доступа к коммуникациям',
-        addons: []
+        addons: [ ADDON_DRILLING ]
       },
     ]
   },
