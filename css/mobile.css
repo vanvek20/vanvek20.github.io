@@ -21,7 +21,7 @@
 @media (max-width: 1024px) {
   :root { --header-h: 64px; }
 
-  .logo__img { height: 44px; }
+  .logo__img { height: 52px; }
 
   /* Скрываем городской переключатель и телефон на мобильном хедере */
   .city-switcher { display: none; }

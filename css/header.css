@@ -30,13 +30,13 @@
    mix-blend-mode: screen — чёрный фон JPEG исчезает (сливается с чёрным хедером),
    остаётся только цветной логотип */
 .logo__img {
-  height: calc(var(--header-h) - 36px); /* ~84px */
+  height: calc(var(--header-h) - 16px); /* ~64px */
   width: auto;
   display: block;
   mix-blend-mode: screen;
   transition: opacity var(--transition);
-  transform: scaleX(1.15);
-  transform-origin: center center;
+  transform: scaleX(1.25);
+  transform-origin: left center;
 }
 .logo:hover .logo__img {
   opacity: 0.82;
