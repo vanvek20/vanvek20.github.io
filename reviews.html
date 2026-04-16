@@ -253,11 +253,11 @@ function renderPageContent(key) {
               </div>
             `).join('')}
           </div>
-          <div style="font-size:var(--text-sm);color:var(--color-text-muted);">Email: <a href="mailto:sc.vanvek@gmail.com" style="color:var(--color-primary);">sc.vanvek@gmail.com</a></div>
+          <div style="font-size:var(--text-sm);color:var(--color-text-muted);">Email: <a href="mailto:info@vanvek.ru" style="color:var(--color-primary);">info@vanvek.ru</a></div>
         </div>
         <div>
           <h3 style="font-family:var(--font-display);font-size:var(--text-base);font-weight:800;margin-bottom:var(--space-5);">Описать задачу</h3>
-          <form style="display:flex;flex-direction:column;gap:var(--space-4);" action="https://formsubmit.co/sc.vanvek@gmail.com" method="POST">
+          <form style="display:flex;flex-direction:column;gap:var(--space-4);" action="https://formsubmit.co/sales@vanvek.ru" method="POST">
             <input type="text" name="_honey" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off">
             <input type="hidden" name="_subject" value="Сообщение с сайта VanVek (Отзывы)">
             <input type="hidden" name="_captcha" value="false">
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.disabled = true;
     btn.textContent = 'Отправка...';
     var reqNum = 'TASK-' + Date.now().toString(36).toUpperCase();
-    fetch('https://formsubmit.co/ajax/sc.vanvek@gmail.com', {
+    fetch('https://formsubmit.co/ajax/sales@vanvek.ru', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({

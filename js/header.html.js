@@ -229,7 +229,7 @@ function getFooterHTML() {
       <div>ОКПО: 2016210184</div>
       <div style="margin-top:8px;">Адрес: г. Москва</div>
     </div>
-    <p style="margin-top:16px;font-size:13px;color:#666;">По вопросам сотрудничества: <a href="mailto:sc.vanvek@gmail.com" style="color:#F5821F;">sc.vanvek@gmail.com</a></p>
+    <p style="margin-top:16px;font-size:13px;color:#666;">По вопросам сотрудничества: <a href="mailto:info@vanvek.ru" style="color:#F5821F;">info@vanvek.ru</a></p>
   </div>
 </div>
 
@@ -244,7 +244,7 @@ function getFooterHTML() {
       <p style="margin-top:10px;"><strong>Цель обработки:</strong> выполнение заказа, связь с клиентом, информирование о статусе работ.</p>
       <p style="margin-top:10px;"><strong>Хранение:</strong> данные хранятся до момента выполнения заказа и в течение 1 года после для гарантийных обращений.</p>
       <p style="margin-top:10px;"><strong>Передача третьим лицам:</strong> данные не передаются третьим лицам, кроме случаев, предусмотренных законодательством РФ.</p>
-      <p style="margin-top:10px;"><strong>Удаление:</strong> вы можете запросить удаление персональных данных, написав на sc.vanvek@gmail.com.</p>
+      <p style="margin-top:10px;"><strong>Удаление:</strong> вы можете запросить удаление персональных данных, написав на info@vanvek.ru.</p>
       <p style="margin-top:10px;">Оставляя данные на сайте, вы соглашаетесь с настоящей политикой.</p>
     </div>
   </div>
