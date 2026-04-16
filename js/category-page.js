@@ -275,10 +275,7 @@ function renderServices(services, categorySlug) {
       if (window.VanVekAnalytics) window.VanVekAnalytics.trackAddToCart(svc.name);
 
       setButtonAdded(this, svc.name);
-      window.AppStore.showToast(`«${svc.name}» добавлена в заявку`);
-
-      // Open quick checkout sheet after adding
-      setTimeout(function() { if (typeof openQuickCheckout === 'function') openQuickCheckout(); }, 150);
+      window.AppStore.showToastRich(svc.name, svcId);
     });
   });
 

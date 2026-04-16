@@ -1847,13 +1847,18 @@ document.addEventListener('DOMContentLoaded', function() {
     var stickyBar = document.getElementById('js-calc-sticky');
     var stickyTotal = document.getElementById('js-calc-sticky-total');
     if (stickyBar) {
+      var cartSummary = document.getElementById('js-cart-summary-bar');
       if (hasItems) {
         stickyTotal.textContent = sum.toLocaleString('ru-RU') + ' ₽';
         stickyBar.style.display = '';
         stickyBar.classList.add('calc-sticky-bar--visible');
+        // Hide cart-summary-bar while calc bar is active
+        if (cartSummary) cartSummary.classList.remove('cart-summary-bar--visible');
       } else {
         stickyBar.classList.remove('calc-sticky-bar--visible');
         stickyBar.style.display = 'none';
+        // Restore cart-summary-bar
+        if (cartSummary && typeof updateCartUI === 'function') updateCartUI();
       }
     }
   }

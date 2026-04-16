@@ -189,6 +189,14 @@ function updateCartUI() {
   });
   // Mini cart content
   updateMiniCart();
+  // Sticky summary bar
+  updateCartStickyBar();
+  // Mobile bottom bar badge bounce
+  document.querySelectorAll('.mobile-bottom-bar__badge').forEach(b => {
+    b.classList.remove('bump');
+    void b.offsetWidth;
+    b.classList.add('bump');
+  });
 }
 
 function updateMiniCart() {
@@ -332,6 +340,78 @@ function showToast(msg) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
+// ===== RICH TOAST (with cart link + undo) =====
+let richToastTimer;
+function showToastRich(svcName, svcId) {
+  let toast = document.querySelector('.cart-toast-rich');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'cart-toast-rich';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = '<div class="cart-toast-rich__row">'
+    + '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>'
+    + '<span>\u00ab' + escHtml(svcName) + '\u00bb \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0430</span>'
+    + '</div>'
+    + '<div class="cart-toast-rich__actions">'
+    + '<a href="cart.html" class="cart-toast-rich__link">\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043a \u043e\u0444\u043e\u0440\u043c\u043b\u0435\u043d\u0438\u044e \u2192</a>'
+    + '<button type="button" class="cart-toast-rich__undo" data-svc-id="' + (svcId || '') + '">\u041e\u0442\u043c\u0435\u043d\u0438\u0442\u044c</button>'
+    + '</div>';
+  clearTimeout(richToastTimer);
+  toast.classList.add('show');
+  // Bind undo
+  var undoBtn = toast.querySelector('.cart-toast-rich__undo');
+  if (undoBtn) {
+    undoBtn.onclick = function() {
+      var id = this.dataset.svcId;
+      if (id && window.AppStore.removeLastByServiceId) {
+        window.AppStore.removeLastByServiceId(id);
+      }
+      toast.classList.remove('show');
+      showToast('\u041e\u0442\u043c\u0435\u043d\u0435\u043d\u043e');
+      // Reset button state on page
+      document.querySelectorAll('.js-add-to-cart[data-service-id="' + id + '"]').forEach(function(b) {
+        b.classList.remove('btn--in-cart');
+        b.classList.add('btn--accent');
+        b.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> \u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0432 \u0437\u0430\u044f\u0432\u043a\u0443';
+      });
+    };
+  }
+  richToastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+// ===== CART SUMMARY STICKY BAR =====
+function updateCartStickyBar() {
+  // Skip on category pages — they have their own sticky-cart-bar
+  var isCategory = document.getElementById('service-list') || document.querySelector('[data-category-slug]') || window.location.pathname.indexOf('category-') !== -1;
+  if (isCategory) return;
+
+  var bar = document.getElementById('js-cart-summary-bar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'js-cart-summary-bar';
+    bar.className = 'cart-summary-bar';
+    document.body.appendChild(bar);
+  }
+  var count = cartCount();
+  var total = cartTotal();
+  // Hide cart-summary-bar when calc-sticky-bar is active (same bottom area)
+  var calcStickyActive = document.querySelector('.calc-sticky-bar') && document.querySelector('.calc-sticky-bar').offsetHeight > 0;
+  if (count > 0 && !calcStickyActive) {
+    var countWord = pluralize(count, '\u0443\u0441\u043b\u0443\u0433\u0430', '\u0443\u0441\u043b\u0443\u0433\u0438', '\u0443\u0441\u043b\u0443\u0433');
+    bar.innerHTML = '<div class="cart-summary-bar__inner">'
+      + '<div class="cart-summary-bar__info">'
+      + '<span class="cart-summary-bar__count">' + count + ' ' + countWord + '</span>'
+      + '<span class="cart-summary-bar__sum">' + formatPrice(total) + '</span>'
+      + '</div>'
+      + '<a href="cart.html" class="btn btn--accent cart-summary-bar__cta">\u041e\u0444\u043e\u0440\u043c\u0438\u0442\u044c \u0437\u0430\u044f\u0432\u043a\u0443</a>'
+      + '</div>';
+    bar.classList.add('cart-summary-bar--visible');
+  } else {
+    bar.classList.remove('cart-summary-bar--visible');
+  }
+}
+
 // ===== INIT =====
 function initCommon() {
   loadCartFromSession(); // Restore cart from session before UI init
@@ -377,7 +457,7 @@ window.AppStore = {
   isServiceInCart, removeLastByServiceId, updateCartAddons,
   cartTotal, cartCount,
   formatPrice, pluralize, escHtml,
-  showToast, updateCartUI, updateMiniCart,
+  showToast, showToastRich, updateCartUI, updateMiniCart,
   onCartChange, CITIES,
   initCityDropdown,  // экспортируем для вызова после инъекции хедера
   initThemeToggle,   // аналогично — тёмная тема тоже нуждается в DOM-кнопке из хедера
