@@ -1357,6 +1357,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <svg class="top-service-card__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
           <div class="top-service-category__services" id="pop-services-${t.slug}" style="display:none;">
+            <button class="back-to-cats-btn js-back-to-cats" type="button" data-cat-slug="${t.slug}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              Все категории
+            </button>
             ${servicesHTML}
             <div style="text-align:center;margin-top:var(--space-3);">
               <a href="category.html?cat=${t.slug}" class="btn btn--outline btn--sm">Все услуги категории →</a>
@@ -1375,6 +1379,22 @@ document.addEventListener('DOMContentLoaded', function() {
         panel.style.display = isOpen ? 'none' : 'block';
         this.setAttribute('aria-expanded', !isOpen);
         this.closest('.top-service-category').classList.toggle('top-service-category--open', !isOpen);
+      });
+    });
+
+    // "Back to categories" buttons
+    topServicesGrid.querySelectorAll('.js-back-to-cats').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const slug = this.dataset.catSlug;
+        const catWrap = this.closest('.top-service-category');
+        const panel = document.getElementById('pop-services-' + slug);
+        const card = catWrap.querySelector('[data-toggle-cat]');
+        if (panel) panel.style.display = 'none';
+        if (card) card.setAttribute('aria-expanded', 'false');
+        catWrap.classList.remove('top-service-category--open');
+        setTimeout(function() {
+          catWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 80);
       });
     });
 
@@ -1633,6 +1653,37 @@ document.addEventListener('DOMContentLoaded', function() {
     // Highlight selected
     catsEl.querySelectorAll('.calc-cat-btn').forEach(function(b) { b.classList.remove('calc-cat-btn--active'); });
     btn.classList.add('calc-cat-btn--active');
+
+    // Collapse step 1 into summary row
+    var catName = btn.textContent.trim();
+    steps[0].classList.remove('calc-step--active');
+    steps[0].classList.add('calc-step--collapsed');
+    var existingSummary = steps[0].querySelector('.calc-step__summary');
+    if (!existingSummary) {
+      var summary = document.createElement('div');
+      summary.className = 'calc-step__summary';
+      summary.innerHTML = '<span class="calc-step__summary-cat">' + catName + '</span>'
+        + '<button class="calc-step__change-btn" type="button">'
+        + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 3a2.83 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>'
+        + ' Изменить</button>';
+      steps[0].querySelector('.calc-step__header').appendChild(summary);
+      summary.querySelector('.calc-step__change-btn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Reopen step 1
+        steps[0].classList.add('calc-step--active');
+        steps[0].classList.remove('calc-step--collapsed');
+        steps[1].classList.remove('calc-step--active');
+        steps[2].classList.remove('calc-step--active');
+        var sumEl = steps[0].querySelector('.calc-step__summary');
+        if (sumEl) sumEl.remove();
+        setTimeout(function() {
+          steps[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      });
+    } else {
+      existingSummary.querySelector('.calc-step__summary-cat').textContent = catName;
+    }
+
     // Show step 2
     steps[1].classList.add('calc-step--active');
     renderServices();
