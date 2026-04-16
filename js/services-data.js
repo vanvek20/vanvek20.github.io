@@ -576,7 +576,7 @@ window.SERVICES_DATA = {
       {
         id: 'inst-04', name: 'Кнопка смыва (отдельно)', price: 1300,
         desc: 'Установка кнопки смыва для уже установленной инсталляции',
-        addons: [ ADDON_DRILLING ]
+        addons: []
       },
     ]
   },
@@ -629,7 +629,7 @@ window.SERVICES_DATA = {
       {
         id: 'bath-07', name: 'Экран для ванны до 2 м', price: 2500,
         desc: 'Монтаж экрана, крепёж к полу и ванне',
-        addons: [ ADDON_DRILLING ]
+        addons: []
       },
     ]
   },
