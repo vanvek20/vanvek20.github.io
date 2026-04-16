@@ -797,27 +797,23 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 (function() {
   var stickyCta = document.getElementById('price-sticky-cta');
-  var totalBar = document.getElementById('price-total-bar');
   if (!stickyCta) return;
 
   function toggleStickyCta() {
-    var totalBarVisible = totalBar && totalBar.style.display !== 'none' && totalBar.style.display !== '';
-    var cartHasItems = window.AppStore && window.AppStore.cartCount && window.AppStore.cartCount() > 0;
-    // Скрываем плавающую кнопку, если итого-бар виден (добавляли из прайса)
-    stickyCta.style.display = totalBarVisible ? 'none' : '';
+    var totalBar = document.getElementById('price-total-bar');
+    var cartBar = document.getElementById('js-cart-summary-bar');
+    var totalBarVisible = totalBar && totalBar.offsetHeight > 10;
+    var cartBarVisible = cartBar && cartBar.offsetHeight > 10;
+    stickyCta.style.display = (totalBarVisible || cartBarVisible) ? 'none' : '';
   }
 
   if (window.AppStore && window.AppStore.onCartChange) {
     window.AppStore.onCartChange(toggleStickyCta);
   }
-  if (totalBar) {
-    var obs = new MutationObserver(toggleStickyCta);
-    obs.observe(totalBar, { attributes: true, attributeFilter: ['style'] });
-  }
-  // Проверяем с задержкой, чтобы прайс-скрипт успел показать total bar
+  // Наблюдаем за DOM — бары могут появиться позже
+  var bodyObs = new MutationObserver(toggleStickyCta);
+  bodyObs.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
   toggleStickyCta();
-  setTimeout(toggleStickyCta, 300);
-  setTimeout(toggleStickyCta, 800);
 })();
 </script>
 </body>
