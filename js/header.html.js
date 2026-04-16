@@ -26,7 +26,7 @@ function getHeaderHTML(activeLink) {
 
     <!-- VanVek Logo -->
     <a href="index.html" class="logo" aria-label="VanVek — на главную">
-      <img src="vanvek-logo-tight.jpg" alt="VanVek" class="logo__img">
+      <img src="vanvek-logo-new-header.png" alt="VanVek" class="logo__img">
     </a>
 
     <!-- Desktop nav -->
@@ -123,30 +123,30 @@ function getFooterHTML() {
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-brand__logo">
-          <img src="vanvek-logo-tight.jpg" alt="VanVek" class="footer-brand__img">
+          <img src="vanvek-logo-new-header.png" alt="VanVek" class="footer-brand__img">
         </div>
         <p class="footer-brand__desc">Профессиональная установка сантехники в Москве. Фиксированные цены без скрытых доплат. Гарантия на все работы.</p>
       </div>
       <div>
         <div class="footer-col__title">Сантехника</div>
         <ul class="footer-col__list">
-          <li><a href="category.html?cat=toilets">Унитазы, биде, писсуары</a></li>
-          <li><a href="category.html?cat=installations">Инсталляции</a></li>
-          <li><a href="category.html?cat=sinks">Раковины и столешницы</a></li>
-          <li><a href="category.html?cat=bathtubs">Ванны и комплектующие</a></li>
-          <li><a href="category.html?cat=showers">Душевые кабины</a></li>
-          <li><a href="category.html?cat=faucets">Смесители и душ</a></li>
-          <li><a href="category.html?cat=towel-rails">Полотенцесушители</a></li>
-          <li><a href="category.html?cat=water-heaters">Водонагреватели</a></li>
-          <li><a href="category.html?cat=accessories">Аксессуары</a></li>
-          <li><a href="category.html?cat=furniture">Мебель для ванной</a></li>
+          <li><a href="category-toilets.html">Унитазы, биде, писсуары</a></li>
+          <li><a href="category-installations.html">Инсталляции</a></li>
+          <li><a href="category-sinks.html">Раковины и столешницы</a></li>
+          <li><a href="category-bathtubs.html">Ванны и комплектующие</a></li>
+          <li><a href="category-showers.html">Душевые кабины</a></li>
+          <li><a href="category-faucets.html">Смесители и душ</a></li>
+          <li><a href="category-towel-rails.html">Полотенцесушители</a></li>
+          <li><a href="category-water-heaters.html">Водонагреватели</a></li>
+          <li><a href="category-accessories.html">Аксессуары</a></li>
+          <li><a href="category-furniture.html">Мебель для ванной</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col__title">Дополнительно</div>
         <ul class="footer-col__list">
-          <li><a href="category.html?cat=kitchen">Кухонные мойки</a></li>
-          <li><a href="category.html?cat=water-supply">Водоснабжение (инженерка)</a></li>
+          <li><a href="category-kitchen.html">Кухонные мойки</a></li>
+          <li><a href="category-water-supply.html">Водоснабжение (инженерка)</a></li>
         </ul>
       </div>
       <div>
@@ -166,7 +166,6 @@ function getFooterHTML() {
           <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.45);" data-city-name>Москва</div>
         </div>
         <ul class="footer-col__list">
-          <li><a href="mailto:sc.vanvek@gmail.com">sc.vanvek@gmail.com</a></li>
           <li style="color:rgba(255,255,255,0.5);font-size:var(--text-xs);">Ежедневно 9:00–20:00</li>
         </ul>
       </div>

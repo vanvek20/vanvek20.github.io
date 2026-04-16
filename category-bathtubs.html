@@ -45,7 +45,7 @@
   {
     "@type": "Service",
     "name": "Установка: Ванны и комплектующие",
-    "description": "Профессиональная установка ванны и комплектующие в Москве. Фиксированные цены, гарантия 1 год.",
+    "description": "Профессиональная установка ванн и комплектующих в Москве. Фиксированные цены, гарантия 1 год.",
     "provider": {
       "@type": "LocalBusiness",
       "@id": "https://vanvek.ru/#business",
@@ -184,7 +184,7 @@
 <noscript>
   <div style="padding:20px;font-family:sans-serif;max-width:800px;margin:0 auto;">
     <h2>Услуги: Ванны и комплектующие</h2>
-    <p>Установка ванны и комплектующие в Москве. Фиксированные цены, гарантия 1 год.</p>
+    <p>Установка ванн и комплектующих в Москве. Фиксированные цены, гарантия 1 год.</p>
     <ul>
 <li><strong>Прямоугольная акриловая ванна</strong> — от 8 700 ₽</li>
 <li><strong>Прямоугольная акриловая ванна с гидромассажем</strong> — от 14 000 ₽</li>
@@ -203,6 +203,22 @@
 <a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
 <div id="header-mount"></div>
 
+<!-- Return visitor CTA -->
+<div id="return-visitor-cta" aria-live="polite" style="display:none;">
+  <div class="container">
+    <div class="return-visitor-cta__inner">
+      <div class="return-visitor-cta__text">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span>В вашей заявке <strong id="return-visitor-count">0</strong> <span id="return-visitor-label">услуга</span></span>
+      </div>
+      <a href="cart.html" class="return-visitor-cta__btn" aria-label="Продолжить оформление заявки">
+        Продолжить оформление
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
 <main id="main-content">
 
   <!-- Page header -->
@@ -217,6 +233,9 @@
       </nav>
       <h1 id="cat-title">Ванны и комплектующие в Москве</h1>
       <p id="cat-subtitle" class="page-header__meta"></p>
+  <!-- Urgency block (same logic as index.html) -->
+  <div class="cat-urgency" id="catUrgency" style="display:none;"></div>
+
     </div>
   </div>
 
@@ -538,5 +557,130 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script src="js/analytics.js"></script>
+
+<style>
+.cat-urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  padding: 6px 14px;
+  background: rgba(232, 69, 10, 0.12);
+  border: 1px solid rgba(232, 69, 10, 0.30);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  animation: cat-urgency-pulse 3s ease-in-out infinite;
+  white-space: nowrap;
+}
+@keyframes cat-urgency-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+/* Return visitor CTA - reuse index styles */
+#return-visitor-cta {
+  background: var(--color-primary);
+  color: #fff;
+  animation: slideDownIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes slideDownIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.return-visitor-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  flex-wrap: wrap;
+}
+.return-visitor-cta__text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+.return-visitor-cta__text strong {
+  font-weight: 800;
+}
+.return-visitor-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-family: var(--font-display);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.return-visitor-cta__btn:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.7);
+}
+@media (prefers-reduced-motion: reduce) {
+  #return-visitor-cta { animation: none; }
+  .cat-urgency { animation: none; }
+}
+@media (max-width: 480px) {
+  .return-visitor-cta__inner { gap: var(--space-3); }
+  .return-visitor-cta__btn { font-size: var(--text-xs); padding: var(--space-2) var(--space-3); }
+}
+</style>
+
+<script>
+// Urgency — nearest visit (based on real work hours 9:00–19:00)
+(function() {
+  var container = document.getElementById('catUrgency');
+  if (!container) return;
+  var h = new Date().getHours();
+  var clockIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+  if (h >= 9 && h < 19) {
+    container.innerHTML = clockIcon + '<span>Ближайший выезд — сегодня</span>';
+  } else {
+    container.innerHTML = clockIcon + '<span>Ближайший выезд — завтра с 9:00</span>';
+  }
+  container.style.display = 'inline-flex';
+})();
+
+// Return visitor CTA
+(function() {
+  var rvcEl = document.getElementById('return-visitor-cta');
+  var countEl = document.getElementById('return-visitor-count');
+  var labelEl = document.getElementById('return-visitor-label');
+  if (!rvcEl || !window.AppStore) return;
+
+  function updateReturnVisitorCta() {
+    var count = window.AppStore.cartCount();
+    if (count > 0) {
+      if (countEl) countEl.textContent = count;
+      if (labelEl) {
+        var forms = ['услуга', 'услуги', 'услуг'];
+        var n = count % 100;
+        var n1 = count % 10;
+        var label = (n >= 11 && n <= 19) ? forms[2]
+          : n1 === 1 ? forms[0]
+          : (n1 >= 2 && n1 <= 4) ? forms[1]
+          : forms[2];
+        labelEl.textContent = label;
+      }
+      rvcEl.style.display = 'block';
+    } else {
+      rvcEl.style.display = 'none';
+    }
+  }
+  window.AppStore.onCartChange(updateReturnVisitorCta);
+  setTimeout(updateReturnVisitorCta, 150);
+})();
+</script>
+
 </body>
 </html>

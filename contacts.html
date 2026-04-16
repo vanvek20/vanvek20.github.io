@@ -51,15 +51,15 @@
 </section>
 
 <!-- MODAL: Описать задачу -->
-<div id="task-modal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
+<div id="task-modal" role="dialog" aria-modal="true" aria-label="Описать задачу" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:480px;width:100%;position:relative;box-shadow:var(--shadow-lg);">
     <button onclick="document.getElementById('task-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--color-text-muted);font-size:24px;line-height:1;" aria-label="Закрыть">&times;</button>
     <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Опишите задачу</h3>
     <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);">Мы оценим стоимость и перезвоним</p>
     <form id="task-form" style="display:flex;flex-direction:column;gap:var(--space-4);">
-      <input type="text" name="name" required placeholder="Ваше имя" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
-      <input type="tel" name="phone" required placeholder="Телефон" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
-      <textarea name="task" required placeholder="Опишите что нужно сделать…" rows="4" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'"></textarea>
+      <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" class="form-input">
+      <input type="text" name="name" placeholder="Ваше имя (необязательно)" class="form-input">
+      <textarea name="task" required placeholder="Опишите что нужно сделать…" rows="4" class="form-input form-textarea"></textarea>
       <button type="submit" id="task-submit-btn" style="padding:16px;background:#E8450A;color:#fff;border:none;border-radius:var(--radius-lg);font-size:var(--text-base);font-weight:700;font-family:var(--font-display);cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#d03d08'" onmouseout="this.style.background='#E8450A'">
         Отправить
       </button>
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var name = form.querySelector('[name="name"]').value.trim();
     var phone = form.querySelector('[name="phone"]').value.trim();
     var task = form.querySelector('[name="task"]').value.trim();
-    if (!name || !phone || !task) return;
+    if (!phone || !task) return;
     btn.disabled = true;
     btn.textContent = 'Отправка...';
     var reqNum = 'TASK-' + Date.now().toString(36).toUpperCase();

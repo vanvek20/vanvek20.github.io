@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>О компании — VanVek | Установка сантехники</title>
-<meta name="description" content="VanVek — профессиональная установка сантехники в Москве с 2022 года. Более 200+ выполненных заказов. Фиксированные цены, гарантия 1 год.">
+<meta name="description" content="VanVek — профессиональная установка сантехники в Москве с 2022 года. Более 200 выполненных заказов. Фиксированные цены, гарантия 1 год.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -64,15 +64,15 @@
 </section>
 
 <!-- MODAL: Описать задачу -->
-<div id="task-modal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
+<div id="task-modal" role="dialog" aria-modal="true" aria-label="Описать задачу" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:480px;width:100%;position:relative;box-shadow:var(--shadow-lg);">
     <button onclick="document.getElementById('task-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--color-text-muted);font-size:24px;line-height:1;" aria-label="Закрыть">&times;</button>
     <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Опишите задачу</h3>
     <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);">Мы оценим стоимость и перезвоним</p>
     <form id="task-form" style="display:flex;flex-direction:column;gap:var(--space-4);">
-      <input type="text" name="name" required placeholder="Ваше имя" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
-      <input type="tel" name="phone" required placeholder="Телефон" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'">
-      <textarea name="task" required placeholder="Опишите что нужно сделать…" rows="4" style="padding:14px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-base);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='#E8450A'" onblur="this.style.borderColor='var(--color-border)'"></textarea>
+      <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" class="form-input">
+      <input type="text" name="name" placeholder="Ваше имя (необязательно)" class="form-input">
+      <textarea name="task" required placeholder="Опишите что нужно сделать…" rows="4" class="form-input form-textarea"></textarea>
       <button type="submit" id="task-submit-btn" style="padding:16px;background:#E8450A;color:#fff;border:none;border-radius:var(--radius-lg);font-size:var(--text-base);font-weight:700;font-family:var(--font-display);cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#d03d08'" onmouseout="this.style.background='#E8450A'">
         Отправить
       </button>
@@ -126,21 +126,19 @@ function renderPageContent(key) {
       <p class="section-subtitle">Реальные фотографии выполненных работ в Москве</p>
       <div class="grid-3" style="margin-top:var(--space-8);">
         ${[
-          {title:'Раковина IKEA + тумба', city:'Москва',cat:'Раковины'},
-          {title:'Подвесной унитаз Duravit + инсталляция Geberit', city:'Москва',cat:'Унитазы'},
-          {title:'Душевой поддон + ограждение Cezares', city:'Москва',cat:'Душевые'},
-          {title:'Водонагреватель Ariston 80л', city:'Москва',cat:'Водонагреватели'},
-          {title:'Стиральная машина + сушильная', city:'Москва',cat:'Техника'},
-          {title:'Ванна Ravak акриловая 170×75', city:'Москва',cat:'Ванны'},
+          {title:'Раковина + тумба', img:'ba-1-after.jpg', cat:'Раковины'},
+          {title:'Подвесной унитаз + инсталляция', img:'ba-2-after.jpg', cat:'Унитазы'},
+          {title:'Душевой поддон + ограждение', img:'ba-3-after.jpg', cat:'Душевые'},
+          {title:'Водонагреватель', img:'ba-4-after.jpg', cat:'Водонагреватели'},
+          {title:'Подключение техники', img:'ba-5-after.jpg', cat:'Техника'},
+          {title:'Ванна акриловая', img:'ba-6-after.jpg', cat:'Ванны'},
         ].map(w=>`
           <div class="card" style="overflow:hidden;">
-            <div style="background:linear-gradient(135deg,var(--color-primary-highlight),var(--color-accent-highlight));height:160px;display:flex;align-items:center;justify-content:center;">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            </div>
+            <img src="${w.img}" alt="${w.title}" style="width:100%;height:180px;object-fit:cover;display:block;" loading="lazy">
             <div style="padding:var(--space-4);">
               <div class="tag" style="margin-bottom:var(--space-2);">${w.cat}</div>
               <div style="font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-1);">${w.title}</div>
-              <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${w.city}</div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);">Москва</div>
             </div>
           </div>
         `).join('')}
@@ -257,7 +255,7 @@ function renderPageContent(key) {
             <input type="text" name="_honey" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off">
             <input type="hidden" name="_subject" value="Сообщение с сайта VanVek (О компании)">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://vanvek20.github.io/about.html">
+            <input type="hidden" name="_next" value="https://vanvek20.github.io/thankyou-quick.html">
             <div class="form-group"><label class="form-label" for="c-name">Имя</label><input class="form-input" id="c-name" type="text" placeholder="Ваше имя"></div>
             <div class="form-group"><label class="form-label" for="c-phone">Телефон</label><input class="form-input" id="c-phone" type="tel" placeholder="+7 (___) ___-__-__"></div>
             <div class="form-group"><label class="form-label" for="c-msg">Опишите задачу</label><textarea class="form-input form-textarea" id="c-msg" rows="4" placeholder="Что нужно установить, адрес, пожелания..."></textarea></div>
@@ -287,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var name = form.querySelector('[name="name"]').value.trim();
     var phone = form.querySelector('[name="phone"]').value.trim();
     var task = form.querySelector('[name="task"]').value.trim();
-    if (!name || !phone || !task) return;
+    if (!phone || !task) return;
     btn.disabled = true;
     btn.textContent = 'Отправка...';
     var reqNum = 'TASK-' + Date.now().toString(36).toUpperCase();

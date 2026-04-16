@@ -675,3 +675,10 @@
     order: -1;
   }
 }
+
+/* Fix: compensate for mobile bottom bar height */
+@media (max-width: 768px) {
+  main, .page-content {
+    padding-bottom: 80px;
+  }
+}
