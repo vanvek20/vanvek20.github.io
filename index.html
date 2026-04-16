@@ -1262,11 +1262,14 @@ document.addEventListener('DOMContentLoaded', function() {
         var priceLabel = isPct
           ? '+' + Math.round(svc.price * addon.pct / 100).toLocaleString('ru-RU') + ' ₽'
           : '+ ' + addon.price.toLocaleString('ru-RU') + ' ₽' + (addon.hasQty ? ' за отверстие' : '');
+        var oldPriceHTML = addon.originalPrice
+          ? '<span class="addon-item__old-price">' + addon.originalPrice.toLocaleString('ru-RU') + ' ₽</span>'
+          : '';
         return '<div class="addon-item" data-addon-id="' + addon.id + '" data-addon-price="' + addon.price + '" data-addon-pct="' + (addon.pct||0) + '">'
           + '<input type="checkbox" class="addon-item__check" id="pop-addon-' + svc.id + '-' + addon.id + '" data-service-id="' + svc.id + '" aria-label="' + addon.name + '">'
           + '<div class="addon-item__body">'
           + '<label class="addon-item__name" for="pop-addon-' + svc.id + '-' + addon.id + '">' + addon.name + '</label>'
-          + '<div class="addon-item__price">' + priceLabel + '</div>'
+          + '<div class="addon-item__price">' + oldPriceHTML + priceLabel + '</div>'
           + (addon.hasQty ? '<div class="addon-item__qty" id="pop-qty-row-' + svc.id + '-' + addon.id + '" style="display:none;">'
             + '<button class="addon-qty-btn" data-action="minus" data-service="' + svc.id + '" data-addon="' + addon.id + '" type="button">−</button>'
             + '<span class="addon-qty-val" id="pop-qty-val-' + svc.id + '-' + addon.id + '">1</span>'
@@ -1637,11 +1640,14 @@ document.addEventListener('DOMContentLoaded', function() {
       var priceLabel = isPct
         ? '+' + Math.round(svc.price * addon.pct / 100).toLocaleString('ru-RU') + ' ₽'
         : '+ ' + addon.price.toLocaleString('ru-RU') + ' ₽' + (addon.hasQty ? ' за отверстие' : '');
+      var oldPriceHTML = addon.originalPrice
+        ? '<span class="addon-item__old-price">' + addon.originalPrice.toLocaleString('ru-RU') + ' ₽</span>'
+        : '';
       return '<div class="addon-item" data-addon-id="' + addon.id + '" data-addon-price="' + addon.price + '" data-addon-pct="' + (addon.pct||0) + '">'
         + '<input type="checkbox" class="addon-item__check" id="calc-addon-' + svc.id + '-' + addon.id + '" data-service-id="' + svc.id + '" aria-label="' + addon.name + '">'
         + '<div class="addon-item__body">'
         + '<label class="addon-item__name" for="calc-addon-' + svc.id + '-' + addon.id + '">' + addon.name + '</label>'
-        + '<div class="addon-item__price">' + priceLabel + '</div>'
+        + '<div class="addon-item__price">' + oldPriceHTML + priceLabel + '</div>'
         + (addon.hasQty ? '<div class="addon-item__qty" id="calc-qty-row-' + svc.id + '-' + addon.id + '" style="display:none;">'
           + '<button class="addon-qty-btn" data-action="minus" data-service="' + svc.id + '" data-addon="' + addon.id + '" type="button" aria-label="Уменьшить количество">−</button>'
           + '<span class="addon-qty-val" id="calc-qty-val-' + svc.id + '-' + addon.id + '">1</span>'

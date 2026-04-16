@@ -262,6 +262,9 @@ function renderServices(services, categorySlug) {
       const priceLabel = isPct
         ? `+${window.AppStore.formatPrice(Math.round(svc.price * addon.pct / 100))}`
         : `+ ${window.AppStore.formatPrice(addon.price)}${addon.hasQty ? ' за отверстие' : ''}`;
+      const oldPriceHTML = addon.originalPrice
+        ? `<span class="addon-item__old-price">${window.AppStore.formatPrice(addon.originalPrice)}</span>`
+        : '';
       return `
       <div class="addon-item" data-addon-id="${addon.id}" data-addon-price="${addon.price}" data-addon-pct="${addon.pct||0}">
         <input type="checkbox"
@@ -272,7 +275,7 @@ function renderServices(services, categorySlug) {
           data-testid="addon-check-${addon.id}">
         <div class="addon-item__body">
           <label class="addon-item__name" for="addon-${svc.id}-${addon.id}">${addon.name}</label>
-          <div class="addon-item__price">${priceLabel}</div>
+          <div class="addon-item__price">${oldPriceHTML}${priceLabel}</div>
           ${addon.hasQty ? `
             <div class="addon-item__qty" id="qty-row-${svc.id}-${addon.id}" style="display:none;">
               <button class="addon-qty-btn" data-action="minus" data-service="${svc.id}" data-addon="${addon.id}" type="button" aria-label="Уменьшить количество">−</button>
