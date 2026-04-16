@@ -309,6 +309,61 @@
   .price-row__price { margin-left: 0; }
   .price-total-bar { bottom: 64px; padding: var(--space-3) var(--space-4); } /* above mobile bottom nav */
 }
+
+/* Плавающая CTA «Оформить заявку» — появляется при скролле */
+.price-sticky-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.price-sticky-cta.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.price-sticky-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: #E8450A;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 100px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(232,69,10,0.35);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.price-sticky-cta__btn:hover {
+  background: #d03d08;
+  box-shadow: 0 6px 28px rgba(232,69,10,0.45);
+  transform: translateY(-2px);
+}
+.price-sticky-cta__btn svg {
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .price-sticky-cta {
+    bottom: 72px;
+    right: 16px;
+  }
+  .price-sticky-cta__btn {
+    padding: 12px 22px;
+    font-size: 14px;
+  }
+}
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#E8450A">
@@ -397,6 +452,14 @@
   </section>
 
 </main>
+
+<!-- Плавающая кнопка «Оформить заявку» — появляется когда hero-кнопка уходит за экран -->
+<div class="price-sticky-cta" id="price-sticky-cta">
+  <a href="cart.html" class="price-sticky-cta__btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    Оформить заявку
+  </a>
+</div>
 
 <!-- Floating messenger buttons -->
 <!-- Sticky cart widget (like on index) -->
@@ -749,5 +812,36 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
+<script>
+(function() {
+  var heroBtn = document.getElementById('header-to-cart-btn');
+  var stickyCta = document.getElementById('price-sticky-cta');
+  var totalBar = document.getElementById('price-total-bar');
+  if (!heroBtn || !stickyCta) return;
+
+  function updateStickyCta() {
+    var rect = heroBtn.getBoundingClientRect();
+    var heroBtnHidden = rect.bottom < 0;
+    var totalBarVisible = totalBar && totalBar.style.display !== 'none';
+    if (heroBtnHidden && !totalBarVisible) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', updateStickyCta, { passive: true });
+  // Also watch for cart changes that show/hide the total bar
+  if (window.AppStore && window.AppStore.onCartChange) {
+    window.AppStore.onCartChange(updateStickyCta);
+  }
+  // Observe totalBar display changes via MutationObserver
+  if (totalBar) {
+    var obs = new MutationObserver(updateStickyCta);
+    obs.observe(totalBar, { attributes: true, attributeFilter: ['style'] });
+  }
+  updateStickyCta();
+})();
+</script>
 </body>
 </html>
