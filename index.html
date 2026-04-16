@@ -408,6 +408,16 @@
   </div>
 </section>
 
+<!-- Sticky calculator total bar -->
+<div class="calc-sticky-bar" id="js-calc-sticky" style="display:none;">
+  <div class="calc-sticky-bar__inner">
+    <div class="calc-sticky-bar__info">
+      <span class="calc-sticky-bar__label">Итого:</span>
+      <span class="calc-sticky-bar__sum" id="js-calc-sticky-total">0 ₽</span>
+    </div>
+    <a href="cart.html" class="btn btn--accent calc-sticky-bar__cta" id="js-calc-sticky-cart">Оформить заказ</a>
+  </div>
+</div>
 
 <!-- Каталог убран с главной — доступен через кнопку «Все 150+ услуг» выше -->
 
@@ -1613,6 +1623,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!btn) return;
     selectedCat = btn.dataset.slug;
     quantities = {};
+    calcShowAll = false;
     // Highlight selected
     catsEl.querySelectorAll('.calc-cat-btn').forEach(function(b) { b.classList.remove('calc-cat-btn--active'); });
     btn.classList.add('calc-cat-btn--active');
@@ -1620,6 +1631,10 @@ document.addEventListener('DOMContentLoaded', function() {
     steps[1].classList.add('calc-step--active');
     renderServices();
     updateTotal();
+    // Auto-scroll to step 2
+    setTimeout(function() {
+      steps[1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   });
 
   // Helper: find SERVICES_DATA entry matching a PRICES item by name
@@ -1674,9 +1689,18 @@ document.addEventListener('DOMContentLoaded', function() {
       + '</div>';
   }
 
+  var CALC_INITIAL_SHOW = 6;
+  var calcShowAll = false;
+
   function renderServices() {
     var items = window.PRICES.filter(function(p) { return p.category === selectedCat; });
-    servicesEl.innerHTML = items.map(function(item) {
+    var visibleItems = items;
+    var hiddenCount = 0;
+    if (!calcShowAll && items.length > 8) {
+      visibleItems = items.slice(0, CALC_INITIAL_SHOW);
+      hiddenCount = items.length - CALC_INITIAL_SHOW;
+    }
+    var html = visibleItems.map(function(item) {
       var qty = quantities[item.name] || 0;
       var svcData = findServiceData(item.name, selectedCat);
       var addonsBlock = renderAddonsBlock(svcData);
@@ -1693,6 +1717,20 @@ document.addEventListener('DOMContentLoaded', function() {
         + '</div>'
         + addonsBlock;
     }).join('');
+    if (hiddenCount > 0) {
+      html += '<button type="button" class="calc-show-more-btn" id="js-calc-show-more">Показать ещё ' + hiddenCount + ' услуг</button>';
+    }
+    servicesEl.innerHTML = html;
+
+    // Bind "show more" button
+    var showMoreBtn = document.getElementById('js-calc-show-more');
+    if (showMoreBtn) {
+      showMoreBtn.addEventListener('click', function() {
+        calcShowAll = true;
+        renderServices();
+        updateTotal();
+      });
+    }
 
     // Bind addons toggle
     servicesEl.querySelectorAll('.service-addons__toggle').forEach(function(btn) {
@@ -1805,21 +1843,38 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       steps[2].classList.remove('calc-step--active');
     }
+    // Sticky bar
+    var stickyBar = document.getElementById('js-calc-sticky');
+    var stickyTotal = document.getElementById('js-calc-sticky-total');
+    if (stickyBar) {
+      if (hasItems) {
+        stickyTotal.textContent = sum.toLocaleString('ru-RU') + ' ₽';
+        stickyBar.style.display = '';
+        stickyBar.classList.add('calc-sticky-bar--visible');
+      } else {
+        stickyBar.classList.remove('calc-sticky-bar--visible');
+        stickyBar.style.display = 'none';
+      }
+    }
   }
 
   // Add to cart
-  if (toCartBtn) {
-    toCartBtn.addEventListener('click', function(e) {
-      if (!window.AppStore) return;
-      // Add all selected items to cart
-      window.PRICES.forEach(function(p) {
-        if (quantities[p.name] && quantities[p.name] > 0) {
-          for (var i = 0; i < quantities[p.name]; i++) {
-            window.AppStore.addToCart(p);
-          }
+  function addCalcItemsToCart() {
+    if (!window.AppStore) return;
+    window.PRICES.forEach(function(p) {
+      if (quantities[p.name] && quantities[p.name] > 0) {
+        for (var i = 0; i < quantities[p.name]; i++) {
+          window.AppStore.addToCart(p);
         }
-      });
+      }
     });
+  }
+  if (toCartBtn) {
+    toCartBtn.addEventListener('click', addCalcItemsToCart);
+  }
+  var stickyCartBtn = document.getElementById('js-calc-sticky-cart');
+  if (stickyCartBtn) {
+    stickyCartBtn.addEventListener('click', addCalcItemsToCart);
   }
 
   // Reset
@@ -1831,6 +1886,9 @@ document.addEventListener('DOMContentLoaded', function() {
       servicesEl.innerHTML = '';
       totalEl.textContent = '0 ₽';
       steps.forEach(function(s, i) { if (i > 0) s.classList.remove('calc-step--active'); });
+      // Hide sticky bar on reset
+      var stickyBar = document.getElementById('js-calc-sticky');
+      if (stickyBar) { stickyBar.style.display = 'none'; stickyBar.classList.remove('calc-sticky-bar--visible'); }
     });
   }
 })();
