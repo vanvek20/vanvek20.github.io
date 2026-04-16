@@ -83,9 +83,10 @@ function renderServices(services, categorySlug) {
   list.innerHTML = services.map(svc => {
     const addonsHTML = svc.addons.map(addon => {
       const isPct = !!addon.pct;
+      const origPriceTag = (!isPct && addon.originalPrice) ? `<s style="color:var(--color-text-muted);font-weight:400;margin-right:4px;">${window.AppStore.formatPrice(addon.originalPrice)}</s> ` : '';
       const priceLabel = isPct
         ? `+${window.AppStore.formatPrice(Math.round(svc.price * addon.pct / 100))}`
-        : `+ ${window.AppStore.formatPrice(addon.price)}${addon.hasQty ? ' за отверстие' : ''}`;
+        : `${origPriceTag}+ ${window.AppStore.formatPrice(addon.price)}${addon.hasQty ? ' за отверстие' : ''}`;
       return `
       <div class="addon-item" data-addon-id="${addon.id}" data-addon-price="${addon.price}" data-addon-pct="${addon.pct||0}">
         <input type="checkbox"

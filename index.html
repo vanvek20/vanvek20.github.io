@@ -322,6 +322,63 @@
   </a>
 </div>
 
+<!-- ===== КАЛЬКУЛЯТОР СТОИМОСТИ ===== -->
+<section class="section calc-section" id="calculator">
+  <div class="container">
+    <h2 class="section-title" style="text-align:center;">Посчитайте стоимость работ</h2>
+    <p class="section-subtitle" style="text-align:center;margin-inline:auto;">Выберите услуги — калькулятор покажет итоговую сумму. Цена фиксированная.</p>
+    <div class="calc-widget" id="js-calc-widget">
+      <div class="calc-widget__steps">
+        <!-- Step 1: Choose category -->
+        <div class="calc-step calc-step--active" data-step="1">
+          <div class="calc-step__header">
+            <span class="calc-step__num">1</span>
+            <span class="calc-step__label">Выберите категорию</span>
+          </div>
+          <div class="calc-step__body">
+            <div class="calc-cats" id="js-calc-cats">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+        </div>
+        <!-- Step 2: Choose services + quantities -->
+        <div class="calc-step" data-step="2">
+          <div class="calc-step__header">
+            <span class="calc-step__num">2</span>
+            <span class="calc-step__label">Выберите услуги и количество</span>
+          </div>
+          <div class="calc-step__body">
+            <div class="calc-services" id="js-calc-services">
+              <!-- Filled by JS when category selected -->
+            </div>
+          </div>
+        </div>
+        <!-- Step 3: Result -->
+        <div class="calc-step" data-step="3">
+          <div class="calc-step__header">
+            <span class="calc-step__num">3</span>
+            <span class="calc-step__label">Итого</span>
+          </div>
+          <div class="calc-step__body">
+            <div class="calc-result" id="js-calc-result">
+              <div class="calc-result__total">
+                <span class="calc-result__label">Итого:</span>
+                <span class="calc-result__sum" id="js-calc-total">0 ₽</span>
+              </div>
+              <div class="calc-result__note">Цена фиксированная — не изменится после приезда мастера</div>
+              <div class="calc-result__actions">
+                <a href="cart.html" class="btn btn--accent" id="js-calc-to-cart">Добавить в корзину и оформить</a>
+                <button class="btn btn--outline" id="js-calc-reset">Пересчитать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ===== CATALOG PREVIEW — Interactive cards with hover info ===== -->
 <section class="section catalog-section" id="catalog">
   <div class="container">
@@ -379,63 +436,6 @@
 </section>
 
 
-
-<!-- ===== КАЛЬКУЛЯТОР СТОИМОСТИ ===== -->
-<section class="section calc-section" id="calculator">
-  <div class="container">
-    <h2 class="section-title" style="text-align:center;">Посчитайте стоимость работ</h2>
-    <p class="section-subtitle" style="text-align:center;margin-inline:auto;">Выберите услуги — калькулятор покажет итоговую сумму. Цена фиксированная.</p>
-    <div class="calc-widget" id="js-calc-widget">
-      <div class="calc-widget__steps">
-        <!-- Step 1: Choose category -->
-        <div class="calc-step calc-step--active" data-step="1">
-          <div class="calc-step__header">
-            <span class="calc-step__num">1</span>
-            <span class="calc-step__label">Выберите категорию</span>
-          </div>
-          <div class="calc-step__body">
-            <div class="calc-cats" id="js-calc-cats">
-              <!-- Filled by JS -->
-            </div>
-          </div>
-        </div>
-        <!-- Step 2: Choose services + quantities -->
-        <div class="calc-step" data-step="2">
-          <div class="calc-step__header">
-            <span class="calc-step__num">2</span>
-            <span class="calc-step__label">Выберите услуги и количество</span>
-          </div>
-          <div class="calc-step__body">
-            <div class="calc-services" id="js-calc-services">
-              <!-- Filled by JS when category selected -->
-            </div>
-          </div>
-        </div>
-        <!-- Step 3: Result -->
-        <div class="calc-step" data-step="3">
-          <div class="calc-step__header">
-            <span class="calc-step__num">3</span>
-            <span class="calc-step__label">Итого</span>
-          </div>
-          <div class="calc-step__body">
-            <div class="calc-result" id="js-calc-result">
-              <div class="calc-result__total">
-                <span class="calc-result__label">Итого:</span>
-                <span class="calc-result__sum" id="js-calc-total">0 ₽</span>
-              </div>
-              <div class="calc-result__note">Цена фиксированная — не изменится после приезда мастера</div>
-              <div class="calc-result__actions">
-                <a href="cart.html" class="btn btn--accent" id="js-calc-to-cart">Добавить в корзину и оформить</a>
-                <button class="btn btn--outline" id="js-calc-reset">Пересчитать</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== PROCESS — 5 visual steps ===== -->
 <section class="section process-section" id="process">
   <div class="container">
@@ -491,66 +491,6 @@
   </div>
 </section>
 
-<!-- ===== СРАВНЕНИЕ С КОНКУРЕНТАМИ ===== -->
-<section class="section comparison-section" id="comparison">
-  <div class="container">
-    <h2 class="section-title" style="text-align:center;">Почему не стоит искать мастера на Авито</h2>
-    <p class="section-subtitle" style="text-align:center;margin-inline:auto;">Сравните сами — и решите, где заказывать</p>
-    <div class="comparison-table">
-      <div class="comparison-col comparison-col--them">
-        <div class="comparison-col__header">Мастер с Авито</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--bad">✕</span> Цена «от 1 500 ₽» → по факту 4 000 ₽</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--bad">✕</span> Гарантия устная: «если что — звоните»</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--bad">✕</span> Никаких документов</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--bad">✕</span> «Мусор ваш»</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--bad">✕</span> «Приеду послезавтра, может быть»</div>
-      </div>
-      <div class="comparison-col comparison-col--us">
-        <div class="comparison-col__header">VanVek</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--good">✓</span> 2 300 ₽ — фиксированная цена</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--good">✓</span> Гарантия 1 год по договору</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--good">✓</span> Договор + акт выполненных работ</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--good">✓</span> Мастер уберёт за собой</div>
-        <div class="comparison-row"><span class="comparison-icon comparison-icon--good">✓</span> Выезд в день заказа</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ГАРАНТИЯ ПО ДОГОВОРУ ===== -->
-<section class="section guarantee-section" id="guarantee">
-  <div class="container">
-    <div class="guarantee-block">
-      <div class="guarantee-block__header">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-        <h2 class="guarantee-block__title">Гарантия, которую мы подписываем</h2>
-      </div>
-      <div class="guarantee-block__items">
-        <div class="guarantee-item">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          <div>
-            <div class="guarantee-item__title">Договор на каждый заказ</div>
-            <div class="guarantee-item__desc">Подписываем на месте — не «обещание по телефону», а документ с печатью</div>
-          </div>
-        </div>
-        <div class="guarantee-item">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <div>
-            <div class="guarantee-item__title">Акт выполненных работ</div>
-            <div class="guarantee-item__desc">Фотофиксация результата — вы подписываете акт только когда всё устраивает</div>
-          </div>
-        </div>
-        <div class="guarantee-item">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <div>
-            <div class="guarantee-item__title">1 год гарантии</div>
-            <div class="guarantee-item__desc">Если что-то пойдёт не так — мастер приедет и исправит бесплатно</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Отзывы перенесены в футер -->
 
@@ -912,28 +852,57 @@
         <div class="faq-item__a">Гарантия 1 год на все работы. Прописана в договоре. Если что-то пойдёт не так — приедем и исправим бесплатно.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-item__q">Нужно платить вперёд?</summary>
-        <div class="faq-item__a">Нет. Оплата только ПОСЛЕ завершения работ. Вы проверяете результат, подписываете акт — и только потом оплачиваете.</div>
+        <summary class="faq-item__q">А что если мне не понравится результат?</summary>
+        <div class="faq-item__a">Мастер не уйдёт, пока вы не примете работу. Если есть замечания — исправит на месте. Акт приёмки подписывается только когда вы довольны.</div>
       </details>
       <details class="faq-item">
         <summary class="faq-item__q">Мастер приедет грязный и без инструментов?</summary>
         <div class="faq-item__a">Наши мастера приезжают в фирменной форме со своим инструментом. После работы убирают за собой. Это в договоре.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-item__q">Вы вообще настоящие? Где отзывы?</summary>
-        <div class="faq-item__a">Мы работаем с 2022 года. Онлайн-заказы запустили недавно, поэтому отзывов на сайте пока нет. Евгений Белов, основатель, лично отвечает за каждый заказ. Напишите ему в мессенджер — ответит лично.</div>
+        <summary class="faq-item__q">Нужно платить вперёд?</summary>
+        <div class="faq-item__a">Нет. Оплата только ПОСЛЕ завершения работ. Вы проверяете результат, подписываете акт — и только потом оплачиваете.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-item__q">А что если мне не понравится результат?</summary>
-        <div class="faq-item__a">Мастер не уйдёт, пока вы не примете работу. Если есть замечания — исправит на месте. Акт приёмки подписывается только когда вы довольны.</div>
+        <summary class="faq-item__q">Вы вообще настоящие? Где отзывы?</summary>
+        <div class="faq-item__a">Мы работаем с 2022 года. Онлайн-заказы запустили недавно, поэтому отзывов на сайте пока нет. Евгений Белов, основатель, лично отвечает за каждый заказ. Напишите ему в мессенджер — ответит лично.</div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ===== ЛИЧНЫЙ КОНТРОЛЬ ВЛАДЕЛЬЦА ===== -->
-<section class="section owner-section" id="quality">
+<!-- ===== ГАРАНТИЯ И КОНТРОЛЬ КАЧЕСТВА ===== -->
+<section class="section guarantee-section" id="guarantee">
   <div class="container">
+    <h2 class="section-title" style="text-align:center;">Гарантия и контроль качества</h2>
+    <p class="section-subtitle" style="text-align:center;margin-inline:auto;">Работаем официально. Каждый заказ — под личным контролем основателя.</p>
+    
+    <div class="guarantee-block" style="margin-bottom:var(--space-8);">
+      <div class="guarantee-block__items">
+        <div class="guarantee-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <div>
+            <div class="guarantee-item__title">Договор на каждый заказ</div>
+            <div class="guarantee-item__desc">Подписываем на месте — не «обещание по телефону», а документ с печатью</div>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div>
+            <div class="guarantee-item__title">Акт выполненных работ</div>
+            <div class="guarantee-item__desc">Фотофиксация результата — вы подписываете акт только когда всё устраивает</div>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <div class="guarantee-item__title">1 год гарантии</div>
+            <div class="guarantee-item__desc">Если что-то пойдёт не так — мастер приедет и исправит бесплатно</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="owner-block">
       <div class="owner-block__left">
         <div class="owner-block__avatar">

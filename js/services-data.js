@@ -64,8 +64,8 @@ window.SERVICES_DATA = {
         id: 'furniture-01', name: 'Тумба с раковиной до 70 см', price: 7200,
         desc: 'Сборка, крепёж к стене, подключение к водоснабжению и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
-          { id: 'washer', name: 'Стиральная машина (вместе дешевле)', price: 3200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
+          { id: 'washer', name: 'Стиральная машина (вместе дешевле)', price: 3200, hasQty: false, originalPrice: 4200 },
           ADDON_UNASSEMBLED,
           addonDismantling('старой тумбы с раковиной', 2000),
           ADDON_DRILLING,
@@ -75,8 +75,8 @@ window.SERVICES_DATA = {
         id: 'furniture-02', name: 'Тумба с раковиной от 71 см', price: 8700,
         desc: 'Сборка, крепёж к стене, подключение к водоснабжению и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
-          { id: 'washer', name: 'Стиральная машина (вместе дешевле)', price: 3200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
+          { id: 'washer', name: 'Стиральная машина (вместе дешевле)', price: 3200, hasQty: false, originalPrice: 4200 },
           ADDON_UNASSEMBLED,
           addonDismantling('старой тумбы с раковиной', 2000),
           ADDON_DRILLING,
@@ -86,7 +86,7 @@ window.SERVICES_DATA = {
         id: 'furniture-03', name: 'Зеркало до 70 см', price: 3500,
         desc: 'Крепёж к стене, регулировка горизонтали',
         addons: [
-          { id: 'glass-shelf', name: 'Стеклянная полка рядом (вместе дешевле)', price: 1000, hasQty: false },
+          { id: 'glass-shelf', name: 'Стеклянная полка рядом (вместе дешевле)', price: 1000, hasQty: false, originalPrice: 1300 },
           { id: 'electric', name: 'Подключение к электросети (подсветка)', price: 1000, hasQty: false },
           addonDismantling('старого зеркала', 500),
           ADDON_DRILLING,
@@ -96,7 +96,7 @@ window.SERVICES_DATA = {
         id: 'furniture-04', name: 'Зеркало от 71 до 100 см', price: 4500,
         desc: 'Крепёж к стене, регулировка горизонтали',
         addons: [
-          { id: 'glass-shelf', name: 'Стеклянная полка рядом (вместе дешевле)', price: 1000, hasQty: false },
+          { id: 'glass-shelf', name: 'Стеклянная полка рядом (вместе дешевле)', price: 1000, hasQty: false, originalPrice: 1300 },
           { id: 'electric', name: 'Подключение к электросети (подсветка)', price: 1000, hasQty: false },
           addonDismantling('старого зеркала', 500),
           ADDON_DRILLING,
@@ -106,7 +106,7 @@ window.SERVICES_DATA = {
         id: 'furniture-05', name: 'Зеркало от 101 см', price: 6500,
         desc: 'Крепёж к стене, регулировка горизонтали',
         addons: [
-          { id: 'glass-shelf', name: 'Стеклянная полка рядом (вместе дешевле)', price: 1000, hasQty: false },
+          { id: 'glass-shelf', name: 'Стеклянная полка рядом (вместе дешевле)', price: 1000, hasQty: false, originalPrice: 1300 },
           { id: 'electric', name: 'Подключение к электросети (подсветка)', price: 1000, hasQty: false },
           addonDismantling('старого зеркала', 500),
           ADDON_DRILLING,
@@ -116,7 +116,7 @@ window.SERVICES_DATA = {
         id: 'furniture-06', name: 'Зеркало-шкаф до 70 см', price: 4300,
         desc: 'Сборка, крепёж к стене, подключение подсветки при наличии',
         addons: [
-          { id: 'glass-shelf', name: 'Стеклянная полка рядом (вместе дешевле)', price: 1000, hasQty: false },
+          { id: 'glass-shelf', name: 'Стеклянная полка рядом (вместе дешевле)', price: 1000, hasQty: false, originalPrice: 1300 },
           { id: 'electric', name: 'Подключение к электросети (подсветка)', price: 1000, hasQty: false },
           addonDismantling('старого зеркала-шкафа', 1000),
           ADDON_DRILLING,
@@ -166,7 +166,7 @@ window.SERVICES_DATA = {
         id: 'furniture-16', name: 'Столешница с раковиной до 70 см', price: 7200,
         desc: 'Монтаж столешницы, раковины, подключение к водоснабжению и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           addonDismantling('старой столешницы с раковиной', 2000),
           ADDON_DRILLING,
         ]
@@ -175,7 +175,7 @@ window.SERVICES_DATA = {
         id: 'furniture-17', name: 'Столешница с раковиной от 71 см', price: 8700,
         desc: 'Монтаж столешницы, раковины, подключение к водоснабжению и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           addonDismantling('старой столешницы с раковиной', 2000),
           ADDON_DRILLING,
         ]
@@ -184,7 +184,7 @@ window.SERVICES_DATA = {
         id: 'furniture-18', name: 'Консоль с раковиной', price: 7200,
         desc: 'Крепёж к стене, подключение воды и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           addonDismantling('старой консоли с раковиной', 1500),
           ADDON_DRILLING,
         ]
@@ -405,7 +405,7 @@ window.SERVICES_DATA = {
         id: 'faucets-08', name: 'Стойка душевая', price: 4200,
         desc: 'Монтаж на стену, подключение к смесителю',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           addonDismantling('старой стойки', 1000),
           ADDON_DRILLING,
         ]
@@ -414,7 +414,7 @@ window.SERVICES_DATA = {
         id: 'faucets-09', name: 'Гарнитур душевой', price: 4800,
         desc: 'Монтаж держателя, штанги, подключение шланга',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           ADDON_DRILLING,
         ]
       },
@@ -447,7 +447,7 @@ window.SERVICES_DATA = {
         id: 'sinks-01', name: 'Раковина', price: 4300,
         desc: 'Крепёж к стене или столешнице, подключение к водопроводу и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           addonDismantling('старой раковины', 1000),
           ADDON_DRILLING,
         ]
@@ -456,7 +456,7 @@ window.SERVICES_DATA = {
         id: 'sinks-02', name: 'Раковина с пьедесталом', price: 5000,
         desc: 'Монтаж пьедестала, крепёж раковины, подключение воды и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           addonDismantling('старой раковины', 1000),
           ADDON_DRILLING,
         ]
@@ -472,8 +472,8 @@ window.SERVICES_DATA = {
         id: 'toilets-01', name: 'Унитаз-компакт', price: 5500,
         desc: 'Монтаж, подключение к водопроводу и канализации, регулировка бачка',
         addons: [
-          { id: 'hyg-shower', name: 'Гигиенический душ со смесителем (вместе дешевле)', price: 3000, hasQty: false },
-          { id: 'hyg-shower-no', name: 'Гигиенический душ без смесителя (вместе дешевле)', price: 2000, hasQty: false },
+          { id: 'hyg-shower', name: 'Гигиенический душ со смесителем (вместе дешевле)', price: 3000, hasQty: false, originalPrice: 4400 },
+          { id: 'hyg-shower-no', name: 'Гигиенический душ без смесителя (вместе дешевле)', price: 2000, hasQty: false, originalPrice: 2500 },
           addonDismantling('старого унитаза', 1500),
           ADDON_DRILLING,
         ]
@@ -482,7 +482,7 @@ window.SERVICES_DATA = {
         id: 'toilets-02', name: 'Унитаз-моноблок', price: 5200,
         desc: 'Монтаж, подключение к водопроводу и канализации',
         addons: [
-          { id: 'hyg-shower', name: 'Гигиенический душ со смесителем (вместе дешевле)', price: 3000, hasQty: false },
+          { id: 'hyg-shower', name: 'Гигиенический душ со смесителем (вместе дешевле)', price: 3000, hasQty: false, originalPrice: 4400 },
           addonDismantling('старого унитаза', 1500),
           ADDON_DRILLING,
         ]
@@ -491,8 +491,8 @@ window.SERVICES_DATA = {
         id: 'toilets-03', name: 'Унитаз подвесной', price: 5000,
         desc: 'Монтаж на инсталляцию, подключение, регулировка',
         addons: [
-          { id: 'installation', name: 'Инсталляция (вместе дешевле)', price: 7300, hasQty: false },
-          { id: 'flush-btn', name: 'Кнопка смыва (вместе дешевле)', price: 700, hasQty: false },
+          { id: 'installation', name: 'Инсталляция (вместе дешевле)', price: 7300, hasQty: false, originalPrice: 10000 },
+          { id: 'flush-btn', name: 'Кнопка смыва (вместе дешевле)', price: 700, hasQty: false, originalPrice: 1300 },
           { id: 'hyg-shower', name: 'Гигиенический душ со смесителем', price: 4400, hasQty: false },
           addonDismantling('старого унитаза', 1500),
           ADDON_DRILLING,
@@ -511,7 +511,7 @@ window.SERVICES_DATA = {
         id: 'toilets-05', name: 'Биде напольное', price: 5500,
         desc: 'Монтаж, подключение к водопроводу и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           addonDismantling('старого биде', 1500),
           ADDON_DRILLING,
         ]
@@ -520,7 +520,7 @@ window.SERVICES_DATA = {
         id: 'toilets-06', name: 'Биде подвесное', price: 5000,
         desc: 'Монтаж на инсталляцию, подключение',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
           addonDismantling('старого биде', 1500),
           ADDON_DRILLING,
         ]
@@ -551,8 +551,8 @@ window.SERVICES_DATA = {
         id: 'inst-01', name: 'Инсталляция для унитаза', price: 10000,
         desc: 'Монтаж в нишу или к стене, подключение к водопроводу и канализации',
         addons: [
-          { id: 'toilet', name: 'Подвесной унитаз (вместе дешевле)', price: 3000, hasQty: false },
-          { id: 'flush-btn', name: 'Кнопка смыва (вместе дешевле)', price: 700, hasQty: false },
+          { id: 'toilet', name: 'Подвесной унитаз (вместе дешевле)', price: 3000, hasQty: false, originalPrice: 5000 },
+          { id: 'flush-btn', name: 'Кнопка смыва (вместе дешевле)', price: 700, hasQty: false, originalPrice: 1300 },
           addonDismantling('старой инсталляции', 2500),
           ADDON_DRILLING,
         ]
@@ -589,7 +589,7 @@ window.SERVICES_DATA = {
         id: 'bath-01', name: 'Прямоугольная акриловая ванна', price: 8700,
         desc: 'Монтаж на ножки, подключение слива-перелива и канализации, герметизация',
         addons: [
-          { id: 'faucet-3', name: 'Смеситель на три отверстия (вместе дешевле)', price: 4200, hasQty: false },
+          { id: 'faucet-3', name: 'Смеситель на три отверстия (вместе дешевле)', price: 4200, hasQty: false, originalPrice: 6000 },
           ADDON_SEALING, addonDismantling('старой акриловой ванны', 2000),
         ]
       },
@@ -642,8 +642,8 @@ window.SERVICES_DATA = {
         id: 'kitchen-01', name: 'Кухонная мойка 1 чаша', price: 3700,
         desc: 'Монтаж в столешницу, подключение к водопроводу и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
-          { id: 'crusher', name: 'Измельчитель отходов (вместе дешевле)', price: 3800, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
+          { id: 'crusher', name: 'Измельчитель отходов (вместе дешевле)', price: 3800, hasQty: false, originalPrice: 5000 },
           { id: 'worktop-cut', name: 'Пропил в столешнице МДФ/ДСП', price: 2500, hasQty: false },
           { id: 'worktop-cut-stone', name: 'Пропил в столешнице из камня', price: 4500, hasQty: false },
           addonDismantling('старой кухонной мойки', 1000),
@@ -653,8 +653,8 @@ window.SERVICES_DATA = {
         id: 'kitchen-02', name: 'Кухонная мойка 2 чаши', price: 5300,
         desc: 'Монтаж в столешницу, подключение к водопроводу и канализации',
         addons: [
-          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false },
-          { id: 'crusher', name: 'Измельчитель отходов (вместе дешевле)', price: 3800, hasQty: false },
+          { id: 'faucet', name: 'Смеситель (вместе дешевле)', price: 2200, hasQty: false, originalPrice: 3300 },
+          { id: 'crusher', name: 'Измельчитель отходов (вместе дешевле)', price: 3800, hasQty: false, originalPrice: 5000 },
           { id: 'worktop-cut', name: 'Пропил в столешнице МДФ/ДСП', price: 2500, hasQty: false },
           addonDismantling('старой кухонной мойки', 1000),
         ]
