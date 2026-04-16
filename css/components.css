@@ -315,6 +315,9 @@
 .category-card:hover .category-card__illus svg {
   transform: scale(1.04);
 }
+.category-card:hover .category-card__illus img {
+  transform: scale(1.06);
+}
 
 /* Нижняя полоска — только имя + стрелка, чёткое разделение */
 .category-card__body {

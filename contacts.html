@@ -311,7 +311,23 @@ function renderPageContent(key) {
           -->
         </div>
 
-        <!-- Email hidden from public contacts (stays in form action only) -->
+        <!-- Email -->
+        <h3 style="font-family:var(--font-display);font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-4);">Email</h3>
+        <div class="card" style="padding:var(--space-5);margin-bottom:var(--space-8);">
+          <div style="display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" style="flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+            <div style="flex:1;min-width:160px;">
+              <div style="font-family:var(--font-display);font-weight:700;font-size:var(--text-base);">
+                <a href="mailto:info@vanvek.ru" style="color:var(--color-text);text-decoration:none;">info@vanvek.ru</a>
+              </div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:2px;">Вопросы, жалобы, сотрудничество</div>
+            </div>
+            <a href="mailto:info@vanvek.ru" class="btn btn--accent btn--sm" style="white-space:nowrap;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+              Написать
+            </a>
+          </div>
+        </div>
       </div>
     `,
   };

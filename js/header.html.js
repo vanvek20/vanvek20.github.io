@@ -165,6 +165,12 @@ function getFooterHTML() {
           <a href="tel:88003333333" data-city-phone-href data-city-phone style="font-size:var(--text-base);font-weight:700;color:#fff;display:block;margin-bottom:4px;">8 800 333-33-33</a>
           <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.45);" data-city-name>Москва</div>
         </div>
+        <div style="margin-bottom:var(--space-3);">
+          <a href="mailto:info@vanvek.ru" style="font-size:var(--text-sm);color:rgba(255,255,255,0.7);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+            info@vanvek.ru
+          </a>
+        </div>
         <ul class="footer-col__list">
           <li style="color:rgba(255,255,255,0.5);font-size:var(--text-xs);">Ежедневно 9:00–20:00</li>
         </ul>

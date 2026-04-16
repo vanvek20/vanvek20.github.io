@@ -164,9 +164,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const grid = document.getElementById('services-cat-grid');
   if (grid && window.CATEGORIES) {
-    grid.innerHTML = window.CATEGORIES.map(cat => `
+    // Photo mapping for category cards (same as popular services)
+    var catPhotos = {
+      furniture: 'cat-furniture.jpg',
+      showers: 'cat-showers.jpg',
+      toilets: 'cat-toilets.jpg',
+      sinks: 'cat-sinks.jpg',
+      bathtubs: 'cat-bathtubs.jpg',
+      faucets: 'cat-faucets.jpg',
+      installations: 'cat-installations.jpg',
+      'towel-rails': 'cat-towel-rails.jpg',
+    };
+    grid.innerHTML = window.CATEGORIES.map(cat => {
+      var photo = catPhotos[cat.slug];
+      var illusHTML = photo
+        ? '<img src="' + photo + '" alt="' + cat.name + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.38s cubic-bezier(0.16,1,0.3,1);">'
+        : cat.icon;
+      var illusStyle = photo
+        ? 'background:#0d1a2e;'
+        : 'background:' + (cat.bg || '#f3f5fb') + ';';
+      return `
       <a href="category.html?cat=${cat.slug}" class="category-card" data-testid="serv-cat-${cat.slug}" aria-label="${cat.name}">
-        <div class="category-card__illus" aria-hidden="true" style="background:${cat.bg || '#f3f5fb'}">${cat.icon}</div>
+        <div class="category-card__illus" aria-hidden="true" style="${illusStyle}">${illusHTML}</div>
         <div class="category-card__body">
           <div class="category-card__name">${cat.name}</div>
           <div class="category-card__arrow" aria-hidden="true">
@@ -174,7 +193,8 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
       </a>
-    `).join('');
+    `;
+    }).join('');
   }
 
   // Search & filter
