@@ -268,7 +268,7 @@
         const action = btn.dataset.action;
         closeActions();
         if (action === 'calc') {
-          window.location.href = 'prices.html';
+          window.location.href = 'index.html#calculator';
         } else if (action === 'select') {
           window.location.href = 'services.html';
         }
