@@ -12,8 +12,8 @@ function getHeaderHTML(activeLink) {
     { href: 'index.html',      label: 'Главная',        key: 'home' },
     { href: 'services.html',   label: 'Услуги',          key: 'services' },
     { href: 'prices.html',     label: 'Прайс',            key: 'prices' },
-    { href: 'corporate.html',  label: 'Корпоративным',  key: 'corporate' },
-    { href: 'faq.html',        label: 'FAQ',              key: 'faq' },
+    { href: 'corporate.html',  label: 'Бизнесу',        key: 'corporate' },
+    { href: 'faq.html',        label: 'Вопросы',          key: 'faq' },
     { href: 'contacts.html',   label: 'Контакты',         key: 'contacts' },
   ];
   const navHTML = navItems.map(item => `
@@ -153,9 +153,9 @@ function getFooterHTML() {
         <div class="footer-col__title">Компания</div>
         <ul class="footer-col__list">
           <li><a href="prices.html">Прайс-лист</a></li>
-          <li><a href="corporate.html">Корпоративным</a></li>
+          <li><a href="corporate.html">Бизнесу</a></li>
           <li><a href="about.html">О нас</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="faq.html">Вопросы</a></li>
           <li><a href="contacts.html">Контакты</a></li>
         </ul>
       </div>

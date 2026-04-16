@@ -373,3 +373,83 @@ window.AppStore = {
   initThemeToggle,   // аналогично — тёмная тема тоже нуждается в DOM-кнопке из хедера
   initPhoneMasks     // маска телефона — вызывается после вставки DOM
 };
+
+
+// === Focus Trap for Modals ===
+(function() {
+  function trapFocus(modal) {
+    const focusable = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first.focus();
+    modal.addEventListener('keydown', function handler(e) {
+      if (e.key === 'Escape') {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        modal.removeEventListener('keydown', handler);
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+  // Observe modals becoming visible
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(m => {
+      if (m.type === 'attributes' && m.attributeName === 'style') {
+        const el = m.target;
+        if (el.getAttribute('role') === 'dialog' && el.style.display !== 'none' && el.style.display !== '') {
+          trapFocus(el);
+        }
+      }
+    });
+  });
+  document.querySelectorAll('[role="dialog"]').forEach(modal => {
+    observer.observe(modal, { attributes: true, attributeFilter: ['style'] });
+  });
+  // Also handle dynamically created modals
+  setTimeout(() => {
+    document.querySelectorAll('[role="dialog"]').forEach(modal => {
+      observer.observe(modal, { attributes: true, attributeFilter: ['style'] });
+    });
+  }, 1000);
+})();
+
+
+// === Sticky Cart Bar for category pages ===
+// Deferred init: category-page.js renders cards after store.js loads
+document.addEventListener('DOMContentLoaded', function() {
+  // Only on category pages (they have #service-list or data-category-page)
+  var isCategory = document.getElementById('service-list') || document.querySelector('[data-category-slug]') || window.location.pathname.indexOf('category-') !== -1;
+  if (!isCategory) return;
+  
+  // Wait for cards to render
+  setTimeout(function() {
+    var bar = document.createElement('div');
+    bar.className = 'sticky-cart-bar';
+    bar.id = 'sticky-cart-bar';
+    bar.innerHTML = '<span id="sticky-cart-text" style="font-weight:600;">В заявке: 0 услуг</span><a href="cart.html" class="btn btn--accent" style="padding:8px 20px;">Перейти к заявке \u2192</a>';
+    document.body.appendChild(bar);
+    
+    function updateStickyBar() {
+      var cart = window.AppStore ? window.AppStore.getCart() : [];
+      var count = cart.length;
+      var text = document.getElementById('sticky-cart-text');
+      if (text) {
+        var word = count === 1 ? 'услуга' : (count >= 2 && count <= 4 ? 'услуги' : 'услуг');
+        text.textContent = 'В заявке: ' + count + ' ' + word;
+      }
+      bar.classList.toggle('visible', count > 0);
+    }
+    
+    if (window.AppStore && window.AppStore.onCartChange) {
+      window.AppStore.onCartChange(updateStickyBar);
+    }
+    updateStickyBar();
+  }, 500);
+});

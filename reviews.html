@@ -2,6 +2,7 @@
 <html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
+<link rel="canonical" href="https://vanvek.ru/reviews.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Отзывы — VanVek | Установка сантехники</title>
 <meta name="description" content="Отзывы клиентов VanVek. Оставьте отзыв о нашей работе на Яндекс.Картах, 2GIS или Google.">
@@ -67,7 +68,7 @@
 </section>
 
 <!-- MODAL: Описать задачу -->
-<div id="task-modal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
+<div id="task-modal" role="dialog" aria-modal="true" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);padding:var(--space-4);" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:480px;width:100%;position:relative;box-shadow:var(--shadow-lg);">
     <button onclick="document.getElementById('task-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--color-text-muted);font-size:24px;line-height:1;" aria-label="Закрыть">&times;</button>
     <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Опишите задачу</h3>
@@ -85,7 +86,7 @@
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Заявка отправлена</div>
-      <p style="font-size:var(--text-sm);color:var(--color-text-muted);">Перезвоним</p>
+      <p style="font-size:var(--text-sm);color:var(--color-text-muted);">Перезвоним в течение 15 минут</p>
     </div>
   </div>
 </div>
@@ -157,6 +158,19 @@ function renderPageContent(key) {
         <h2 class="section-title" style="margin-bottom:var(--space-3);">Отзывов пока нет</h2>
         <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;margin-bottom:var(--space-8);">Мы только начинаем собирать обратную связь. Если вы были нашим клиентом — будем благодарны за отзыв на любой из площадок.</p>
         <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-top:var(--space-4);">Профили на картах скоро появятся — следите за обновлениями</p>
+        
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
+          <a href="#" class="btn btn--outline" style="gap:8px;" onclick="return false;">⭐ Оставить отзыв на Яндекс.Картах</a>
+          <a href="#" class="btn btn--outline" style="gap:8px;" onclick="return false;">⭐ Оставить отзыв на 2GIS</a>
+          <a href="#" class="btn btn--outline" style="gap:8px;" onclick="return false;">⭐ Оставить отзыв на Google</a>
+        </div>
+        
+        <div style="margin-top:48px;padding:32px;background:var(--color-surface-alt, #f0f2f5);border-radius:16px;max-width:500px;margin-left:auto;margin-right:auto;">
+          <h3 style="font-size:var(--text-lg);margin-bottom:8px;">Были нашим клиентом?</h3>
+          <p style="color:var(--color-text-muted);margin-bottom:16px;">Ваш отзыв поможет другим людям выбрать надёжного мастера</p>
+          <a href="contacts.html" class="btn btn--accent">Связаться с нами</a>
+        </div>
+        <p style="display:none;</p>
       </div>
     `,
     about: `
@@ -251,7 +265,7 @@ function renderPageContent(key) {
             <div class="form-group"><label class="form-label" for="c-name">Имя</label><input class="form-input" id="c-name" type="text" placeholder="Ваше имя"></div>
             <div class="form-group"><label class="form-label" for="c-phone">Телефон</label><input class="form-input" id="c-phone" type="tel" placeholder="+7 (___) ___-__-__"></div>
             <div class="form-group"><label class="form-label" for="c-msg">Опишите задачу</label><textarea class="form-input form-textarea" id="c-msg" rows="4" placeholder="Что нужно установить, адрес, пожелания..."></textarea></div>
-            <button type="submit" class="btn btn--accent btn--lg" style="width:100%;">Отправить</button>
+            <button type="submit" class="btn btn--accent btn--lg" style="width:100%;">Отправить заявку</button>
           </form>
         </div>
       </div>

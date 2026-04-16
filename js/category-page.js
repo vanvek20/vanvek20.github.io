@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cityPrep = cityName === 'Москва' ? 'Москве' : 'Санкт-Петербурге';
     document.getElementById('cat-title').textContent = data.categoryName + ' в ' + cityPrep;
   });
-  document.querySelectorAll('[data-city-in-title]').forEach(el => observer.observe(el, {childList: true}));
+  setTimeout(() => document.querySelectorAll('[data-city-in-title]').forEach(el => observer.observe(el, {childList: true})), 100);
 
   // Render services
   renderServices(data.services, slug);
@@ -93,10 +93,10 @@ function renderServices(services, categorySlug) {
           class="addon-item__check"
           id="addon-${svc.id}-${addon.id}"
           data-service-id="${svc.id}"
-          aria-label="${addon.name}"
+          aria-label="${window.AppStore?.escHtml ? window.AppStore.escHtml(addon.name) : addon.name}"
           data-testid="addon-check-${addon.id}">
         <div class="addon-item__body">
-          <label class="addon-item__name" for="addon-${svc.id}-${addon.id}">${addon.name}</label>
+          <label class="addon-item__name" for="addon-${svc.id}-${addon.id}">${window.AppStore?.escHtml ? window.AppStore.escHtml(addon.name) : addon.name}</label>
           <div class="addon-item__price">${priceLabel}</div>
           ${addon.hasQty ? `
             <div class="addon-item__qty" id="qty-row-${svc.id}-${addon.id}" style="display:none;">
@@ -316,3 +316,44 @@ function renderServices(services, categorySlug) {
     }
   }
 }
+
+
+  // === Price filter pills ===
+  const filterContainer = document.createElement('div');
+  filterContainer.className = 'price-filters';
+  filterContainer.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 24px;';
+  filterContainer.innerHTML = [
+    { label: 'Все цены', min: 0, max: Infinity },
+    { label: 'До 5 000 ₽', min: 0, max: 5000 },
+    { label: '5 000 – 10 000 ₽', min: 5000, max: 10000 },
+    { label: 'От 10 000 ₽', min: 10000, max: Infinity },
+  ].map((f, i) => `<button class="price-filter-btn" data-min="${f.min}" data-max="${f.max}" style="padding:6px 14px;min-height:44px;border:1.5px solid ${i===0?'var(--color-accent)':'var(--color-border)'};border-radius:50px;font-size:var(--text-sm);font-weight:600;background:${i===0?'var(--color-accent)':'var(--color-surface)'};color:${i===0?'#fff':'var(--color-text)'};cursor:pointer;transition:all 0.2s;">${f.label}</button>`).join('');
+
+  const servicesContainer = document.getElementById('services-list') || document.querySelector('.services-list');
+  if (servicesContainer) {
+    servicesContainer.parentNode.insertBefore(filterContainer, servicesContainer);
+    
+    filterContainer.addEventListener('click', e => {
+      const btn = e.target.closest('.price-filter-btn');
+      if (!btn) return;
+      const min = Number(btn.dataset.min);
+      const max = Number(btn.dataset.max);
+      
+      // Style buttons
+      filterContainer.querySelectorAll('.price-filter-btn').forEach(b => {
+        b.style.background = 'var(--color-surface)';
+        b.style.color = 'var(--color-text)';
+        b.style.borderColor = 'var(--color-border)';
+      });
+      btn.style.background = 'var(--color-accent)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--color-accent)';
+      
+      // Filter services
+      document.querySelectorAll('.service-card').forEach(card => {
+        const priceEl = card.querySelector('.service-card__price');
+        const price = priceEl ? parseInt(priceEl.textContent.replace(/\D/g, '')) : 0;
+        card.style.display = (price >= min && price < max) ? '' : 'none';
+      });
+    });
+  }

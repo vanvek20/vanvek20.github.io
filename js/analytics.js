@@ -11,7 +11,7 @@
 // ============================================================
 // REPLACE WITH REAL COUNTER ID when Metrika counter is ready
 // ============================================================
-var COUNTER_ID = 00000000; // REPLACE WITH REAL COUNTER ID
+var COUNTER_ID = 0; // REPLACE WITH REAL COUNTER ID
 
 /**
  * Safe wrapper around ym() — does nothing if Metrika is not loaded yet.

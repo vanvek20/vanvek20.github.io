@@ -10,6 +10,7 @@
                     /_/
 -->
 <meta charset="UTF-8">
+<link rel="canonical" href="https://vanvek.ru/services.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Все услуги по установке сантехники — VanVek</title>
 <meta name="description" content="Все услуги по установке сантехники в Москве. Выберите категорию.">
@@ -139,7 +140,7 @@
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;margin-bottom:var(--space-2);">Заявка отправлена</div>
-      <p style="font-size:var(--text-sm);color:var(--color-text-muted);">Перезвоним</p>
+      <p style="font-size:var(--text-sm);color:var(--color-text-muted);">Перезвоним в течение 15 минут</p>
     </div>
   </div>
 </div>
@@ -185,20 +186,20 @@ document.addEventListener('DOMContentLoaded', function() {
   // Search & filter
   const searchInput = document.getElementById('catalog-search');
   const tagsContainer = document.getElementById('catalog-tags');
-  const allCards = document.querySelectorAll('#services-cat-grid .category-card');
+  // allCards moved inside filterCards() to fix empty NodeList bug
 
   // Generate tags from category groups
   const tagGroups = {
     'Все': null,
     'Ванная': ['furniture', 'showers', 'faucets', 'sinks', 'toilets', 'installations', 'bathtubs'],
-    'Кухня': ['kitchen', 'faucets'],
+    'Кухня': ['kitchen'],
     'Инженерные системы': ['water-heaters', 'water-supply', 'towel-rails'],
     'Аксессуары': ['accessories'],
   };
 
   // Build tag buttons
   tagsContainer.innerHTML = Object.keys(tagGroups).map((tag, i) =>
-    `<button class="catalog-tag" data-group="${tag}" style="padding:8px 16px;border:1.5px solid ${i === 0 ? '#E8450A' : 'var(--color-border)'};border-radius:50px;font-size:var(--text-sm);font-weight:600;font-family:var(--font-display);background:${i === 0 ? '#E8450A' : 'var(--color-surface)'};color:${i === 0 ? '#fff' : 'var(--color-text)'};cursor:pointer;transition:all 0.2s;">${tag}</button>`
+    `<button class="catalog-tag" data-group="${tag}" style="padding:8px 16px;min-height:44px;border:1.5px solid ${i === 0 ? '#E8450A' : 'var(--color-border)'};border-radius:50px;font-size:var(--text-sm);font-weight:600;font-family:var(--font-display);background:${i === 0 ? '#E8450A' : 'var(--color-surface)'};color:${i === 0 ? '#fff' : 'var(--color-text)'};cursor:pointer;transition:all 0.2s;">${tag}</button>`
   ).join('');
 
   let activeTag = null;
@@ -240,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function filterCards() {
     const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    const allCards = document.querySelectorAll('#services-cat-grid .category-card');
     allCards.forEach(card => {
       const name = (card.querySelector('.category-card__name')?.textContent || '').toLowerCase();
       const slug = card.getAttribute('href')?.match(/cat=([^&]+)/)?.[1] || '';

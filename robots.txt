@@ -29,4 +29,7 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
+Disallow: /cart.html
+Disallow: /thankyou-quick.html
+
 Sitemap: https://vanvek.ru/sitemap.xml
