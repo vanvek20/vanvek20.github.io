@@ -346,9 +346,7 @@
         <span class="breadcrumbs__sep" aria-hidden="true">/</span>
         <span aria-current="page">Прайс-лист</span>
       </nav>
-    <div style="max-width:720px;margin:var(--space-6) auto;padding:var(--space-4) var(--space-5);background:var(--color-surface-alt,#f4f6f8);border-radius:var(--radius-lg);border-left:4px solid var(--color-accent);font-size:var(--text-sm);color:var(--color-text-muted);">
-      Цены указаны ориентировочно. Точная стоимость определяется после осмотра — мастер назовёт финальную цену до начала работ.
-    </div>
+
       <h1>Прайс-лист на установку сантехники</h1>
       <div style="display:flex;align-items:center;gap:var(--space-6);flex-wrap:wrap;margin-top:var(--space-2);">
         <p style="margin:0;">Фиксированные цены в <span data-city-name>Москве</span> — без скрытых доплат после выезда мастера</p>
@@ -399,6 +397,16 @@
 </main>
 
 <!-- Floating messenger buttons -->
+<!-- Sticky cart widget (like on index) -->
+<div class="sticky-cart" id="sticky-cart" style="display:none;">
+  <a href="cart.html" class="sticky-cart__inner">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span class="sticky-cart__label">Корзина</span>
+    <span class="sticky-cart__count js-cart-count">0</span>
+    <span class="sticky-cart__total js-sticky-cart-total"></span>
+  </a>
+</div>
+
 <div id="messenger-fab-root"></div>
 
 <div id="footer-mount"></div>
@@ -475,6 +483,17 @@ document.addEventListener('DOMContentLoaded', function () {
       const s = totalAdded % 100;
       const word = (s >= 11 && s <= 19) ? 'услуг' : (s % 10 === 1 ? 'услуга' : (s % 10 >= 2 && s % 10 <= 4 ? 'услуги' : 'услуг'));
       countEl.textContent = totalAdded + ' ' + word + ' выбрано';
+    }
+    // Update sticky cart widget
+    var stickyCart = document.getElementById('sticky-cart');
+    if (stickyCart && window.AppStore) {
+      var count = window.AppStore.cartCount();
+      var total = window.AppStore.cartTotal();
+      stickyCart.classList.toggle('visible', count > 0);
+      stickyCart.style.display = count > 0 ? '' : 'none';
+      document.querySelectorAll('.js-cart-count').forEach(function(el) { el.textContent = count; });
+      var totalEl = stickyCart.querySelector('.js-sticky-cart-total');
+      if (totalEl) totalEl.textContent = count > 0 ? window.AppStore.formatPrice(total) : '';
     }
   }
 
