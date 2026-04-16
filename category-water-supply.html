@@ -649,6 +649,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateReturnVisitorCta() {
     var count = window.AppStore.cartCount();
     if (count > 0) {
+      var cart = window.AppStore.getCart();
+      var total = window.AppStore.cartTotal();
+      var addonCount = cart.reduce(function(s, c) { return s + (c.addons ? c.addons.length : 0); }, 0);
       if (countEl) countEl.textContent = count;
       if (labelEl) {
         var forms = ['услуга', 'услуги', 'услуг'];
@@ -658,6 +661,13 @@ document.addEventListener('DOMContentLoaded', function() {
           : n1 === 1 ? forms[0]
           : (n1 >= 2 && n1 <= 4) ? forms[1]
           : forms[2];
+        if (addonCount > 0) {
+          var af = ['допуслуга', 'допуслуги', 'допуслуг'];
+          var an = addonCount % 100; var an1 = addonCount % 10;
+          var aw = (an >= 11 && an <= 19) ? af[2] : an1 === 1 ? af[0] : (an1 >= 2 && an1 <= 4) ? af[1] : af[2];
+          label += ' + ' + addonCount + ' ' + aw;
+        }
+        label += ' · ' + window.AppStore.formatPrice(total);
         labelEl.textContent = label;
       }
       rvcEl.style.display = 'block';

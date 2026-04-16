@@ -529,10 +529,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateStickyBar() {
       var cart = window.AppStore ? window.AppStore.getCart() : [];
       var count = cart.length;
+      var total = window.AppStore ? window.AppStore.cartTotal() : 0;
       var text = document.getElementById('sticky-cart-text');
       if (text) {
         var word = count === 1 ? 'услуга' : (count >= 2 && count <= 4 ? 'услуги' : 'услуг');
-        text.textContent = 'В заявке: ' + count + ' ' + word;
+        var addonCount = cart.reduce(function(s, c) { return s + (c.addons ? c.addons.length : 0); }, 0);
+        var label = count + ' ' + word;
+        if (addonCount > 0) {
+          var aw = addonCount === 1 ? 'допуслуга' : (addonCount >= 2 && addonCount <= 4 ? 'допуслуги' : 'допуслуг');
+          label += ' + ' + addonCount + ' ' + aw;
+        }
+        text.textContent = 'В заявке: ' + label + ' · ' + window.AppStore.formatPrice(total);
       }
       bar.classList.toggle('visible', count > 0);
     }

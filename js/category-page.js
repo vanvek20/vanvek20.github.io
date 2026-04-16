@@ -172,6 +172,12 @@ function renderServices(services, categorySlug) {
       const isOpen = wrapper.classList.contains('service-addons--open');
       wrapper.classList.toggle('service-addons--open');
       this.setAttribute('aria-expanded', !isOpen);
+      // Auto-scroll to show addons panel when opening
+      if (!isOpen && panel) {
+        setTimeout(() => {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 150); // small delay for CSS transition to start
+      }
     });
   });
 
