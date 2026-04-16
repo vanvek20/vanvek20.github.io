@@ -261,21 +261,23 @@
   pointer-events: none;
 }
 
-/* Итого-бар */
+/* Итого-бар — fixed внизу экрана, всегда виден при скролле */
 .price-total-bar {
-  position: sticky;
-  bottom: var(--space-6);
-  margin-top: var(--space-8);
-  padding: var(--space-4) var(--space-6);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  padding: var(--space-4) var(--space-6) var(--space-4) var(--space-8);
   background: var(--color-primary);
-  border-radius: var(--radius-xl);
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
   flex-wrap: wrap;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  z-index: 10;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.25);
+  z-index: 1100;
 }
 .price-total-bar__label {
   font-size: var(--text-sm);
@@ -305,7 +307,7 @@
   .price-row { padding: var(--space-3) var(--space-4); flex-wrap: wrap; gap: var(--space-2); }
   .price-row__name { width: 100%; flex: none; }
   .price-row__price { margin-left: 0; }
-  .price-total-bar { bottom: var(--space-3); padding: var(--space-3) var(--space-4); }
+  .price-total-bar { bottom: 64px; padding: var(--space-3) var(--space-4); } /* above mobile bottom nav */
 }
 </style>
 <link rel="manifest" href="manifest.json">
@@ -484,17 +486,12 @@ document.addEventListener('DOMContentLoaded', function () {
       const word = (s >= 11 && s <= 19) ? 'услуг' : (s % 10 === 1 ? 'услуга' : (s % 10 >= 2 && s % 10 <= 4 ? 'услуги' : 'услуг'));
       countEl.textContent = totalAdded + ' ' + word + ' выбрано';
     }
+    // Скрываем глобальные бары на прайс-странице — price-total-bar их заменяет
+    var globalBar = document.getElementById('js-cart-summary-bar');
+    if (globalBar) globalBar.style.display = 'none';
     // Update sticky cart widget
     var stickyCart = document.getElementById('sticky-cart');
-    if (stickyCart && window.AppStore) {
-      var count = window.AppStore.cartCount();
-      var total = window.AppStore.cartTotal();
-      stickyCart.classList.toggle('visible', count > 0);
-      stickyCart.style.display = count > 0 ? '' : 'none';
-      document.querySelectorAll('.js-cart-count').forEach(function(el) { el.textContent = count; });
-      var totalEl = stickyCart.querySelector('.js-sticky-cart-total');
-      if (totalEl) totalEl.textContent = count > 0 ? window.AppStore.formatPrice(total) : '';
-    }
+    if (stickyCart) stickyCart.style.display = 'none';
   }
 
   // Sort groupOrder by super-group zones for logical display
