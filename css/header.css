@@ -21,9 +21,10 @@
 .logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   flex-shrink: 0;
-  margin-left: calc(-1 * var(--space-6) + var(--space-4)); /* сдвиг влево: выходим за паддинг контейнера, оставляя 16px от края */
+  width: 210px;
 }
 
 /* Оригинальный логотип на тёмном фоне:
@@ -36,7 +37,7 @@
   mix-blend-mode: screen;
   transition: opacity var(--transition);
   transform: scaleX(1.25);
-  transform-origin: left center;
+  transform-origin: center center;
 }
 .logo:hover .logo__img {
   opacity: 0.82;
