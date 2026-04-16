@@ -274,12 +274,13 @@ function initCartMiniDropdown() {
 
   btn.addEventListener('mouseenter', () => mini.classList.add('open'));
   wrapper.addEventListener('mouseleave', () => mini.classList.remove('open'));
-  btn.addEventListener('click', (e) => {
+  /* Click always navigates to cart.html (default <a> behaviour).
+     On mobile we force it explicitly in case the event is swallowed. */
+  btn.addEventListener('click', () => {
     if (window.innerWidth < 768) {
       window.location.href = 'cart.html';
-    } else {
-      e.preventDefault();
     }
+    // desktop: let the native <a href="cart.html"> navigate
   });
 }
 
