@@ -39,7 +39,16 @@ function loadCartFromSession() {
     const raw = localStorage.getItem(CART_STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) cart = parsed;
+      if (Array.isArray(parsed)) {
+        cart = parsed.map(item => {
+          // Sanitize: ensure basePrice and total are numbers
+          const base = item.basePrice || item.price || 0;
+          const addonSum = (item.addons || []).reduce((s, a) => s + (a.price || 0) * (a.qty || 1), 0);
+          item.basePrice = base;
+          if (!item.total || isNaN(item.total)) item.total = base + addonSum;
+          return item;
+        });
+      }
     }
   } catch(e) { /* localStorage may be blocked or data malformed */ }
 }
@@ -81,20 +90,21 @@ function updateCityUI() {
 
 // ===== CART API =====
 function cartTotal() {
-  return cart.reduce((sum, item) => sum + item.total, 0);
+  return cart.reduce((sum, item) => sum + (item.total || 0), 0);
 }
 function cartCount() { return cart.length; }
 
 function addToCart(item) {
-  // item: { serviceId, name, basePrice, addons: [{id,name,price,qty}] }
-  const addonTotal = (item.addons || []).reduce((s, a) => s + a.price * a.qty, 0);
+  // item: { serviceId, name, basePrice|price, addons: [{id,name,price,qty}] }
+  const base = item.basePrice || item.price || 0;
+  const addonTotal = (item.addons || []).reduce((s, a) => s + a.price * (a.qty || 1), 0);
   const entry = {
     id: Date.now() + Math.random(),
     serviceId: item.serviceId,
     name: item.name,
-    basePrice: item.basePrice,
+    basePrice: base,
     addons: item.addons || [],
-    total: item.basePrice + addonTotal
+    total: base + addonTotal
   };
   cart.push(entry);
   saveCartToSession();
