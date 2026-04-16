@@ -554,7 +554,9 @@
   flex-shrink: 0;
   transition: transform 0.25s ease;
 }
-.service-addons__toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.service-addons__toggle .service-addons__chevron {
+  transition: transform 0.25s ease;
+}
 
 .service-addons__header {
   display: flex;
@@ -574,7 +576,11 @@
   gap: var(--space-4);
 }
 .service-addons__panel.open,
-.service-addons__panel--visible { display: flex; }
+.service-addons__panel--visible,
+.service-addons--open .service-addons__panel { display: flex; }
+
+/* Chevron rotation for open state */
+.service-addons--open .service-addons__chevron { transform: rotate(180deg); }
 
 .addon-item {
   display: flex;
@@ -1643,5 +1649,46 @@ details[open] .faq-item__q::after {
   .sticky-cart-bar {
     bottom: 56px; /* Above mobile nav */
     padding: 10px 16px;
+  }
+}
+
+/* Sticky CTA for services.html */
+.sticky-cta-services {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+}
+.sticky-cta-services__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background: #E8450A;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(232,69,10,0.35);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.sticky-cta-services__btn:hover {
+  background: #d03d08;
+  box-shadow: 0 6px 28px rgba(232,69,10,0.45);
+  transform: translateY(-2px);
+}
+.sticky-cta-services__btn svg {
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .sticky-cta-services {
+    bottom: 72px; /* Above mobile nav */
+    right: 16px;
+  }
+  .sticky-cta-services__btn {
+    padding: 12px 20px;
+    font-size: 14px;
   }
 }

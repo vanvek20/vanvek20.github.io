@@ -409,24 +409,7 @@
 </section>
 
 
-<!-- ===== CATALOG PREVIEW — Interactive cards with hover info ===== -->
-<section class="section catalog-section" id="catalog">
-  <div class="container">
-    <div class="catalog-header">
-      <div>
-        <h2 class="section-title">Каталог услуг</h2>
-        <p class="section-subtitle"><span class="hide-mobile">Наведите на категорию — увидите услуги и цены</span><span class="show-mobile">Нажмите на категорию — увидите услуги и цены</span></p>
-      </div>
-      <a href="services.html" class="btn btn--outline">Все услуги
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-    <div class="catalog-tabs" id="js-catalog-tabs" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--space-6);"></div>
-    <div class="category-grid" id="js-category-grid">
-      <!-- Filled by JS -->
-    </div>
-  </div>
-</section>
+<!-- Каталог убран с главной — доступен через кнопку «Все 150+ услуг» выше -->
 
 <!-- ===== ПУЗОМЕРКА — Trust/authority block (ONE TIME) ===== -->
 <section class="section puzomerka" id="trust">
@@ -1259,36 +1242,235 @@ document.addEventListener('DOMContentLoaded', function() {
       { slug: 'installations', name: 'Инсталляции' },
       { slug: 'towel-rails',   name: 'Полотенцесушители' },
     ];
-    // Filled mono-color icons (Sprint 3: #E8450A silhouette on #FEF0EB background)
-    const topIcons = {
-      furniture: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="14" width="30" height="18" rx="2" fill="#1a2535"/><rect x="9" y="32" width="3" height="5" rx="1" fill="#0d1a2e"/><rect x="28" y="32" width="3" height="5" rx="1" fill="#0d1a2e"/><rect x="8" y="17" width="11" height="12" rx="1" fill="#fff" opacity="0.25"/><rect x="21" y="17" width="11" height="12" rx="1" fill="#fff" opacity="0.25"/><rect x="13" y="22" width="3" height="2" rx="1" fill="#fff" opacity="0.7"/><rect x="25" y="22" width="3" height="2" rx="1" fill="#fff" opacity="0.7"/><rect x="4" y="11" width="32" height="4" rx="2" fill="#0d1a2e"/><ellipse cx="20" cy="13" rx="7" ry="2.5" fill="#fff" opacity="0.18"/></svg>',
-      showers: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="8" width="3" height="26" rx="1.5" fill="#1a2535"/><rect x="30" y="8" width="3" height="26" rx="1.5" fill="#1a2535"/><rect x="7" y="32" width="26" height="4" rx="2" fill="#0d1a2e"/><rect x="10" y="8" width="20" height="24" rx="1" fill="#1a2535" opacity="0.15"/><circle cx="28" cy="10" r="4" fill="#0d1a2e"/><circle cx="28" cy="10" r="2.5" fill="#fff" opacity="0.3"/><line x1="22" y1="16" x2="21" y2="22" stroke="#E8450A" stroke-width="1.8" stroke-linecap="round"/><line x1="25" y1="17" x2="24" y2="24" stroke="#E8450A" stroke-width="1.8" stroke-linecap="round"/><line x1="19" y1="15" x2="18" y2="20" stroke="#E8450A" stroke-width="1.8" stroke-linecap="round"/><rect x="9.5" y="19" width="2" height="5" rx="1" fill="#fff" opacity="0.6"/></svg>',
-      toilets: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="5" width="18" height="11" rx="3" fill="#1a2535"/><circle cx="20" cy="10.5" r="2.5" fill="#fff" opacity="0.5"/><rect x="15" y="15" width="10" height="3" rx="1" fill="#0d1a2e"/><path d="M9 18 Q9 32 20 32 Q31 32 31 18 Z" fill="#1a2535"/><path d="M12 20 Q12 29 20 29 Q28 29 28 20 Z" fill="#fff" opacity="0.2"/><rect x="8" y="17" width="24" height="3" rx="1.5" fill="#0d1a2e"/></svg>',
-      sinks: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="10" width="32" height="5" rx="2" fill="#0d1a2e"/><path d="M10 15 Q10 28 20 28 Q30 28 30 15 Z" fill="#1a2535"/><path d="M13 17 Q13 25 20 25 Q27 25 27 17 Z" fill="#fff" opacity="0.22"/><circle cx="20" cy="24" r="2" fill="#0d1a2e"/><circle cx="20" cy="24" r="1" fill="#fff" opacity="0.4"/><rect x="18" y="6" width="4" height="6" rx="2" fill="#1a2535"/><rect x="13" y="8" width="6" height="2" rx="1" fill="#0d1a2e"/><rect x="21" y="8" width="6" height="2" rx="1" fill="#0d1a2e"/><rect x="18.5" y="28" width="3" height="7" rx="1.5" fill="#0d1a2e"/></svg>',
-      bathtubs: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="16" width="32" height="3" rx="1.5" fill="#0d1a2e"/><path d="M5 19 Q5 32 20 32 Q35 32 35 19 Z" fill="#1a2535"/><path d="M8 21 Q8 29 20 29 Q32 29 32 21 Z" fill="#fff" opacity="0.2"/><rect x="9" y="32" width="3" height="5" rx="1.5" fill="#0d1a2e"/><rect x="28" y="32" width="3" height="5" rx="1.5" fill="#0d1a2e"/><rect x="28" y="11" width="3" height="7" rx="1.5" fill="#0d1a2e"/><rect x="24" y="13" width="5" height="2" rx="1" fill="#0d1a2e"/><rect x="29" y="13" width="5" height="2" rx="1" fill="#0d1a2e"/><line x1="13" y1="23" x2="17" y2="23" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><line x1="11" y1="26" x2="16" y2="26" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/></svg>',
-      faucets: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="6" width="8" height="16" rx="4" fill="#1a2535"/><rect x="13" y="9" width="14" height="4" rx="2" fill="#0d1a2e"/><rect x="20" y="20" width="3" height="8" rx="1.5" fill="#0d1a2e"/><rect x="18" y="27" width="7" height="3" rx="1.5" fill="#0d1a2e"/><ellipse cx="22" cy="33" rx="1.2" ry="1.8" fill="#1a2535" opacity="0.7"/><ellipse cx="26" cy="35" rx="1" ry="1.5" fill="#1a2535" opacity="0.4"/><rect x="17" y="22" width="6" height="2" rx="1" fill="#0d1a2e" opacity="0.5"/></svg>',
-      installations: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="4" width="6" height="32" rx="2" fill="#1a2535"/><rect x="26" y="4" width="6" height="32" rx="2" fill="#1a2535"/><rect x="8" y="4" width="24" height="5" rx="2" fill="#1a2535"/><rect x="8" y="31" width="24" height="5" rx="2" fill="#1a2535"/><rect x="8" y="17" width="24" height="4" rx="2" fill="#0d1a2e"/><rect x="14" y="20" width="12" height="7" rx="2" fill="#0d1a2e"/><rect x="16" y="21.5" width="5" height="4" rx="1" fill="#fff" opacity="0.3"/><rect x="22" y="21.5" width="4" height="4" rx="1" fill="#fff" opacity="0.3"/><rect x="11" y="9" width="3" height="8" rx="1" fill="#fff" opacity="0.25"/><rect x="26" y="9" width="3" height="8" rx="1" fill="#fff" opacity="0.25"/></svg>',
-      'towel-rails': '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="5" width="4" height="32" rx="2" fill="#1a2535"/><rect x="27" y="5" width="4" height="32" rx="2" fill="#1a2535"/><rect x="9" y="9" width="22" height="3.5" rx="1.75" fill="#0d1a2e"/><rect x="9" y="16" width="22" height="3.5" rx="1.75" fill="#0d1a2e"/><rect x="9" y="23" width="22" height="3.5" rx="1.75" fill="#0d1a2e"/><rect x="9" y="30" width="22" height="3.5" rx="1.75" fill="#0d1a2e"/><path d="M12 16 Q16 20 20 16 Q24 12 28 16" fill="#1a2535" opacity="0.3" stroke="#E8450A" stroke-width="1"/><circle cx="11" cy="5" r="2.5" fill="#0d1a2e"/><circle cx="29" cy="5" r="2.5" fill="#0d1a2e"/></svg>',
-      'water-heaters': '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="8" width="20" height="24" rx="10" fill="#1a2535"/><rect x="13" y="10" width="4" height="18" rx="2" fill="#fff" opacity="0.15"/><rect x="14" y="28" width="12" height="3" rx="1.5" fill="#0d1a2e" opacity="0.4"/><circle cx="26" cy="13" r="3.5" fill="#0d1a2e"/><circle cx="26" cy="13" r="2" fill="#fff" opacity="0.3"/><rect x="15" y="3" width="3" height="7" rx="1.5" fill="#0d1a2e"/><rect x="22" y="3" width="3" height="7" rx="1.5" fill="#0d1a2e"/><rect x="18.5" y="32" width="3" height="6" rx="1.5" fill="#0d1a2e"/></svg>',
-      'kitchen-sinks': '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="9" width="34" height="4" rx="2" fill="#0d1a2e"/><rect x="4" y="13" width="32" height="18" rx="2" fill="#1a2535"/><rect x="6" y="15" width="13" height="14" rx="1.5" fill="#fff" opacity="0.2"/><rect x="21" y="15" width="13" height="14" rx="1.5" fill="#fff" opacity="0.2"/><circle cx="13" cy="26" r="2" fill="#0d1a2e" opacity="0.5"/><circle cx="27" cy="26" r="2" fill="#0d1a2e" opacity="0.5"/><rect x="18.5" y="6" width="3" height="9" rx="1.5" fill="#0d1a2e"/><rect x="14" y="8.5" width="5" height="2" rx="1" fill="#0d1a2e"/><rect x="21" y="8.5" width="5" height="2" rx="1" fill="#0d1a2e"/><rect x="18.5" y="31" width="3" height="6" rx="1.5" fill="#0d1a2e"/></svg>',
-      accessories: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="16" width="28" height="4" rx="2" fill="#1a2535"/><rect x="6" y="12" width="6" height="12" rx="3" fill="#0d1a2e"/><rect x="28" y="12" width="6" height="12" rx="3" fill="#0d1a2e"/><path d="M12 20 L12 30 Q20 33 28 30 L28 20" fill="#fff" opacity="0.25"/><rect x="14" y="32" width="12" height="5" rx="2.5" fill="#1a2535" opacity="0.6"/><path d="M17 10 Q17 6 20 6 Q23 6 23 10" stroke="#0d1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><circle cx="17" cy="10" r="1.5" fill="#0d1a2e"/><circle cx="23" cy="10" r="1.5" fill="#0d1a2e"/></svg>',
-      'water-supply': '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="17" y="4" width="6" height="32" rx="3" fill="#1a2535"/><rect x="4" y="17" width="32" height="6" rx="3" fill="#1a2535"/><circle cx="20" cy="20" r="6" fill="#0d1a2e"/><circle cx="20" cy="20" r="3.5" fill="#1a2535"/><rect x="14" y="18.5" width="12" height="3" rx="1.5" fill="#0d1a2e"/><rect x="4" y="19" width="6" height="2" rx="1" fill="#fff" opacity="0.3"/><rect x="30" y="19" width="6" height="2" rx="1" fill="#fff" opacity="0.3"/></svg>'
+    // Category photo images
+    const topImages = {
+      furniture: 'cat-furniture.jpg',
+      showers: 'cat-showers.jpg',
+      toilets: 'cat-toilets.jpg',
+      sinks: 'cat-sinks.jpg',
+      bathtubs: 'cat-bathtubs.jpg',
+      faucets: 'cat-faucets.jpg',
+      installations: 'cat-installations.jpg',
+      'towel-rails': 'cat-towel-rails.jpg',
     };
+
+    // Helper: render addons for a service in popular section
+    function renderPopAddons(svc) {
+      if (!svc || !svc.addons || svc.addons.length === 0) return '';
+      var addonsHTML = svc.addons.map(function(addon) {
+        var isPct = !!addon.pct;
+        var priceLabel = isPct
+          ? '+' + Math.round(svc.price * addon.pct / 100).toLocaleString('ru-RU') + ' ₽'
+          : '+ ' + addon.price.toLocaleString('ru-RU') + ' ₽' + (addon.hasQty ? ' за отверстие' : '');
+        return '<div class="addon-item" data-addon-id="' + addon.id + '" data-addon-price="' + addon.price + '" data-addon-pct="' + (addon.pct||0) + '">'
+          + '<input type="checkbox" class="addon-item__check" id="pop-addon-' + svc.id + '-' + addon.id + '" data-service-id="' + svc.id + '" aria-label="' + addon.name + '">'
+          + '<div class="addon-item__body">'
+          + '<label class="addon-item__name" for="pop-addon-' + svc.id + '-' + addon.id + '">' + addon.name + '</label>'
+          + '<div class="addon-item__price">' + priceLabel + '</div>'
+          + (addon.hasQty ? '<div class="addon-item__qty" id="pop-qty-row-' + svc.id + '-' + addon.id + '" style="display:none;">'
+            + '<button class="addon-qty-btn" data-action="minus" data-service="' + svc.id + '" data-addon="' + addon.id + '" type="button">−</button>'
+            + '<span class="addon-qty-val" id="pop-qty-val-' + svc.id + '-' + addon.id + '">1</span>'
+            + '<button class="addon-qty-btn" data-action="plus" data-service="' + svc.id + '" data-addon="' + addon.id + '" type="button">+</button>'
+            + '<span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-left:var(--space-1);">' + (addon.qtyLabel || 'шт.') + '</span>'
+            + '</div>' : '')
+          + '</div>'
+          + '</div>';
+      }).join('');
+
+      return '<div class="service-addons" data-addons-for="' + svc.id + '">'
+        + '<button class="service-addons__toggle" type="button" aria-expanded="false" aria-controls="pop-addons-panel-' + svc.id + '">'
+        + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>'
+        + '<span>Вместе дешевле — сэкономьте на допах</span>'
+        + '<svg class="service-addons__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>'
+        + '</button>'
+        + '<div class="service-addons__panel" id="pop-addons-panel-' + svc.id + '" role="group">'
+        + addonsHTML
+        + '<div class="addons-subtotal" id="pop-subtotal-' + svc.id + '" aria-live="polite">'
+        + '<span class="addons-subtotal__label">Итого с допами:</span>'
+        + '<span class="addons-subtotal__total" id="pop-subtotal-val-' + svc.id + '"><em>' + svc.price.toLocaleString('ru-RU') + ' ₽</em></span>'
+        + '</div>'
+        + '</div>'
+        + '</div>';
+    }
+
+    // Helper: render individual services for a category
+    function renderCatServices(slug) {
+      var catData = window.SERVICES_DATA && window.SERVICES_DATA[slug];
+      if (!catData || !catData.services) return '';
+      return catData.services.map(function(svc) {
+        var addonsBlock = renderPopAddons(svc);
+        return '<article class="service-card service-card--main" data-service-id="' + svc.id + '">'
+          + '<div class="service-card__main">'
+          + '<div class="service-card__info">'
+          + '<h3 class="service-card__name">' + svc.name + '</h3>'
+          + '<p class="service-card__desc">' + svc.desc + '</p>'
+          + '</div>'
+          + '<div class="service-card__right">'
+          + '<div class="service-price">'
+          + '<div class="service-price__amount" id="pop-price-display-' + svc.id + '">' + svc.price.toLocaleString('ru-RU') + ' ₽</div>'
+          + '<div class="service-price__label">фиксированная цена</div>'
+          + '</div>'
+          + '<div class="service-card__actions">'
+          + '<button class="btn btn--accent js-pop-add-to-cart" data-service-id="' + svc.id + '" data-cat-slug="' + slug + '" type="button">'
+          + '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>'
+          + ' Добавить в заявку</button>'
+          + '</div>'
+          + '</div>'
+          + '</div>'
+          + addonsBlock
+          + '</article>';
+      }).join('');
+    }
+
     topServicesGrid.innerHTML = topSlugs.map(t => {
       const catPrices = window.PRICES.filter(p => p.category === t.slug);
       const minPrice = catPrices.length > 0 ? Math.min(...catPrices.map(p => p.price)) : 0;
-      const icon = topIcons[t.slug] || '';
+      const count = catPrices.length;
+      const img = topImages[t.slug] || '';
+      const servicesHTML = renderCatServices(t.slug);
       return `
-        <a href="category.html?cat=${t.slug}" class="top-service-card">
-          <div class="top-service-card__icon">${icon}</div>
-          <div class="top-service-card__body">
-            <div class="top-service-card__name">${t.name}</div>
-            <div class="top-service-card__price">от ${minPrice.toLocaleString('ru-RU')} ₽</div>
+        <div class="top-service-category" data-cat-slug="${t.slug}">
+          <div class="top-service-card top-service-card--photo" data-toggle-cat="${t.slug}" role="button" tabindex="0" aria-expanded="false">
+            <div class="top-service-card__img-wrap">
+              <img src="${img}" alt="Установка сантехники — ${t.name}" class="top-service-card__img" loading="lazy">
+            </div>
+            <div class="top-service-card__body">
+              <div class="top-service-card__name">${t.name}</div>
+              <div class="top-service-card__meta">
+                <span class="top-service-card__price">от ${minPrice.toLocaleString('ru-RU')} ₽</span>
+                <span class="top-service-card__count">${count} услуг</span>
+              </div>
+            </div>
+            <svg class="top-service-card__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <span class="top-service-card__link">Выбрать →</span>
-        </a>
+          <div class="top-service-category__services" id="pop-services-${t.slug}" style="display:none;">
+            ${servicesHTML}
+            <div style="text-align:center;margin-top:var(--space-3);">
+              <a href="category.html?cat=${t.slug}" class="btn btn--outline btn--sm">Все услуги категории →</a>
+            </div>
+          </div>
+        </div>
       `;
     }).join('');
+
+    // Toggle category services panel
+    topServicesGrid.querySelectorAll('[data-toggle-cat]').forEach(card => {
+      card.addEventListener('click', function() {
+        const slug = this.dataset.toggleCat;
+        const panel = document.getElementById('pop-services-' + slug);
+        const isOpen = panel.style.display !== 'none';
+        panel.style.display = isOpen ? 'none' : 'block';
+        this.setAttribute('aria-expanded', !isOpen);
+        this.closest('.top-service-category').classList.toggle('top-service-category--open', !isOpen);
+      });
+    });
+
+    // Addons toggle in popular services
+    topServicesGrid.querySelectorAll('.service-addons__toggle').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const wrapper = this.closest('.service-addons');
+        wrapper.classList.toggle('service-addons--open');
+        this.setAttribute('aria-expanded', wrapper.classList.contains('service-addons--open'));
+      });
+    });
+
+    // Addon checkboxes in popular services
+    topServicesGrid.querySelectorAll('.addon-item__check').forEach(chk => {
+      chk.addEventListener('change', function() {
+        const svcId = this.dataset.serviceId;
+        const addonId = this.closest('.addon-item').dataset.addonId;
+        const qtyRow = document.getElementById('pop-qty-row-' + svcId + '-' + addonId);
+        if (qtyRow) qtyRow.style.display = this.checked ? 'flex' : 'none';
+        recalcPopSubtotal(svcId);
+      });
+    });
+
+    // Addon qty buttons in popular services
+    topServicesGrid.querySelectorAll('.addon-qty-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const svcId = this.dataset.service;
+        const addonId = this.dataset.addon;
+        const valEl = document.getElementById('pop-qty-val-' + svcId + '-' + addonId);
+        if (!valEl) return;
+        let val = parseInt(valEl.textContent) || 1;
+        if (this.dataset.action === 'plus') val++;
+        if (this.dataset.action === 'minus' && val > 1) val--;
+        valEl.textContent = val;
+        recalcPopSubtotal(svcId);
+      });
+    });
+
+    // Add to cart from popular services
+    topServicesGrid.querySelectorAll('.js-pop-add-to-cart').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (!window.AppStore) return;
+        const svcId = this.dataset.serviceId;
+        const catSlug = this.dataset.catSlug;
+        const catData = window.SERVICES_DATA && window.SERVICES_DATA[catSlug];
+        if (!catData) return;
+        const svc = catData.services.find(s => s.id === svcId);
+        if (!svc) return;
+        // Build cart item matching PRICES format
+        const cartItem = { name: svc.name, price: svc.price, category: catSlug };
+        window.AppStore.addToCart(cartItem);
+        // Collect checked addons
+        const card = this.closest('.service-card');
+        const addonsWrapper = card.nextElementSibling;
+        if (addonsWrapper && addonsWrapper.classList.contains('service-addons')) {
+          addonsWrapper.querySelectorAll('.addon-item__check:checked').forEach(chk => {
+            const addonEl = chk.closest('.addon-item');
+            const addonId = addonEl.dataset.addonId;
+            const addonDef = svc.addons.find(a => a.id === addonId);
+            if (!addonDef) return;
+            const addonPrice = addonDef.pct ? Math.round(svc.price * addonDef.pct / 100) : addonDef.price;
+            const qtyEl = document.getElementById('pop-qty-val-' + svcId + '-' + addonId);
+            const qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+            for (let i = 0; i < qty; i++) {
+              window.AppStore.addToCart({ name: addonDef.name, price: addonPrice, category: catSlug });
+            }
+          });
+        }
+        // Feedback
+        this.textContent = '✓ Добавлено';
+        this.disabled = true;
+        setTimeout(() => { this.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> Добавить в заявку'; this.disabled = false; }, 1500);
+      });
+    });
+
+    // Recalculate subtotal for popular services addons
+    function recalcPopSubtotal(svcId) {
+      // Find which category this service belongs to
+      const card = topServicesGrid.querySelector('[data-service-id="' + svcId + '"]');
+      if (!card) return;
+      const catWrap = card.closest('.top-service-category');
+      const catSlug = catWrap ? catWrap.dataset.catSlug : null;
+      if (!catSlug) return;
+      const catData = window.SERVICES_DATA && window.SERVICES_DATA[catSlug];
+      if (!catData) return;
+      const svc = catData.services.find(s => s.id === svcId);
+      if (!svc) return;
+      let total = svc.price;
+      const panel = document.getElementById('pop-addons-panel-' + svcId);
+      if (!panel) return;
+      panel.querySelectorAll('.addon-item__check:checked').forEach(chk => {
+        const addonEl = chk.closest('.addon-item');
+        const pct = parseInt(addonEl.dataset.addonPct) || 0;
+        const price = parseInt(addonEl.dataset.addonPrice) || 0;
+        const addonId = addonEl.dataset.addonId;
+        if (pct > 0) {
+          total += Math.round(svc.price * pct / 100);
+        } else {
+          const qtyEl = document.getElementById('pop-qty-val-' + svcId + '-' + addonId);
+          const qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+          total += price * qty;
+        }
+      });
+      const subtotalEl = document.getElementById('pop-subtotal-val-' + svcId);
+      if (subtotalEl) subtotalEl.innerHTML = '<em>' + total.toLocaleString('ru-RU') + ' ₽</em>';
+      // Also update price display on service card
+      const priceEl = document.getElementById('pop-price-display-' + svcId);
+      if (priceEl) priceEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
+    }
   }
 });
 </script>
@@ -1437,10 +1619,61 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTotal();
   });
 
+  // Helper: find SERVICES_DATA entry matching a PRICES item by name
+  function findServiceData(priceName, catSlug) {
+    if (!window.SERVICES_DATA || !window.SERVICES_DATA[catSlug]) return null;
+    var services = window.SERVICES_DATA[catSlug].services;
+    for (var i = 0; i < services.length; i++) {
+      if (services[i].name === priceName) return services[i];
+    }
+    return null;
+  }
+
+  // Helper: render addons HTML for a service (copied from category.html logic)
+  function renderAddonsBlock(svc) {
+    if (!svc || !svc.addons || svc.addons.length === 0) return '';
+    var addonsHTML = svc.addons.map(function(addon) {
+      var isPct = !!addon.pct;
+      var priceLabel = isPct
+        ? '+' + Math.round(svc.price * addon.pct / 100).toLocaleString('ru-RU') + ' ₽'
+        : '+ ' + addon.price.toLocaleString('ru-RU') + ' ₽' + (addon.hasQty ? ' за отверстие' : '');
+      return '<div class="addon-item" data-addon-id="' + addon.id + '" data-addon-price="' + addon.price + '" data-addon-pct="' + (addon.pct||0) + '">'
+        + '<input type="checkbox" class="addon-item__check" id="calc-addon-' + svc.id + '-' + addon.id + '" data-service-id="' + svc.id + '" aria-label="' + addon.name + '">'
+        + '<div class="addon-item__body">'
+        + '<label class="addon-item__name" for="calc-addon-' + svc.id + '-' + addon.id + '">' + addon.name + '</label>'
+        + '<div class="addon-item__price">' + priceLabel + '</div>'
+        + (addon.hasQty ? '<div class="addon-item__qty" id="calc-qty-row-' + svc.id + '-' + addon.id + '" style="display:none;">'
+          + '<button class="addon-qty-btn" data-action="minus" data-service="' + svc.id + '" data-addon="' + addon.id + '" type="button" aria-label="Уменьшить количество">−</button>'
+          + '<span class="addon-qty-val" id="calc-qty-val-' + svc.id + '-' + addon.id + '">1</span>'
+          + '<button class="addon-qty-btn" data-action="plus" data-service="' + svc.id + '" data-addon="' + addon.id + '" type="button" aria-label="Увеличить количество">+</button>'
+          + '<span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-left:var(--space-1);">' + (addon.qtyLabel || 'шт.') + '</span>'
+          + '</div>' : '')
+        + '</div>'
+        + '</div>';
+    }).join('');
+
+    return '<div class="service-addons" data-addons-for="' + svc.id + '">'
+      + '<button class="service-addons__toggle" type="button" aria-expanded="false" aria-controls="calc-addons-panel-' + svc.id + '">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>'
+      + '<span>Вместе дешевле — сэкономьте на допах</span>'
+      + '<svg class="service-addons__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>'
+      + '</button>'
+      + '<div class="service-addons__panel" id="calc-addons-panel-' + svc.id + '" role="group" aria-label="Дополнительные услуги">'
+      + addonsHTML
+      + '<div class="addons-subtotal" id="calc-subtotal-' + svc.id + '" aria-live="polite">'
+      + '<span class="addons-subtotal__label">Итого с допами:</span>'
+      + '<span class="addons-subtotal__total" id="calc-subtotal-val-' + svc.id + '"><em>' + svc.price.toLocaleString('ru-RU') + ' ₽</em></span>'
+      + '</div>'
+      + '</div>'
+      + '</div>';
+  }
+
   function renderServices() {
     var items = window.PRICES.filter(function(p) { return p.category === selectedCat; });
     servicesEl.innerHTML = items.map(function(item) {
       var qty = quantities[item.name] || 0;
+      var svcData = findServiceData(item.name, selectedCat);
+      var addonsBlock = renderAddonsBlock(svcData);
       return '<div class="calc-service-row">'
         + '<div class="calc-service-row__info">'
         + '<span class="calc-service-row__name">' + item.name + '</span>'
@@ -1451,8 +1684,72 @@ document.addEventListener('DOMContentLoaded', function() {
         + '<span class="calc-qty-val">' + qty + '</span>'
         + '<button type="button" class="calc-qty-btn" data-action="inc" data-name="' + item.name.replace(/"/g, '&quot;') + '">+</button>'
         + '</div>'
-        + '</div>';
+        + '</div>'
+        + addonsBlock;
     }).join('');
+
+    // Bind addons toggle
+    servicesEl.querySelectorAll('.service-addons__toggle').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var wrapper = this.closest('.service-addons');
+        wrapper.classList.toggle('service-addons--open');
+        this.setAttribute('aria-expanded', wrapper.classList.contains('service-addons--open'));
+      });
+    });
+
+    // Bind addon checkboxes
+    servicesEl.querySelectorAll('.addon-item__check').forEach(function(chk) {
+      chk.addEventListener('change', function() {
+        var svcId = this.dataset.serviceId;
+        var addonId = this.closest('.addon-item').dataset.addonId;
+        var qtyRow = document.getElementById('calc-qty-row-' + svcId + '-' + addonId);
+        if (qtyRow) qtyRow.style.display = this.checked ? 'flex' : 'none';
+        recalcCalcSubtotal(svcId);
+        updateTotal();
+      });
+    });
+
+    // Bind addon qty buttons
+    servicesEl.querySelectorAll('.addon-qty-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var svcId = this.dataset.service;
+        var addonId = this.dataset.addon;
+        var valEl = document.getElementById('calc-qty-val-' + svcId + '-' + addonId);
+        if (!valEl) return;
+        var val = parseInt(valEl.textContent) || 1;
+        if (this.dataset.action === 'plus') val++;
+        if (this.dataset.action === 'minus' && val > 1) val--;
+        valEl.textContent = val;
+        recalcCalcSubtotal(svcId);
+        updateTotal();
+      });
+    });
+  }
+
+  // Recalculate subtotal for a service with addons
+  function recalcCalcSubtotal(svcId) {
+    var catData = window.SERVICES_DATA && window.SERVICES_DATA[selectedCat];
+    if (!catData) return;
+    var svc = catData.services.find(function(s) { return s.id === svcId; });
+    if (!svc) return;
+    var total = svc.price;
+    var panel = document.getElementById('calc-addons-panel-' + svcId);
+    if (!panel) return;
+    panel.querySelectorAll('.addon-item__check:checked').forEach(function(chk) {
+      var addonEl = chk.closest('.addon-item');
+      var pct = parseInt(addonEl.dataset.addonPct) || 0;
+      var price = parseInt(addonEl.dataset.addonPrice) || 0;
+      var addonId = addonEl.dataset.addonId;
+      if (pct > 0) {
+        total += Math.round(svc.price * pct / 100);
+      } else {
+        var qtyEl = document.getElementById('calc-qty-val-' + svcId + '-' + addonId);
+        var qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+        total += price * qty;
+      }
+    });
+    var subtotalEl = document.getElementById('calc-subtotal-val-' + svcId);
+    if (subtotalEl) subtotalEl.innerHTML = '<em>' + total.toLocaleString('ru-RU') + ' ₽</em>';
   }
 
   servicesEl.addEventListener('click', function(e) {
@@ -1474,6 +1771,25 @@ document.addEventListener('DOMContentLoaded', function() {
       if (quantities[p.name] && quantities[p.name] > 0) {
         sum += p.price * quantities[p.name];
         hasItems = true;
+      }
+    });
+    // Add checked addons to total
+    servicesEl.querySelectorAll('.addon-item__check:checked').forEach(function(chk) {
+      var addonEl = chk.closest('.addon-item');
+      var pct = parseInt(addonEl.dataset.addonPct) || 0;
+      var price = parseInt(addonEl.dataset.addonPrice) || 0;
+      var svcId = chk.dataset.serviceId;
+      if (pct > 0) {
+        var catData = window.SERVICES_DATA && window.SERVICES_DATA[selectedCat];
+        if (catData) {
+          var svc = catData.services.find(function(s) { return s.id === svcId; });
+          if (svc) sum += Math.round(svc.price * pct / 100);
+        }
+      } else {
+        var addonId = addonEl.dataset.addonId;
+        var qtyEl = document.getElementById('calc-qty-val-' + svcId + '-' + addonId);
+        var qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+        sum += price * qty;
       }
     });
     totalEl.textContent = sum.toLocaleString('ru-RU') + ' ₽';

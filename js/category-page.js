@@ -140,14 +140,15 @@ function renderServices(services, categorySlug) {
           </div>
         </div>
 
-        <!-- Addons — visible inline (no accordion) -->
-        <div class="service-addons service-addons--open">
-          <div class="service-addons__header">
+        <!-- Addons — collapsed by default, expand on click -->
+        <div class="service-addons" data-addons-for="${svc.id}">
+          <button class="service-addons__toggle" type="button" aria-expanded="false" aria-controls="addons-panel-${svc.id}">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            Вместе дешевле
-          </div>
+            <span>Вместе дешевле</span>
+            <svg class="service-addons__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
 
-          <div class="service-addons__panel service-addons__panel--visible" id="addons-panel-${svc.id}" role="group" aria-label="Дополнительные услуги для ${window.AppStore.escHtml(svc.name)}">
+          <div class="service-addons__panel" id="addons-panel-${svc.id}" role="group" aria-label="Дополнительные услуги для ${window.AppStore.escHtml(svc.name)}">
             ${addonsHTML}
 
             <!-- Subtotal -->
@@ -162,6 +163,17 @@ function renderServices(services, categorySlug) {
   }).join('');
 
   // ===== INTERACTIVITY =====
+
+  // Addons toggle (collapsed by default)
+  list.querySelectorAll('.service-addons__toggle').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const wrapper = this.closest('.service-addons');
+      const panel = wrapper.querySelector('.service-addons__panel');
+      const isOpen = wrapper.classList.contains('service-addons--open');
+      wrapper.classList.toggle('service-addons--open');
+      this.setAttribute('aria-expanded', !isOpen);
+    });
+  });
 
   // Addon checkbox + qty logic
   list.querySelectorAll('.addon-item__check').forEach(chk => {
