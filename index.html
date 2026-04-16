@@ -1742,8 +1742,14 @@ document.addEventListener('DOMContentLoaded', function() {
     servicesEl.querySelectorAll('.service-addons__toggle').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var wrapper = this.closest('.service-addons');
+        var opening = !wrapper.classList.contains('service-addons--open');
         wrapper.classList.toggle('service-addons--open');
-        this.setAttribute('aria-expanded', wrapper.classList.contains('service-addons--open'));
+        this.setAttribute('aria-expanded', String(opening));
+        if (opening) {
+          setTimeout(function() {
+            wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 80);
+        }
       });
     });
 

@@ -346,8 +346,14 @@ function renderServices(services, categorySlug) {
   list.querySelectorAll('.service-addons__toggle').forEach(btn => {
     btn.addEventListener('click', function() {
       const wrapper = this.closest('.service-addons');
+      const opening = !wrapper.classList.contains('service-addons--open');
       wrapper.classList.toggle('service-addons--open');
-      this.setAttribute('aria-expanded', wrapper.classList.contains('service-addons--open'));
+      this.setAttribute('aria-expanded', String(opening));
+      if (opening) {
+        setTimeout(() => {
+          wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 80);
+      }
     });
   });
 
