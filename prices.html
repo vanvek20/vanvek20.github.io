@@ -261,23 +261,21 @@
   pointer-events: none;
 }
 
-/* Итого-бар — fixed внизу экрана, всегда виден при скролле */
+/* Итого-бар — sticky внизу секции */
 .price-total-bar {
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  left: 0;
-  right: 0;
-  margin-top: 0;
+  margin-top: var(--space-4);
   padding: var(--space-4) var(--space-6) var(--space-4) var(--space-8);
   background: var(--color-primary);
-  border-radius: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
   flex-wrap: wrap;
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.25);
-  z-index: 1100;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+  z-index: 100;
 }
 .price-total-bar__label {
   font-size: var(--text-sm);
@@ -307,26 +305,15 @@
   .price-row { padding: var(--space-3) var(--space-4); flex-wrap: wrap; gap: var(--space-2); }
   .price-row__name { width: 100%; flex: none; }
   .price-row__price { margin-left: 0; }
-  .price-total-bar { bottom: 64px; padding: var(--space-3) var(--space-4); } /* above mobile bottom nav */
+  .price-total-bar { padding: var(--space-3) var(--space-4); }
 }
 
-/* Плавающая CTA «Оформить заявку» — появляется при скролле */
+/* Плавающая CTA «Оформить заявку» — всегда видна */
 .price-sticky-cta {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 1050;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(12px);
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-}
-.price-sticky-cta.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
 }
 .price-sticky-cta__btn {
   display: inline-flex;
@@ -405,13 +392,7 @@
       </nav>
 
       <h1>Прайс-лист на установку сантехники</h1>
-      <div style="display:flex;align-items:center;gap:var(--space-6);flex-wrap:wrap;margin-top:var(--space-2);">
-        <p style="margin:0;">Фиксированные цены в <span data-city-name>Москве</span> — без скрытых доплат после выезда мастера</p>
-        <a href="cart.html" class="btn btn--accent" style="white-space:nowrap;" id="header-to-cart-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-          Оформить заявку
-        </a>
-      </div>
+      <p style="margin-top:var(--space-2);">Фиксированные цены в <span data-city-name>Москве</span> — без скрытых доплат после выезда мастера</p>
     </div>
   </div>
 
@@ -453,7 +434,7 @@
 
 </main>
 
-<!-- Плавающая кнопка «Оформить заявку» — появляется когда hero-кнопка уходит за экран -->
+<!-- Плавающая кнопка «Оформить заявку» -->
 <div class="price-sticky-cta" id="price-sticky-cta">
   <a href="cart.html" class="price-sticky-cta__btn">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
@@ -812,36 +793,6 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<script>
-(function() {
-  var heroBtn = document.getElementById('header-to-cart-btn');
-  var stickyCta = document.getElementById('price-sticky-cta');
-  var totalBar = document.getElementById('price-total-bar');
-  if (!heroBtn || !stickyCta) return;
 
-  function updateStickyCta() {
-    var rect = heroBtn.getBoundingClientRect();
-    var heroBtnHidden = rect.bottom < 0;
-    var totalBarVisible = totalBar && totalBar.style.display !== 'none';
-    if (heroBtnHidden && !totalBarVisible) {
-      stickyCta.classList.add('visible');
-    } else {
-      stickyCta.classList.remove('visible');
-    }
-  }
-
-  window.addEventListener('scroll', updateStickyCta, { passive: true });
-  // Also watch for cart changes that show/hide the total bar
-  if (window.AppStore && window.AppStore.onCartChange) {
-    window.AppStore.onCartChange(updateStickyCta);
-  }
-  // Observe totalBar display changes via MutationObserver
-  if (totalBar) {
-    var obs = new MutationObserver(updateStickyCta);
-    obs.observe(totalBar, { attributes: true, attributeFilter: ['style'] });
-  }
-  updateStickyCta();
-})();
-</script>
 </body>
 </html>
