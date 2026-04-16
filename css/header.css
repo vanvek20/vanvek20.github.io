@@ -24,7 +24,8 @@
   justify-content: center;
   text-decoration: none;
   flex-shrink: 0;
-  width: 210px;
+  width: 216px;
+  margin-left: 0;
 }
 
 /* Оригинальный логотип на тёмном фоне:
