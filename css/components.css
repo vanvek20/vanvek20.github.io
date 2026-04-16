@@ -519,7 +519,7 @@
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 800;
-  color: var(--color-accent);
+  color: var(--color-text);
   line-height: 1;
 }
 .service-price__label {
