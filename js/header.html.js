@@ -51,14 +51,10 @@ function getHeaderHTML(activeLink) {
         -->
       </div>
 
-      <!-- Phone -->
-      <div class="header-phone">
-        <a href="tel:88003333333" class="header-phone__number" data-city-phone-href data-city-phone>8 800 333-33-33</a>
-        <span class="header-phone__label">Бесплатно</span>
-        <a href="tel:88003333333" class="btn btn--call-header" data-city-phone-href aria-label="Позвонить">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="flex-shrink:0;min-width:16px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-        </a>
-      </div>
+      <!-- Phone: десктоп → контакты, мобиль → звонок -->
+      <a href="contacts.html" class="btn btn--call-header js-phone-btn" aria-label="Контакты">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="flex-shrink:0;min-width:16px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      </a>
 
       <!-- Cart wrapper with mini dropdown -->
       <div class="js-cart-mini-wrapper" style="position:relative;">

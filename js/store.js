@@ -88,6 +88,11 @@ function updateCityUI() {
   document.querySelectorAll('[data-city-in-title]').forEach(el => {
     el.textContent = city.nameIn || city.name; /* предложный падеж: «в Москве» */
   });
+  // Phone button: мобиль → звонок, десктоп → контакты
+  document.querySelectorAll('.js-phone-btn').forEach(btn => {
+    var isMobile = window.innerWidth <= 768 || ('ontouchstart' in window);
+    btn.href = isMobile ? city.phoneHref : 'contacts.html';
+  });
 }
 
 // ===== CART API =====
