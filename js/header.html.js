@@ -37,16 +37,18 @@ function getHeaderHTML(activeLink) {
     <!-- Right: city + phone + cart -->
     <div class="header-right">
 
-      <!-- City labels (simple toggle) -->
-      <div class="city-labels" role="navigation" aria-label="Выбор города">
-        <button class="city-labels__btn active" data-city-key="moscow" type="button">
+      <!-- City labels — только Москва (СПб временно скрыт) -->
+      <div class="city-labels" role="navigation" aria-label="Город">
+        <span class="city-labels__btn active" style="pointer-events:none;">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Москва
-        </button>
+        </span>
+        <!-- TODO: раскомментировать когда откроем СПб
         <button class="city-labels__btn" data-city-key="spb" type="button">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Санкт-Петербург
         </button>
+        -->
       </div>
 
       <!-- Phone -->
@@ -96,12 +98,14 @@ function getHeaderHTML(activeLink) {
     <a href="tel:88003333333" class="mobile-nav__phone-number" data-city-phone-href data-city-phone>8 800 333-33-33</a>
   </div>
 
-  <!-- Город -->
+  <!-- Город — только Москва (СПб скрыт) -->
   <div class="mobile-nav__city">
     <div class="mobile-nav__city-title">Ваш город</div>
     <div class="mobile-nav__city-btns">
-      <button class="btn btn--outline btn--sm" onclick="window.AppStore&&window.AppStore.setCity('moscow')">Москва</button>
+      <button class="btn btn--outline btn--sm active" onclick="window.AppStore&&window.AppStore.setCity('moscow')">Москва</button>
+      <!-- TODO: раскомментировать когда откроем СПб
       <button class="btn btn--outline btn--sm" onclick="window.AppStore&&window.AppStore.setCity('spb')">Санкт-Петербург</button>
+      -->
     </div>
   </div>
 
@@ -205,7 +209,7 @@ function getFooterHTML() {
     </div>
     <div style="padding:var(--space-4) 0;border-top:1px solid rgba(255,255,255,0.08);margin-top:var(--space-4);">
       <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.35);line-height:1.6;text-align:center;">
-        VanVek — сервис по установке сантехники. Москва и Санкт-Петербург.<br>
+        VanVek — сервис по установке сантехники. Москва.<br>
         <a onclick="document.getElementById('requisites-modal').style.display='flex'" style="cursor:pointer;color:rgba(255,255,255,0.5);text-decoration:underline;">Реквизиты для юридических лиц</a>
       </div>
     </div>

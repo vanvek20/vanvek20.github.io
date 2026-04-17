@@ -58,6 +58,8 @@ function getCity() { return CITIES[currentCity]; }
 function getCityKey() { return currentCity; }
 function setCity(key) {
   if (!CITIES[key]) return;
+  // TODO: убрать блокировку когда откроем СПб
+  if (key === 'spb') return;
   currentCity = key;
   updateCityUI();
 }
