@@ -952,17 +952,6 @@
 </section>
 
 
-<!-- Task 6: Sticky CTA panel -->
-<div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta__inner container">
-    <span class="sticky-cta__text">Установка сантехники — фиксированные цены</span>
-    <div class="sticky-cta__actions">
-      <a href="tel:88003333333" class="sticky-cta__phone">8 800 333-33-33</a>
-      <a href="cart.html" class="btn btn--accent sticky-cta__btn">Оформить заявку</a>
-    </div>
-  </div>
-</div>
-
 <!-- Floating messenger buttons (injected by JS) -->
 <div id="messenger-fab-root"></div>
 
@@ -1566,24 +1555,6 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 
-// Task 6: Sticky CTA
-(function() {
-  var sticky = document.getElementById('stickyCta');
-  var header = document.querySelector('.site-header');
-  if (!sticky) return;
-  var threshold = 600;
-
-  window.addEventListener('scroll', function() {
-    var y = window.scrollY;
-    if (y > threshold) {
-      sticky.classList.add('sticky-cta--visible');
-      // if (header) header.style.transform = 'translateY(-100%)'; // B10: disabled — header must stay visible with sticky CTA
-    } else {
-      sticky.classList.remove('sticky-cta--visible');
-      if (header) header.style.transform = '';
-    }
-  }, { passive: true });
-})();
 
 </script>
 
