@@ -266,6 +266,7 @@
   position: sticky;
   bottom: 0;
   margin-top: var(--space-4);
+  /* Предотвращаем наезд на последние строки прайса — когда бар появляется, кнопки не должны быть под ним */
   padding: var(--space-4) var(--space-6) var(--space-4) var(--space-8);
   background: var(--color-primary);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -523,10 +524,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const bar = document.getElementById('price-total-bar');
     const sumEl = document.getElementById('price-bar-sum');
     const countEl = document.getElementById('price-bar-count');
+    const accordion = document.getElementById('price-accordion');
     if (totalAdded === 0) {
       bar.style.display = 'none';
+      if (accordion) accordion.style.paddingBottom = '';
     } else {
       bar.style.display = 'flex';
+      if (accordion) accordion.style.paddingBottom = '100px'; /* Место под sticky итого-бар */
       sumEl.textContent = totalSum.toLocaleString('ru-RU') + ' ₽';
       const s = totalAdded % 100;
       const word = (s >= 11 && s <= 19) ? 'услуг' : (s % 10 === 1 ? 'услуга' : (s % 10 >= 2 && s % 10 <= 4 ? 'услуги' : 'услуг'));
