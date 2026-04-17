@@ -1,7 +1,19 @@
 /* ===== HEADER ===== */
-.site-header {
+/* Sticky на mount-обёртках (прямые children body) — sticky не работает внутри маленьких div */
+#header-mount,
+#header-root {
   position: sticky;
   top: 0;
+  z-index: 100;
+}
+#bc-mount {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 99;
+}
+
+.site-header {
+  position: relative;
   z-index: 100;
   background: #000000; /* Чёрный — точно совпадает с фоном JPEG-логотипа */
   border-bottom: 1px solid rgba(255,255,255,0.08);

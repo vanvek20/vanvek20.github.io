@@ -2,11 +2,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  overflow-x: hidden;
+  /* overflow-x: hidden — УБРАНО, ломало position:sticky для хедера и breadcrumbs */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  scroll-padding-top: calc(var(--header-h) + var(--space-4));
+  scroll-padding-top: calc(var(--header-h) + 36px + var(--space-4)); /* header + bc-strip + spacing */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,7 +15,7 @@ html {
 
 body {
   min-height: 100dvh;
-  overflow-x: hidden;
+  overflow-x: clip;
   line-height: 1.6;
   font-family: var(--font-body, sans-serif);
   font-size: var(--text-base);
