@@ -266,37 +266,30 @@
   position: sticky;
   bottom: 0;
   margin-top: var(--space-4);
-  /* Предотвращаем наезд на последние строки прайса — когда бар появляется, кнопки не должны быть под ним */
-  padding: var(--space-4) var(--space-6) var(--space-4) var(--space-8);
+  padding: 10px var(--space-5);
   background: var(--color-primary);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  flex-wrap: wrap;
   box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
   z-index: 100;
 }
-.price-total-bar__label {
-  font-size: var(--text-sm);
-  color: rgba(255,255,255,0.65);
+.price-total-bar__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
 }
 .price-total-bar__sum {
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: 800;
   color: #fff;
 }
 .price-total-bar__count {
   font-size: var(--text-xs);
-  color: rgba(255,255,255,0.5);
-  margin-top: 2px;
-}
-.price-total-bar__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
+  color: rgba(255,255,255,0.55);
 }
 
 /* Мобильный */
@@ -306,7 +299,10 @@
   .price-row { padding: var(--space-3) var(--space-4); flex-wrap: wrap; gap: var(--space-2); }
   .price-row__name { width: 100%; flex: none; }
   .price-row__price { margin-left: 0; }
-  .price-total-bar { padding: var(--space-3) var(--space-4); }
+  .price-total-bar { padding: 8px var(--space-3); gap: var(--space-2); bottom: 65px; }
+  .price-total-bar__info { gap: var(--space-2); flex-wrap: wrap; }
+  .price-total-bar__sum { font-size: var(--text-base); }
+  .price-total-bar .btn--accent { padding: 8px 14px; font-size: var(--text-xs); white-space: nowrap; }
 }
 
 /* Плавающая CTA «Оформить заявку» — всегда видна */
@@ -416,19 +412,13 @@
       <!-- Аккордеон по группам — генерируется из prices.js -->
       <div id="price-accordion" aria-label="Прайс-лист по категориям"></div>
 
-      <!-- Итого-бар (появляется когда что-то добавлено) -->
+      <!-- Итого-бар (компактный, синхрон с корзиной) -->
       <div class="price-total-bar" id="price-total-bar" style="display:none;" role="status" aria-live="polite">
-        <div>
-          <div class="price-total-bar__label">Итого по выбранным услугам</div>
+        <div class="price-total-bar__info">
           <div class="price-total-bar__sum" id="price-bar-sum">0 ₽</div>
           <div class="price-total-bar__count" id="price-bar-count"></div>
         </div>
-        <div class="price-total-bar__actions">
-          <a href="cart.html" class="btn btn--accent btn--lg">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-            Оформить заявку
-          </a>
-        </div>
+        <a href="cart.html" class="btn btn--accent">Оформить заявку</a>
       </div>
 
     </div>
@@ -517,32 +507,45 @@ document.addEventListener('DOMContentLoaded', function () {
     'Демонтаж':                        '🛠',
   };
 
-  let totalAdded = 0;
-  let totalSum = 0;
-
+  /* Итого-бар синхронизирован с AppStore (корзиной) */
   function updateTotalBar() {
     const bar = document.getElementById('price-total-bar');
     const sumEl = document.getElementById('price-bar-sum');
     const countEl = document.getElementById('price-bar-count');
     const accordion = document.getElementById('price-accordion');
-    if (totalAdded === 0) {
+
+    // Читаем реальные данные из корзины
+    let totalCount = 0;
+    let totalSum = 0;
+    if (window.AppStore && window.AppStore.getCart) {
+      const cart = window.AppStore.getCart();
+      totalCount = cart.length;
+      totalSum = cart.reduce((s, item) => s + (item.basePrice || 0), 0);
+    }
+
+    if (totalCount === 0) {
       bar.style.display = 'none';
       if (accordion) accordion.style.paddingBottom = '';
     } else {
       bar.style.display = 'flex';
-      if (accordion) accordion.style.paddingBottom = '100px'; /* Место под sticky итого-бар */
+      if (accordion) accordion.style.paddingBottom = '60px';
       sumEl.textContent = totalSum.toLocaleString('ru-RU') + ' ₽';
-      const s = totalAdded % 100;
+      const s = totalCount % 100;
       const word = (s >= 11 && s <= 19) ? 'услуг' : (s % 10 === 1 ? 'услуга' : (s % 10 >= 2 && s % 10 <= 4 ? 'услуги' : 'услуг'));
-      countEl.textContent = totalAdded + ' ' + word + ' выбрано';
+      countEl.textContent = totalCount + ' ' + word + ' в корзине';
     }
     // Скрываем глобальные бары на прайс-странице — price-total-bar их заменяет
     var globalBar = document.getElementById('js-cart-summary-bar');
     if (globalBar) globalBar.style.display = 'none';
-    // Update sticky cart widget
     var stickyCart = document.getElementById('sticky-cart');
     if (stickyCart) stickyCart.style.display = 'none';
   }
+  // Подписка на изменения корзины
+  if (window.AppStore && window.AppStore.onCartChange) {
+    window.AppStore.onCartChange(updateTotalBar);
+  }
+  // Начальное обновление при загрузке (если в корзине уже есть товары)
+  updateTotalBar();
 
   // Sort groupOrder by super-group zones for logical display
   const superGroupsList = [
@@ -649,24 +652,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const price = parseInt(row.dataset.price);
     const name = row.dataset.name;
 
-    // Добавляем в AppStore
+    // Добавляем в AppStore (без тоста — кнопка сама показывает ✓ Добавлено, тост перекрывал итого-бар)
     if (window.AppStore && window.AppStore.addToCart) {
       window.AppStore.addToCart({ serviceId: `price-${gi}-${ii}`, name, basePrice: price, addons: [] });
-      if (window.AppStore.showToast) window.AppStore.showToast(`«${name}» добавлена в заявку`);
     }
 
     btn.classList.add('added');
     btn.textContent = '✓ Добавлено';
+    // updateTotalBar вызовется автоматически через onCartChange
 
-    totalAdded++;
-    totalSum += price;
-    updateTotalBar();
-
-    // Сброс через 5 сек
+    // Сброс визуала кнопки через 3 сек
     setTimeout(() => {
       btn.classList.remove('added');
       btn.textContent = '+ В заявку';
-    }, 5000);
+    }, 3000);
   });
 
   // Price search
