@@ -46,6 +46,7 @@
 <body>
 <a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
 <div id="header-mount"></div>
+<div id="bc-mount"></div>
 <!-- Return visitor CTA -->
 <div id="return-visitor-cta" aria-live="polite" style="display:none;">
   <div class="container">
@@ -118,6 +119,7 @@ const PAGE_KEY = 'about';
 document.addEventListener('DOMContentLoaded', function() {
   const meta = window.STATIC_PAGES && window.STATIC_PAGES[PAGE_KEY];
   document.getElementById('header-mount').innerHTML = getHeaderHTML(meta ? meta.navKey : '');
+  document.getElementById('bc-mount').innerHTML = getBreadcrumbHTML([{label:'Главная',href:'index.html'},{label:'О компании'}]);
   // Хедер вставлен — инициализируем переключатель города
   if (window.AppStore && window.AppStore.initCityDropdown) window.AppStore.initCityDropdown();
   if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();

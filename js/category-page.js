@@ -1,6 +1,9 @@
 // category-page.js — shared category page logic (Sprint 6D)
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('header-mount').innerHTML = getHeaderHTML('services');
+  // Breadcrumb — предварительный (обновится когда категория загрузится)
+  var bcMount = document.getElementById('bc-mount');
+  if (bcMount) bcMount.innerHTML = getBreadcrumbHTML([{label:'Главная',href:'index.html'},{label:'Услуги',href:'services.html'},{label:'Загрузка...'}]);
   // Хедер вставлен — инициализируем переключатель города
   if (window.AppStore && window.AppStore.initCityDropdown) window.AppStore.initCityDropdown();
   if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();
@@ -27,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (elPageTitle) elPageTitle.textContent = `${data.categoryName} — VanVek`;
   if (elPageDesc) elPageDesc.content = `Установка ${data.categoryName.toLowerCase()} в Москве по фиксированной цене.`;
   document.getElementById('cat-breadcrumb').textContent = data.categoryName;
+  // Обновить sticky breadcrumb-strip с реальным названием категории
+  var bcM = document.getElementById('bc-mount');
+  if (bcM) bcM.innerHTML = getBreadcrumbHTML([{label:'Главная',href:'index.html'},{label:'Услуги',href:'services.html'},{label:data.categoryName}]);
   document.getElementById('cat-title').textContent = data.categoryName + ' в ' + window.AppStore.getCity().name.replace('Санкт-Петербург', 'Санкт-Петербурге').replace('Москва', 'Москве');
   const svcCount = data.services ? data.services.length : 0;
   document.getElementById('cat-subtitle').textContent = svcCount > 0 ? `${svcCount} услуг • фиксированные цены` : 'Фиксированные цены, гарантия 1 год';

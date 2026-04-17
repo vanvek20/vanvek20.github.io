@@ -297,6 +297,48 @@ function getMessengerFAB() {
 }
 
 /* Инициализация FAB мессенджеров — вызывать после innerHTML */
+/**
+ * Sticky breadcrumb strip — вставляется сразу после хедера
+ * @param {Array} items — [{label, href},...] последний — текущая страница (без href)
+ * Пример: [{label:'Главная', href:'index.html'}, {label:'Услуги', href:'services.html'}, {label:'Смесители'}]
+ */
+function getBreadcrumbHTML(items) {
+  if (!items || items.length === 0) return '';
+
+  // Schema.org JSON-LD
+  var jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': items.map(function(item, i) {
+      var entry = { '@type': 'ListItem', 'position': i + 1, 'name': item.label };
+      if (item.href) entry.item = 'https://vanvek.ru/' + item.href;
+      return entry;
+    })
+  };
+
+  // Desktop: full path  Главная › Услуги › Текущая
+  var desktopItems = items.map(function(item, i) {
+    if (i === items.length - 1) {
+      return '<span class="bc-strip__current" aria-current="page">' + item.label + '</span>';
+    }
+    return '<a href="' + item.href + '" class="bc-strip__link">' + item.label + '</a>' +
+           '<svg class="bc-strip__sep" width="6" height="10" viewBox="0 0 6 10" aria-hidden="true"><path d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }).join('');
+
+  // Mobile: only parent link  ‹ Услуги
+  var parent = items.length >= 2 ? items[items.length - 2] : items[0];
+  var mobileBack = '<a href="' + (parent.href || 'index.html') + '" class="bc-strip__back">' +
+    '<svg width="7" height="12" viewBox="0 0 7 12" aria-hidden="true"><path d="M6 1L1 6l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+    parent.label + '</a>';
+
+  return '<div class="bc-strip" role="navigation" aria-label="Навигация по разделам">' +
+    '<script type="application/ld+json">' + JSON.stringify(jsonLd) + '</' + 'script>' +
+    '<div class="container bc-strip__inner">' +
+    '<div class="bc-strip__desktop">' + desktopItems + '</div>' +
+    '<div class="bc-strip__mobile">' + mobileBack + '</div>' +
+    '</div></div>';
+}
+
 function initMessengerFAB() {
   var toggle = document.getElementById('js-messenger-toggle');
   var wrap = document.getElementById('js-messenger-float');

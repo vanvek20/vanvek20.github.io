@@ -1129,13 +1129,68 @@
   background: linear-gradient(90deg, #E8450A 0%, #c8c800 35%, #1EC8E8 100%);
   pointer-events: none;
 }
-.page-header .breadcrumbs {
-  color: rgba(255,255,255,0.45);
-  margin-bottom: var(--space-2); /* was: space-4 */
-  font-size: var(--text-xs);
+.page-header .breadcrumbs { display: none; } /* старые breadcrumbs внутри page-header скрыты — заменены на sticky bc-strip */
+
+/* ===== Breadcrumb Strip ===== */
+.bc-strip {
+  background: var(--color-surface, #fff);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.01em;
 }
-.page-header .breadcrumbs a:hover { color: var(--color-accent); }
-.page-header .breadcrumbs__sep { color: rgba(255,255,255,0.25); }
+.bc-strip__inner {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+.bc-strip__desktop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bc-strip__mobile { display: none; }
+.bc-strip__link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+.bc-strip__link:hover { color: var(--color-accent); }
+.bc-strip__sep {
+  color: var(--color-text-faint, rgba(0,0,0,0.2));
+  flex-shrink: 0;
+}
+.bc-strip__current {
+  color: var(--color-text);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+.bc-strip__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  min-height: 44px; /* Apple HIG тач-зона */
+  transition: color 0.15s;
+}
+.bc-strip__back:hover { color: var(--color-accent); }
+
+@media (max-width: 768px) {
+  .bc-strip__desktop { display: none; }
+  .bc-strip__mobile { display: flex; }
+}
+
+/* Dark theme */
+[data-theme="dark"] .bc-strip {
+  background: var(--color-surface, #1a1a1a);
+  border-bottom-color: rgba(255,255,255,0.08);
+}
 .page-header h1 {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 1rem + 1.5vw, 1.75rem); /* was: text-2xl — too large */

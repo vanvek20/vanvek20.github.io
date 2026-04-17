@@ -364,6 +364,7 @@
 <body>
 <a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
 <div id="header-mount"></div>
+<div id="bc-mount"></div>
 
 <!-- Return visitor CTA -->
 <div id="return-visitor-cta" aria-live="polite" style="display:none;">
@@ -465,6 +466,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('header-mount').innerHTML = getHeaderHTML('prices');
+  document.getElementById('bc-mount').innerHTML = getBreadcrumbHTML([{label:'Главная',href:'index.html'},{label:'Прайс'}]);
   if (window.AppStore && window.AppStore.initCityDropdown) window.AppStore.initCityDropdown();
   if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();
   if (window.AppStore && window.AppStore.updateCartUI) window.AppStore.updateCartUI();

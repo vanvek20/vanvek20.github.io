@@ -308,6 +308,7 @@
 <body>
 <a href="#main-content" class="sr-only">Перейти к основному содержимому</a>
 <div id="header-mount"></div>
+<div id="bc-mount"></div>
 
 <main id="main-content" class="stub-section">
 
@@ -471,6 +472,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('header-mount').innerHTML = getHeaderHTML('iot');
+  document.getElementById('bc-mount').innerHTML = getBreadcrumbHTML([{label:'Главная',href:'index.html'},{label:'Умный дом'}]);
   if (window.AppStore && window.AppStore.initCityDropdown) window.AppStore.initCityDropdown();
   if (window.AppStore && window.AppStore.initThemeToggle) window.AppStore.initThemeToggle();
   if (window.AppStore && window.AppStore.updateCartUI) window.AppStore.updateCartUI();
